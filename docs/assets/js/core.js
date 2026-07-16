@@ -67,11 +67,24 @@
       /* Focusing immediately can lose to the opening transition (the input
          is still visibility:hidden mid-frame), landing focus back on the
          page instead - defer a couple of frames so the bar has actually
-         painted visible before we try. */
+         painted visible before we try. On a cold page load the browser can
+         still be busy with layout/paint work from everything else that just
+         loaded, so those two frames alone aren't always enough (this is why
+         the bug only showed up on first load); back the rAF attempt up with
+         a focus once the open transition actually finishes. */
       if (navSearchInput) {
         window.requestAnimationFrame(function () {
           window.requestAnimationFrame(function () { navSearchInput.focus(); });
         });
+        var navSearchForm = navSearchInput.closest('.nav-search');
+        if (navSearchForm) {
+          var focusOnceOpen = function (e) {
+            if (e.target !== navSearchForm) return;
+            navSearchForm.removeEventListener('transitionend', focusOnceOpen);
+            navSearchInput.focus();
+          };
+          navSearchForm.addEventListener('transitionend', focusOnceOpen);
+        }
       }
     };
     var closeNavSearch = function () {
