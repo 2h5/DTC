@@ -1,0 +1,75 @@
+/* ==========================================================================
+   About Us page only: founder story, story banner, "what sets us apart"
+   cards, CTA band. Loaded only by about-us.html, after core/*.css.
+   ========================================================================== */
+
+/* ==========================================================================
+   Founder story , photo + text split, reuses .pcb-frame from core/base.css
+   ========================================================================== */
+
+.founder-story { padding-block: 56px 96px; }
+.founder-split { display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); gap: 48px; align-items: center; }
+.founder-split h2 { margin-bottom: 18px; }
+.founder-split p { color: var(--text-2); font-size: 1rem; line-height: 1.75; }
+.founder-split p + p { margin-top: 16px; }
+
+.founder-stats { margin-top: 32px; display: flex; gap: 28px; flex-wrap: wrap; }
+.founder-stat { display: flex; flex-direction: column; }
+.founder-stat .num { font-family: var(--font-display); font-size: 1.9rem; font-weight: 600; color: var(--accent-ink); line-height: 1.1; }
+.founder-stat .label { margin-top: 4px; font-size: 0.82rem; color: var(--text-3); }
+
+/* ==========================================================================
+   Our story banner , full-bleed photo, text over the dark side of the image
+   ========================================================================== */
+
+.story-banner { position: relative; padding-block: 100px; overflow: hidden; color: #ffffff; }
+.story-banner-media { position: absolute; inset: 0; z-index: 0; }
+.story-banner-media img { width: 100%; height: 100%; object-fit: cover; }
+.story-banner-media::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(3, 20, 28, 0.55) 0%, rgba(3, 20, 28, 0.78) 60%, rgba(3, 20, 28, 0.86) 100%);
+}
+.story-banner .container { position: relative; z-index: 1; }
+.story-banner-content { max-width: 560px; margin-left: auto; text-align: right; }
+.story-banner-content h2 { color: #ffffff; }
+.story-banner-content p { margin-top: 16px; color: rgba(255, 255, 255, 0.85); font-size: 1rem; line-height: 1.75; }
+.story-banner-content .btn { margin-top: 26px; }
+
+/* ==========================================================================
+   What sets us apart , 3-card grid
+   ========================================================================== */
+
+.apart-section { padding-block: 96px; border-top: 1px solid var(--line-1); }
+.apart-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.apart-card {
+  border: 1px solid var(--line-1); border-radius: var(--radius-card); background: var(--surface-2);
+  padding: 28px 24px;
+}
+.apart-icon {
+  width: 44px; height: 44px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--accent-tint); color: var(--accent-ink);
+}
+.apart-icon svg { width: 20px; height: 20px; }
+.apart-card h3 { margin-top: 18px; }
+.apart-card p { margin-top: 8px; font-size: 0.92rem; color: var(--text-2); line-height: 1.6; }
+
+.apart-foot { margin-top: 32px; text-align: center; }
+
+/* .cta-band lives in core/base.css, reused by every content page. */
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+
+@media (max-width: 980px) {
+  .founder-split { grid-template-columns: 1fr; }
+  .founder-split .pcb-frame { max-width: 420px; margin-inline: auto; }
+  .apart-grid { grid-template-columns: 1fr; }
+  .story-banner-content { text-align: left; margin-left: 0; }
+}
+
+@media (max-width: 720px) {
+  .founder-story, .apart-section, .cta-band { padding-block: 64px; }
+  .story-banner { padding-block: 72px; }
+}

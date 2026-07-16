@@ -1,0 +1,58 @@
+/* ==========================================================================
+   Client Testimonials page only: photo-backed hero, testimonial card grid.
+   Loaded only by client-testimonials.html, after core/*.css.
+   ========================================================================== */
+
+/* ==========================================================================
+   Hero , photo background variant of .page-hero, distinct from the plain
+   light hero used on Parts Shop / About Us / Why Choose Us
+   ========================================================================== */
+
+.testimonials-hero {
+  padding-block: 88px 56px;
+  background:
+    linear-gradient(100deg, rgba(4, 22, 30, 0.88) 0%, rgba(4, 22, 30, 0.72) 45%, rgba(4, 22, 30, 0.5) 100%),
+    url("../../img/about/hero-testimonials.jpg") center 35% / cover no-repeat;
+}
+.testimonials-hero .breadcrumb { color: rgba(255, 255, 255, 0.6); }
+.testimonials-hero .breadcrumb a { color: rgba(255, 255, 255, 0.85); }
+.testimonials-hero .breadcrumb .current { color: #ffffff; }
+.testimonials-hero .eyebrow { color: var(--accent-400); margin-top: 18px; display: inline-block; }
+.testimonials-hero h1 { margin-top: 12px; color: #ffffff; }
+.testimonials-hero .lede { margin-top: 16px; max-width: 60ch; color: rgba(255, 255, 255, 0.82); }
+
+/* ==========================================================================
+   Testimonial grid
+   ========================================================================== */
+
+.testimonial-section { padding-block: 88px; }
+.testimonial-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.testimonial-card {
+  margin: 0; border: 1px solid var(--line-1); border-radius: var(--radius-card); background: var(--surface-2);
+  padding: 30px 28px; display: flex; flex-direction: column; gap: 22px;
+}
+.testimonial-card blockquote { margin: 0; font-size: 1.02rem; line-height: 1.6; color: var(--text-1); }
+.testimonial-card figcaption { display: flex; align-items: center; gap: 12px; }
+
+.avatar-initials {
+  width: 42px; height: 42px; border-radius: 50%; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--accent-tint); color: var(--accent-ink);
+  font-family: var(--font-display); font-weight: 600; font-size: 0.85rem;
+}
+.who { display: flex; flex-direction: column; }
+.who .name { font-weight: 600; font-size: 0.92rem; color: var(--text-1); }
+.who .role { font-size: 0.8rem; color: var(--text-3); }
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+
+@media (max-width: 780px) {
+  .testimonial-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 720px) {
+  .testimonials-hero { padding-block: 64px 44px; }
+  .testimonial-section { padding-block: 56px; }
+}

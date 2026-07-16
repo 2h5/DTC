@@ -1,0 +1,64 @@
+/* ==========================================================================
+   Why Choose Us page only: photo band with stat strip, six-reason card grid,
+   CTA band. Loaded only by why-choose-us.html, after core/*.css.
+   ========================================================================== */
+
+/* ==========================================================================
+   Photo band , full-width framed photo with a stat strip underneath
+   ========================================================================== */
+
+.photo-band { padding-block: 40px 96px; }
+.photo-band-frame {
+  border: 1px solid var(--line-1); border-radius: var(--radius-card); overflow: hidden;
+  aspect-ratio: 21 / 9;
+}
+.photo-band-frame img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+.photo-band-stats {
+  margin-top: -1px;
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  border: 1px solid var(--line-1); border-top: none;
+  border-radius: 0 0 var(--radius-card) var(--radius-card);
+  background: var(--surface-2);
+}
+.pb-stat { padding: 22px 24px; display: flex; flex-direction: column; }
+.pb-stat + .pb-stat { border-left: 1px solid var(--line-1); }
+.pb-stat .num { font-family: var(--font-display); font-size: 1.5rem; font-weight: 600; color: var(--accent-ink); }
+.pb-stat .label { margin-top: 4px; font-size: 0.85rem; color: var(--text-2); }
+
+/* ==========================================================================
+   Six reasons , 2-column card grid (not a zigzag list)
+   ========================================================================== */
+
+.reasons-section { padding-block: 96px; border-top: 1px solid var(--line-1); }
+.reasons-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.reason-card {
+  border: 1px solid var(--line-1); border-radius: var(--radius-card); background: var(--surface-2);
+  padding: 30px 28px; scroll-margin-top: 96px;
+}
+.reason-icon {
+  width: 46px; height: 46px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--accent-tint); color: var(--accent-ink);
+}
+.reason-icon svg { width: 21px; height: 21px; }
+.reason-card h3 { margin-top: 18px; }
+.reason-card p { margin-top: 10px; font-size: 0.93rem; color: var(--text-2); line-height: 1.65; }
+
+/* .cta-band lives in core/base.css, reused by every content page. */
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+
+@media (max-width: 860px) {
+  .photo-band-frame { aspect-ratio: 4 / 3; }
+  .photo-band-stats { grid-template-columns: 1fr; }
+  .pb-stat + .pb-stat { border-left: none; border-top: 1px solid var(--line-1); }
+  .reasons-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 720px) {
+  .photo-band { padding-block: 24px 64px; }
+  .reasons-section, .cta-band { padding-block: 64px; }
+}
