@@ -187,6 +187,7 @@ h3, .h3 {
   padding: 8px;
   max-height: 360px;
   overflow-y: auto;
+  overscroll-behavior: contain;
   z-index: 300;
   opacity: 0;
   transform: translateY(-8px) scale(0.98);
