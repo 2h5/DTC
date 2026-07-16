@@ -4,11 +4,6 @@
    every future brand-category page, not one file per brand.
    ========================================================================== */
 
-.page-hero { padding-block: 48px 8px; }
-.page-hero .lede { margin-top: 18px; max-width: 74ch; }
-.page-hero h1 { margin-top: 12px; }
-.page-hero .search-pill { margin-top: 28px; }
-
 .tile-section { padding-block: 40px 96px; }
 
 .tile-grid {

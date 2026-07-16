@@ -117,6 +117,17 @@ h3, .h3 {
 .link:hover { color: var(--accent-ink); border-color: var(--accent-ink); }
 
 /* ==========================================================================
+   Page hero , breadcrumb + eyebrow + h1 + lede + search-pill, used at the top
+   of any nested page (parts categories/listings/products). Lives in core (not
+   a pages/*.css file) because it's shared across page *types*, not just one.
+   ========================================================================== */
+
+.page-hero { padding-block: 48px 8px; }
+.page-hero .lede { margin-top: 18px; max-width: 74ch; }
+.page-hero h1 { margin-top: 12px; }
+.page-hero .search-pill { margin-top: 28px; }
+
+/* ==========================================================================
    Breadcrumb , used by any nested page (parts categories/listings/products)
    ========================================================================== */
 
@@ -157,7 +168,14 @@ h3, .h3 {
    ========================================================================== */
 
 .stock-badge { display: inline-flex; align-items: center; gap: 6px; font-size: 0.78rem; font-weight: 600; color: var(--accent-ink); }
-.stock-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent-500); flex-shrink: 0; }
+.stock-badge .dot {
+  width: 6px; height: 6px; border-radius: 50%; background: var(--accent-500); flex-shrink: 0;
+  animation: stock-pulse 2.6s ease-in-out infinite;
+}
+@keyframes stock-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
 
 /* Skip link */
 .skip-link { position: absolute; left: -9999px; top: auto; background: var(--accent-500); color: var(--on-accent); padding: 12px 18px; z-index: 300; border-radius: 999px; font-weight: 600; }
@@ -170,4 +188,5 @@ h3, .h3 {
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .reveal { opacity: 1; transform: none; transition: none; }
+  .stock-badge .dot { animation: none; }
 }
