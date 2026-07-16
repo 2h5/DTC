@@ -36,27 +36,12 @@
 .story-banner-content .btn { margin-top: 26px; }
 
 /* ==========================================================================
-   What sets us apart , 3-card grid
+   What sets us apart , section wrapper only, .icon-card-grid/.icon-card
+   live in core/base.css
    ========================================================================== */
 
 .apart-section { padding-block: 96px; border-top: 1px solid var(--line-1); }
-.apart-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-.apart-card {
-  border: 1px solid var(--line-1); border-radius: var(--radius-card); background: var(--surface-2);
-  padding: 28px 24px;
-}
-.apart-icon {
-  width: 44px; height: 44px; border-radius: 12px;
-  display: flex; align-items: center; justify-content: center;
-  background: var(--accent-tint); color: var(--accent-ink);
-}
-.apart-icon svg { width: 20px; height: 20px; }
-.apart-card h3 { margin-top: 18px; }
-.apart-card p { margin-top: 8px; font-size: 0.92rem; color: var(--text-2); line-height: 1.6; }
-
 .apart-foot { margin-top: 32px; text-align: center; }
-
-/* .cta-band lives in core/base.css, reused by every content page. */
 
 /* ==========================================================================
    Responsive
@@ -65,7 +50,6 @@
 @media (max-width: 980px) {
   .founder-split { grid-template-columns: 1fr; }
   .founder-split .pcb-frame { max-width: 420px; margin-inline: auto; }
-  .apart-grid { grid-template-columns: 1fr; }
   .story-banner-content { text-align: left; margin-left: 0; }
 }
 
