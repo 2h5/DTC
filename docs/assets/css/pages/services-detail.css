@@ -120,7 +120,31 @@
 
 @media (max-width: 720px) {
   .service-hero { padding-block: 48px 36px; }
+  /* The hero photos are all wide desktop-banner crops (as narrow as
+     1382x341 for Spare Parts' hero-spare-parts.png, a ~4:1 aspect ratio).
+     `background-size:cover` on a tall narrow mobile box has to zoom into a
+     small, heavily-cropped slice of that source to fill the height, which
+     makes busy photo content (shelving, bins) show through the default
+     gradient enough to fight the white text for legibility - not an issue
+     on desktop, where the hero box is wide and short and closely matches
+     the photos' native proportions, so little cropping/zooming happens.
+     Strengthening the scrim only at this breakpoint fixes the mobile-only
+     legibility problem without changing how any of the six hero photos
+     look on desktop. */
+  .service-hero::before {
+    background: linear-gradient(100deg, rgba(4, 22, 30, 0.94) 0%, rgba(4, 22, 30, 0.9) 45%, rgba(4, 22, 30, 0.82) 100%);
+  }
   .service-intro, .process-section, .condition-section, .service-section, .service-benefits { padding-block: 40px; }
   .process-steps { grid-template-columns: 1fr; }
   .service-highlight { flex-direction: column; align-items: flex-start; }
+  /* .condition-card's border/background are subtle (var(--line-1) is a 9%-
+     opacity line, var(--surface-2) is plain white, same as the page
+     background) - fine on desktop's 2-column grid, where each card also
+     has a visible neighbor beside it and the row gap does a lot of the
+     separating. Stacked single-column on mobile (.condition-grid above
+     collapses to 1fr at 980px), that same subtle border reads as no
+     separation at all, just one continuous block of text. A stronger
+     border plus a soft shadow makes each card read as a distinct block
+     when there's no side-by-side neighbor to lean on for contrast. */
+  .condition-card { border-color: var(--line-2); box-shadow: var(--shadow-sm); }
 }

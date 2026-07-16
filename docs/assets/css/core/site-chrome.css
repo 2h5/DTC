@@ -125,14 +125,12 @@
   position: absolute; inset: 0;
   display: flex; align-items: center; gap: 14px;
   opacity: 0;
-  visibility: hidden;
   pointer-events: none;
   transform: translateY(-18px);
-  transition: opacity 0.38s var(--ease), transform 0.38s var(--ease), visibility 0.38s;
+  transition: opacity 0.38s var(--ease), transform 0.38s var(--ease);
 }
 .site-header.search-active .nav-search {
   opacity: 1;
-  visibility: visible;
   pointer-events: auto;
   transform: translateY(0);
 }
@@ -155,7 +153,7 @@
 .nav-search-close:active { transform: scale(0.92); }
 
 @media (prefers-reduced-motion: reduce) {
-  .nav-search { transition: opacity 0.15s linear, visibility 0.15s; transform: none; }
+  .nav-search { transition: opacity 0.15s linear; transform: none; }
   .nav-search-toggle, .nav-search-close { transition: background-color 0.3s var(--ease), color 0.3s var(--ease); }
   .nav-search-toggle:active, .nav-search-close:active { transform: none; }
 }
@@ -178,7 +176,25 @@
 @media (max-width: 1160px) {
   .main-nav { display: none; }
   .nav-toggle { display: flex; }
-  .nav-cta .btn-sm span.btn-label-full { display: none; }
+  /* margin-left:auto goes on .nav-search-toggle only, not .nav-toggle too -
+     when two flex items both carry margin-left:auto, the browser splits the
+     row's leftover space evenly between the two auto margins instead of
+     collapsing it into one, which put a large gap between the search icon
+     and the hamburger instead of docking them next to each other. Putting
+     it on the (earlier, in source order) search icon alone pulls both it
+     and everything after it (just .nav-toggle) over to the right edge
+     together, leaving only the row's normal 20px gap between them. On the
+     home page this icon is display:none (see home.css), so that page gives
+     .nav-toggle its own margin-left:auto instead. */
+  .nav-search-toggle { margin-left: auto; }
+  /* .nav-cta (the "Instant Quote" pill) is fully redundant here - it's
+     already duplicated as a full-width button in .mobile-nav-cta inside the
+     hamburger drawer. Hiding it (rather than just the nav-phone number,
+     which was already display:none below 1160px on its own) frees up the
+     room the header row needs for .nav-search-toggle + .nav-toggle to both
+     fit without the search icon shoving the hamburger off the edge of
+     narrow phone viewports. */
+  .nav-cta { display: none; }
 }
 
 /* Mobile nav overlay */
@@ -195,14 +211,31 @@
 .mobile-nav-close { width: 40px; height: 40px; border: 1px solid var(--line-1); border-radius: 10px; display: flex; align-items: center; justify-content: center; background: transparent; color: var(--text-1); }
 .mobile-nav-close svg { width: 17px; height: 17px; }
 .mobile-nav-body { padding: 8px 24px 40px; max-width: 480px; margin-inline: auto; }
-.mobile-nav-group { border-bottom: 1px solid var(--line-1); padding: 4px 0; }
+.mobile-nav-group {
+  border-bottom: 1px solid var(--line-1); padding: 4px 0;
+  /* Expanding a submenu has to actually change layout height (it pushes the
+     groups below it down the list), so it can't be done with transform/
+     opacity alone the way most "smooth" mobile animations are. Left
+     unscoped, animating that height forces the browser to re-check layout
+     for the whole page on every frame, which is what was capping this at
+     ~30fps despite the device being capable of much more. `contain: layout`
+     tells it this element's internal layout can't affect anything outside
+     its own box, so only this group (not the rest of the page) has to be
+     recomputed each frame - that's the actual fps unlock, not the easing
+     or duration. */
+  contain: layout;
+}
 .mobile-nav-group > a, .mobile-nav-group > button {
   width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 15px 4px;
   font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; color: var(--text-1); border: none;
 }
 .mobile-nav-group .caret { width: 10px; height: 10px; transition: transform 0.3s var(--ease); color: var(--text-3); }
 .mobile-nav-group.is-open .caret { transform: rotate(180deg); }
-.mobile-submenu { max-height: 0; overflow: hidden; transition: max-height 0.4s var(--ease); }
+.mobile-submenu {
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.4s var(--ease);
+  will-change: max-height;
+}
 .mobile-nav-group.is-open .mobile-submenu { max-height: 480px; }
 .mobile-submenu a { display: block; padding: 10px 4px 10px 14px; font-size: 0.94rem; color: var(--text-2); }
 .mobile-nav-cta { margin-top: 24px; display: flex; flex-direction: column; gap: 10px; }

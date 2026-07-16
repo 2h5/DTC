@@ -56,6 +56,16 @@
    they have no equivalent hero button). */
 .nav-search-toggle { display: none; }
 
+/* site-chrome.css puts margin-left:auto (which docks the mobile header's
+   trailing icon cluster to the right edge) on .nav-search-toggle, since
+   that's the one to dock everything after it when it's visible. On the
+   home page it's hidden by the rule above, so .nav-toggle needs that same
+   margin-left:auto itself here instead, or the hamburger has nothing
+   pushing it right and drifts back next to the logo. */
+@media (max-width: 1160px) {
+  .nav-toggle { margin-left: auto; }
+}
+
 /* ==========================================================================
    Service bento (hero's visual asset) , 5 items, exact cell count, tinted diversity
    ========================================================================== */

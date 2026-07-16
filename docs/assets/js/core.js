@@ -34,14 +34,31 @@
     mobileClose.addEventListener('click', closeMobileNav);
   }
 
+  /* Submenu open/close is driven by an inline max-height set to the
+     submenu's real scrollHeight, not the flat 480px in site-chrome.css.
+     That flat value made the CSS transition run its full 0.4s across
+     0-480px regardless of actual content height, so short submenus
+     (About: 3 links, Services: 6, Contact: 2) reached their real height
+     almost instantly and looked like they "snapped" open with no visible
+     animation, while Parts Shop (11 links, close to 480px) looked fine.
+     Closing looked fine for all of them only because collapsing away is
+     forgiving to a snap at the very end. Measuring scrollHeight makes the
+     transition duration proportional to each submenu's real height, both
+     ways. The static 480px rule stays in the CSS as a no-JS fallback. */
   document.querySelectorAll('.mobile-nav-group > button').forEach(function (btn) {
     btn.addEventListener('click', function () {
       var group = btn.closest('.mobile-nav-group');
       var wasOpen = group.classList.contains('is-open');
       document.querySelectorAll('.mobile-nav-group').forEach(function (g) {
         g.classList.remove('is-open');
+        var sub = g.querySelector('.mobile-submenu');
+        if (sub) sub.style.maxHeight = '';
       });
-      if (!wasOpen) group.classList.add('is-open');
+      if (!wasOpen) {
+        group.classList.add('is-open');
+        var submenu = group.querySelector('.mobile-submenu');
+        if (submenu) submenu.style.maxHeight = submenu.scrollHeight + 'px';
+      }
     });
   });
 
@@ -61,36 +78,36 @@
   var heroSearchCta = document.querySelector('.hero-search-cta');
 
   if (header && navSearchToggle) {
+    /* .nav-search used to be hidden via visibility:hidden while closed,
+       which also had the side effect of keeping it out of the tab order.
+       It's now hidden with opacity/pointer-events only (see site-chrome.css)
+       so that a synchronous focus() call in the click handler below still
+       works - mobile browsers only raise the on-screen keyboard when focus()
+       runs inside the same synchronous call stack as the user gesture that
+       triggered it, and deferring even by one requestAnimationFrame breaks
+       that chain (this is also why the old visibility:hidden approach could
+       never work here: focusing a still-hidden element is a no-op, so it had
+       to be deferred past the transition, which is exactly what mobile
+       doesn't allow). Tab-order exclusion while closed is restored manually
+       via tabindex instead. */
+    if (navSearchInput) navSearchInput.setAttribute('tabindex', '-1');
+
     var openNavSearch = function () {
       header.classList.add('search-active');
       navSearchToggle.setAttribute('aria-expanded', 'true');
-      /* Focusing immediately can lose to the opening transition (the input
-         is still visibility:hidden mid-frame), landing focus back on the
-         page instead - defer a couple of frames so the bar has actually
-         painted visible before we try. On a cold page load the browser can
-         still be busy with layout/paint work from everything else that just
-         loaded, so those two frames alone aren't always enough (this is why
-         the bug only showed up on first load); back the rAF attempt up with
-         a focus once the open transition actually finishes. */
       if (navSearchInput) {
-        window.requestAnimationFrame(function () {
-          window.requestAnimationFrame(function () { navSearchInput.focus(); });
-        });
-        var navSearchForm = navSearchInput.closest('.nav-search');
-        if (navSearchForm) {
-          var focusOnceOpen = function (e) {
-            if (e.target !== navSearchForm) return;
-            navSearchForm.removeEventListener('transitionend', focusOnceOpen);
-            navSearchInput.focus();
-          };
-          navSearchForm.addEventListener('transitionend', focusOnceOpen);
-        }
+        navSearchInput.removeAttribute('tabindex');
+        navSearchInput.focus();
       }
     };
     var closeNavSearch = function () {
       header.classList.remove('search-active');
       navSearchToggle.setAttribute('aria-expanded', 'false');
-      if (navSearchInput) navSearchInput.value = '';
+      if (navSearchInput) {
+        navSearchInput.blur();
+        navSearchInput.value = '';
+        navSearchInput.setAttribute('tabindex', '-1');
+      }
     };
 
     navSearchToggle.addEventListener('click', function (e) {
@@ -141,6 +158,15 @@
     if (prefersReduced || !('IntersectionObserver' in window)) {
       revealEls.forEach(function (el) { el.classList.add('is-visible'); });
     } else {
+      /* rootMargin extends the viewport 200px past its actual bottom edge
+         for intersection purposes, so a section starts fading in while it's
+         still up to 200px below the visible screen instead of only once
+         the user has already scrolled 15% of its height into view. That
+         15%-of-actual-viewport threshold is what made sections directly
+         below a tall mobile hero (GE Boards & Turbine Control's tile grid,
+         every series listing's part grid) read as a blank page until the
+         user scrolled specifically to them - the section was there, just
+         still sitting at opacity:0 waiting to cross the old threshold. */
       var io = new IntersectionObserver(
         function (entries) {
           entries.forEach(function (entry) {
@@ -150,7 +176,7 @@
             }
           });
         },
-        { threshold: 0.15 }
+        { threshold: 0, rootMargin: '0px 0px 200px 0px' }
       );
       revealEls.forEach(function (el) { io.observe(el); });
     }
