@@ -193,84 +193,125 @@
       <span class="eyebrow">GE Speedtronic</span>
       <h1>Mark 1 &amp; II</h1>
       <p class="lede">Seven Mark I &amp; II boards currently in stock, from DIN rail adapter brackets to power supply driver boards. Every unit ships from our Bergenfield, NJ lab.</p>
-
-      <form class="search-pill" role="search" onsubmit="return false;">
-        <input type="text" placeholder="Type your part number" aria-label="Type your part number">
-        <button type="submit">
-          <svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.8"/><path d="M21 21l-4.3-4.3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-          Search
-        </button>
-      </form>
     </div>
   </section>
 
   <!-- Part listing -->
   <section class="listing-section reveal">
     <div class="container">
-      <div class="listing-grid">
+      <div class="listing-layout">
 
-        <a class="part-card" href="../259b2451bvp4.html">
-          <span class="part-media"><img src="../../assets/img/parts/259b2451bvp4.jpg" alt="Photo of 259B2451BVP4" loading="lazy"></span>
-          <span class="part-body">
-            <span class="part-number">259B2451BVP4</span>
-            <span class="part-desc">ESWA 8P / ESWB 16P universal DIN rail adapter bracket, zinc, blue RoHS</span>
-            <span class="stock-badge"><span class="dot"></span>In Stock, Ships 3-5 Days</span>
-          </span>
-        </a>
+        <aside class="listing-filters" aria-label="Filter parts">
+          <div class="listing-filters-head">
+            <h2>Filters</h2>
+            <span class="listing-count" data-listing-count></span>
+          </div>
+          <form class="filter-search" role="search" onsubmit="return false;">
+            <svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.8"/><path d="M21 21l-4.3-4.3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            <input type="text" placeholder="Part number" aria-label="Type your part number">
+          </form>
+          <div class="filter-group">
+            <h3>Availability</h3>
+            <label class="filter-check">
+              <input type="checkbox" data-filter-availability="in-stock">
+              <span class="filter-check-box"></span>
+              <span class="filter-check-label">In stock <span class="filter-count" data-count="in-stock"></span></span>
+            </label>
+            <label class="filter-check">
+              <input type="checkbox" data-filter-availability="out-of-stock">
+              <span class="filter-check-box"></span>
+              <span class="filter-check-label">Out of stock <span class="filter-count" data-count="out-of-stock"></span></span>
+            </label>
+          </div>
+          <button type="button" class="filter-reset" data-filter-reset hidden>Clear filters</button>
+        </aside>
 
-        <a class="part-card" href="../259b2451bvp2.html">
-          <span class="part-media"><img src="../../assets/img/parts/259b2451bvp2.jpg" alt="Photo of 259B2451BVP2" loading="lazy"></span>
-          <span class="part-body">
-            <span class="part-number">259B2451BVP2</span>
-            <span class="part-desc">ESWA 8P QUINT PS power supply unit, 480W capacity, with bracket assembly</span>
-            <span class="stock-badge"><span class="dot"></span>In Stock, Ships 3-5 Days</span>
-          </span>
-        </a>
+        <div class="listing-main">
+          <div class="listing-head">
+            <div class="listing-sort" data-dropdown>
+              <span class="listing-sort-label">Sort by</span>
+              <button type="button" class="dropdown-trigger" data-dropdown-trigger aria-haspopup="listbox" aria-expanded="false">
+                <span data-dropdown-value>Featured</span>
+                <svg class="dropdown-caret" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <ul class="dropdown-menu" data-dropdown-menu role="listbox" tabindex="-1">
+                <li role="option" data-value="default" aria-selected="true">Featured</li>
+                <li role="option" data-value="part-asc">Part Number, A&ndash;Z</li>
+                <li role="option" data-value="part-desc">Part Number, Z&ndash;A</li>
+                <li role="option" data-value="availability">Availability</li>
+              </ul>
+            </div>
+          </div>
 
-        <a class="part-card" href="../259b2451bvp1.html">
-          <span class="part-media"><img src="../../assets/img/parts/259b2451bvp1.jpg" alt="Photo of 259B2451BVP1" loading="lazy"></span>
-          <span class="part-body">
-            <span class="part-number">259B2451BVP1</span>
-            <span class="part-desc">Universal DIN rail adapter bracket, zinc, blue RoHS</span>
-            <span class="stock-badge"><span class="dot"></span>In Stock, Ships 3-5 Days</span>
-          </span>
-        </a>
+          <div class="listing-grid" data-listing-grid>
 
-        <a class="part-card" href="../259b2451fcg05.html">
-          <span class="part-media"><img src="../../assets/img/parts/259b2451fcg05.jpg" alt="Photo of 259B2451FCG05" loading="lazy"></span>
-          <span class="part-body">
-            <span class="part-number">259B2451FCG05</span>
-            <span class="part-desc">&nbsp;</span>
-            <span class="stock-badge"><span class="dot"></span>In Stock, Ships 3-5 Days</span>
-          </span>
-        </a>
+            <a class="part-card" href="../259b2451bvp4.html" data-part-number="259B2451BVP4" data-availability="in-stock">
+              <span class="part-media"><img src="../../assets/img/parts/259b2451bvp4.jpg" alt="Photo of 259B2451BVP4" loading="lazy"></span>
+              <span class="part-body">
+                <span class="part-number">259B2451BVP4</span>
+                <span class="part-desc">ESWA 8P / ESWB 16P universal DIN rail adapter bracket, zinc, blue RoHS</span>
+                <span class="stock-badge"><span class="dot"></span>In Stock, Ships 3-5 Days</span>
+              </span>
+            </a>
 
-        <a class="part-card" href="../ic3600vana1g1e.html">
-          <span class="part-media"><img src="../../assets/img/parts/ge-others.jpg" alt="Awaiting product photo for IC3600VANA1G1E" loading="lazy"></span>
-          <span class="part-body">
-            <span class="part-number">IC3600VANA1G1E</span>
-            <span class="part-desc">&nbsp;</span>
-            <span class="stock-badge"><span class="dot"></span>In Stock, Ships 3-5 Days</span>
-          </span>
-        </a>
+            <a class="part-card" href="../259b2451bvp2.html" data-part-number="259B2451BVP2" data-availability="in-stock">
+              <span class="part-media"><img src="../../assets/img/parts/259b2451bvp2.jpg" alt="Photo of 259B2451BVP2" loading="lazy"></span>
+              <span class="part-body">
+                <span class="part-number">259B2451BVP2</span>
+                <span class="part-desc">ESWA 8P QUINT PS power supply unit, 480W capacity, with bracket assembly</span>
+                <span class="stock-badge"><span class="dot"></span>In Stock, Ships 3-5 Days</span>
+              </span>
+            </a>
 
-        <a class="part-card" href="../ic3600svdc1d.html">
-          <span class="part-media"><img src="../../assets/img/parts/ge-others.jpg" alt="Awaiting product photo for IC3600SVDC1D" loading="lazy"></span>
-          <span class="part-body">
-            <span class="part-number">IC3600SVDC1D</span>
-            <span class="part-desc">Mark II Vibration Detector Board</span>
-            <span class="stock-badge"><span class="dot"></span>In Stock, Ships 3-5 Days</span>
-          </span>
-        </a>
+            <a class="part-card" href="../259b2451bvp1.html" data-part-number="259B2451BVP1" data-availability="in-stock">
+              <span class="part-media"><img src="../../assets/img/parts/259b2451bvp1.jpg" alt="Photo of 259B2451BVP1" loading="lazy"></span>
+              <span class="part-body">
+                <span class="part-number">259B2451BVP1</span>
+                <span class="part-desc">Universal DIN rail adapter bracket, zinc, blue RoHS</span>
+                <span class="stock-badge"><span class="dot"></span>In Stock, Ships 3-5 Days</span>
+              </span>
+            </a>
 
-        <a class="part-card" href="../ic3600epsu1p1f.html">
-          <span class="part-media"><img src="../../assets/img/parts/ic3600epsu1p1f.jpg" alt="Photo of IC3600EPSU1P1F Mark II Power Supply Driver Board" loading="lazy"></span>
-          <span class="part-body">
-            <span class="part-number">IC3600EPSU1P1F</span>
-            <span class="part-desc">Mark II Power Supply Driver Board</span>
-            <span class="stock-badge"><span class="dot"></span>In Stock, Ships 3-5 Days</span>
-          </span>
-        </a>
+            <a class="part-card" href="../259b2451fcg05.html" data-part-number="259B2451FCG05" data-availability="in-stock">
+              <span class="part-media"><img src="../../assets/img/parts/259b2451fcg05.jpg" alt="Photo of 259B2451FCG05" loading="lazy"></span>
+              <span class="part-body">
+                <span class="part-number">259B2451FCG05</span>
+                <span class="part-desc">&nbsp;</span>
+                <span class="stock-badge"><span class="dot"></span>In Stock, Ships 3-5 Days</span>
+              </span>
+            </a>
+
+            <a class="part-card" href="../ic3600vana1g1e.html" data-part-number="IC3600VANA1G1E" data-availability="in-stock">
+              <span class="part-media"><img src="../../assets/img/parts/ge-others.jpg" alt="Awaiting product photo for IC3600VANA1G1E" loading="lazy"></span>
+              <span class="part-body">
+                <span class="part-number">IC3600VANA1G1E</span>
+                <span class="part-desc">&nbsp;</span>
+                <span class="stock-badge"><span class="dot"></span>In Stock, Ships 3-5 Days</span>
+              </span>
+            </a>
+
+            <a class="part-card" href="../ic3600svdc1d.html" data-part-number="IC3600SVDC1D" data-availability="in-stock">
+              <span class="part-media"><img src="../../assets/img/parts/ge-others.jpg" alt="Awaiting product photo for IC3600SVDC1D" loading="lazy"></span>
+              <span class="part-body">
+                <span class="part-number">IC3600SVDC1D</span>
+                <span class="part-desc">Mark II Vibration Detector Board</span>
+                <span class="stock-badge"><span class="dot"></span>In Stock, Ships 3-5 Days</span>
+              </span>
+            </a>
+
+            <a class="part-card" href="../ic3600epsu1p1f.html" data-part-number="IC3600EPSU1P1F" data-availability="in-stock">
+              <span class="part-media"><img src="../../assets/img/parts/ic3600epsu1p1f.jpg" alt="Photo of IC3600EPSU1P1F Mark II Power Supply Driver Board" loading="lazy"></span>
+              <span class="part-body">
+                <span class="part-number">IC3600EPSU1P1F</span>
+                <span class="part-desc">Mark II Power Supply Driver Board</span>
+                <span class="stock-badge"><span class="dot"></span>In Stock, Ships 3-5 Days</span>
+              </span>
+            </a>
+
+          </div>
+
+          <p class="listing-empty" data-listing-empty hidden>No parts match the selected filters.</p>
+        </div>
 
       </div>
     </div>
@@ -323,5 +364,6 @@
 </footer>
 
 <script src="../../assets/js/core.js"></script>
+<script src="../../assets/js/pages/parts-listing.js"></script>
 </body>
 </html>
