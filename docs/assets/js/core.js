@@ -152,6 +152,46 @@
     el.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'start' });
   });
 
+  /* FAQ accordion (.faq-item, shared by the FAQs page and any product
+     page's FAQ tab): native <details>/<summary> can't transition its own
+     open/close (the browser toggles display:none instantly), so this
+     intercepts the click and animates the inner .faq-body's max-height
+     instead, only touching the `open` attribute at the start/end of that
+     transition. Same scrollHeight-before-transition technique as the
+     mobile submenu above. Falls back to the native instant toggle under
+     reduced motion. */
+  document.querySelectorAll('.faq-item > summary').forEach(function (summary) {
+    var details = summary.parentElement;
+    var body = details.querySelector('.faq-body');
+    if (!body) return;
+    summary.addEventListener('click', function (e) {
+      e.preventDefault();
+      if (prefersReduced) {
+        details.open = !details.open;
+        return;
+      }
+      if (details.hasAttribute('open')) {
+        body.style.maxHeight = body.scrollHeight + 'px';
+        requestAnimationFrame(function () { body.style.maxHeight = '0px'; });
+        body.addEventListener('transitionend', function handler(ev) {
+          if (ev.propertyName !== 'max-height') return;
+          details.removeAttribute('open');
+          body.style.maxHeight = '';
+          body.removeEventListener('transitionend', handler);
+        });
+      } else {
+        details.setAttribute('open', '');
+        body.style.maxHeight = '0px';
+        requestAnimationFrame(function () { body.style.maxHeight = body.scrollHeight + 'px'; });
+        body.addEventListener('transitionend', function handler(ev) {
+          if (ev.propertyName !== 'max-height') return;
+          body.style.maxHeight = '';
+          body.removeEventListener('transitionend', handler);
+        });
+      }
+    });
+  });
+
   /* Scroll-triggered reveal */
   var revealEls = document.querySelectorAll('.reveal');
   if (revealEls.length) {

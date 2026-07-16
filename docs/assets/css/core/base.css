@@ -19,7 +19,7 @@ img, svg { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
 ul { margin: 0; padding: 0; list-style: none; }
 h1, h2, h3, h4, p { margin: 0; }
-button { font: inherit; cursor: pointer; background: none; }
+button { font: inherit; cursor: pointer; background: none; border: none; }
 input, select, textarea { font: inherit; }
 
 .container {
@@ -104,6 +104,9 @@ h3, .h3 {
 
 .btn-outline { background: transparent; color: var(--text-1); border-color: var(--line-2); }
 .btn-outline:hover { background: var(--glass-fill); border-color: var(--text-3); }
+
+.btn-dark { background: var(--text-1); color: var(--surface-1); }
+.btn-dark:hover { background: var(--text-2); }
 
 .btn-sm { padding: 10px 18px; font-size: 0.85rem; }
 .btn-block { width: 100%; justify-content: center; }
@@ -328,6 +331,112 @@ a.search-result:hover, a.search-result.is-active { background: var(--surface-3);
   .icon-card-grid { grid-template-columns: 1fr; }
 }
 
+/* ==========================================================================
+   Part card , photo + part number + short desc + stock badge, reused by any
+   category/listing grid (parts-listing.css) and product-page "You May Also
+   Like" rail (parts-product.css). Promoted here on second use.
+   ========================================================================== */
+
+.part-card {
+  display: flex; flex-direction: column;
+  background: var(--surface-2);
+  border: 1px solid var(--line-1);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  transition: transform 0.4s var(--ease), border-color 0.3s var(--ease);
+}
+a.part-card:hover { transform: translateY(-4px); border-color: var(--line-2); }
+
+.part-media {
+  aspect-ratio: 4 / 3;
+  background: var(--surface-3);
+  border-bottom: 1px solid var(--line-1);
+  overflow: hidden;
+}
+.part-media img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+.part-body { padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+.part-number { font-weight: 600; color: var(--text-1); font-size: 0.95rem; }
+.part-desc { color: var(--text-2); font-size: 0.82rem; line-height: 1.5; flex: 1; }
+.part-card .stock-badge { margin-top: 4px; }
+
+.part-card.is-disabled { opacity: 0.7; }
+.part-card.is-disabled .part-number { color: var(--text-2); }
+.part-card.is-disabled .stock-badge { color: var(--text-3); }
+.part-card.is-disabled .stock-badge .dot { background: var(--text-3); }
+
+/* ==========================================================================
+   FAQ accordion , native <details>/<summary>, one bordered panel with
+   divided rows. Reused by the FAQs page and any product page's short FAQ
+   list. Promoted here on second use (was faqs.css-only).
+   ========================================================================== */
+
+.faq-section { padding-block: 8px 96px; }
+
+.faq-list {
+  border: 1px solid var(--line-1);
+  border-radius: var(--radius-card);
+  background: var(--surface-2);
+  max-width: 860px;
+}
+
+.faq-item { border-top: 1px solid var(--line-1); }
+.faq-item:first-child { border-top: none; }
+
+.faq-item summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 22px 28px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.02rem;
+  color: var(--text-1);
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary:hover { color: var(--accent-ink); }
+
+.faq-icon {
+  flex-shrink: 0;
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: var(--accent-tint);
+  color: var(--accent-ink);
+  position: relative;
+  transition: transform 0.35s var(--ease);
+}
+.faq-icon::before, .faq-icon::after {
+  content: "";
+  position: absolute;
+  top: 50%; left: 50%;
+  background: currentColor;
+  transform: translate(-50%, -50%);
+}
+.faq-icon::before { width: 12px; height: 1.6px; }
+.faq-icon::after { width: 1.6px; height: 12px; transition: opacity 0.35s var(--ease); }
+.faq-item[open] .faq-icon { transform: rotate(180deg); }
+.faq-item[open] .faq-icon::after { opacity: 0; }
+
+/* max-height is animated by core.js (details/summary can't transition
+   display:none, so JS sets an explicit pixel max-height and lets this
+   transition do the rest); overflow:hidden clips the collapse and
+   padding stays included since box-sizing is border-box. */
+.faq-body { padding: 0 28px 26px; overflow: hidden; transition: max-height 0.35s var(--ease); }
+.faq-body p { color: var(--text-2); font-size: 0.98rem; line-height: 1.75; max-width: 68ch; }
+.faq-body p + p { margin-top: 12px; }
+.faq-body ul.plain-list { margin-top: 10px; display: flex; flex-direction: column; gap: 4px; max-width: 68ch; }
+.faq-body ul.plain-list li { color: var(--text-2); font-size: 0.96rem; line-height: 1.7; padding-left: 18px; position: relative; }
+.faq-body ul.plain-list li::before { content: ""; position: absolute; left: 0; top: 11px; width: 6px; height: 6px; border-radius: 50%; background: var(--accent-500); }
+
+@media (max-width: 720px) {
+  .faq-section { padding-block: 8px 64px; }
+  .faq-item summary { padding: 18px 20px; font-size: 0.96rem; }
+  .faq-body { padding: 0 20px 22px; }
+}
+
 /* Skip link */
 .skip-link { position: absolute; left: -9999px; top: auto; background: var(--accent-500); color: var(--on-accent); padding: 12px 18px; z-index: 300; border-radius: 999px; font-weight: 600; }
 .skip-link:focus { left: 16px; top: 16px; }
@@ -340,4 +449,5 @@ a.search-result:hover, a.search-result.is-active { background: var(--surface-3);
   html { scroll-behavior: auto; }
   .reveal { opacity: 1; transform: none; transition: none; }
   .stock-badge .dot { animation: none; }
+  .faq-body { transition: none; }
 }

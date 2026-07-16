@@ -9,8 +9,14 @@
   grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
   gap: 48px;
   align-items: start;
-  margin-top: 28px;
+  margin-top: 24px;
 }
+
+/* .product-frame: only 259b2451bvp4.html has been migrated to the new
+   .product-gallery below so far (2026-07-16 redesign, one page shipped for
+   review before rolling out to the other 15 product pages). Kept in place,
+   still rendered by every other product page, remove once all of them move
+   to .product-gallery. */
 .product-frame {
   border: 1px solid var(--line-1); border-radius: var(--radius-card);
   background: var(--surface-3);
@@ -19,35 +25,276 @@
 }
 .product-frame img { display: block; width: 100%; height: 100%; object-fit: cover; }
 
-.product-info h1 { margin-top: 10px; }
-.product-info .spec-line { margin-top: 16px; color: var(--text-2); font-size: 0.98rem; line-height: 1.7; max-width: 48ch; }
-.product-info .stock-badge { margin-top: 16px; }
+/* Left column: gallery, then quick facts, then the "prefer to talk to
+   someone" link row, all on the same 16px rhythm as the right column
+   (.product-info below) so the two columns line up instead of each
+   using its own ad-hoc spacing. */
+.product-media { display: flex; flex-direction: column; gap: 16px; }
 
-.product-actions { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 12px; }
-.product-contact { margin-top: 24px; display: flex; flex-direction: column; gap: 6px; font-size: 0.88rem; color: var(--text-2); }
+/* Gallery: main frame + optional thumbnail rail. A part with only one real
+   photo simply omits .gallery-thumbs from the markup, the main frame fills
+   the column on its own, no empty rail. */
+
+.product-gallery { display: flex; flex-direction: column; gap: 12px; }
+
+.gallery-main {
+  position: relative;
+  border: 1px solid var(--line-1); border-radius: var(--radius-card);
+  background: var(--surface-3);
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  cursor: zoom-in;
+}
+.gallery-main img {
+  display: block; width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.25s var(--ease);
+  will-change: transform;
+}
+.gallery-main.is-zoomed img { transform: scale(2); }
+
+.gallery-zoom-hint {
+  position: absolute; right: 14px; bottom: 14px;
+  width: 34px; height: 34px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--accent-ink);
+  box-shadow: var(--shadow-sm);
+  opacity: 0; transform: scale(0.8);
+  transition: opacity 0.25s var(--ease), transform 0.25s var(--ease);
+  pointer-events: none;
+}
+.gallery-zoom-hint svg { width: 16px; height: 16px; }
+.gallery-main:hover .gallery-zoom-hint { opacity: 1; transform: scale(1); }
+
+.gallery-thumbs { display: flex; gap: 10px; flex-wrap: wrap; }
+.gallery-thumb {
+  width: 64px; height: 64px;
+  border-radius: 12px;
+  border: 1.5px solid var(--line-1);
+  background: var(--surface-3);
+  overflow: hidden;
+  padding: 0;
+  transition: border-color 0.25s var(--ease);
+}
+.gallery-thumb img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.gallery-thumb:hover { border-color: var(--line-2); }
+.gallery-thumb.is-active { border-color: var(--accent-500); }
+
+@media (prefers-reduced-motion: reduce) {
+  .gallery-main img { transition: none; }
+  .gallery-main.is-zoomed img { transform: none; }
+  .gallery-zoom-hint { transition: none; }
+}
+
+/* Info column: title, rating, price, then a purchase-action stack. Uses
+   the same 16px flex rhythm as .product-media on the left, so the two
+   columns line up on one consistent grid instead of each block using its
+   own ad-hoc margin-top. */
+
+.product-info { display: flex; flex-direction: column; gap: 16px; }
+.product-info h1 { margin-top: 0; }
+
+.product-rating { display: flex; align-items: center; gap: 10px; }
+.product-rating .stars { display: flex; gap: 2px; color: var(--text-3); }
+.product-rating .stars svg { width: 15px; height: 15px; }
+.product-rating .rating-text { font-size: 0.84rem; color: var(--text-3); }
+.product-rating .rating-write {
+  font-size: 0.84rem; font-weight: 600; color: var(--accent-ink);
+  border-bottom: 1px solid transparent; transition: border-color 0.25s var(--ease);
+}
+.product-rating .rating-write:hover { border-color: var(--accent-ink); }
+
+.product-info .spec-line { color: var(--text-2); font-size: 0.98rem; line-height: 1.7; max-width: 48ch; }
+
+/* Placeholder pricing, DTC sells by quote rather than a fixed sticker
+   price, so this is explicitly framed as an estimate that the "Request a
+   Quote" action (further left/below) firms up, not a real checkout price. */
+.product-price { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.price-value { font-family: var(--font-display); font-weight: 600; font-size: 1.7rem; color: var(--text-1); }
+.price-note { font-size: 0.82rem; color: var(--text-3); }
+
+.product-quickfacts {
+  display: flex;
+  border: 1px solid var(--line-1);
+  border-radius: var(--radius-card);
+  background: var(--surface-2);
+  overflow: hidden;
+}
+.qf-item { flex: 1; padding: 12px 18px; display: flex; flex-direction: column; gap: 4px; }
+.qf-item + .qf-item { border-left: 1px solid var(--line-1); }
+.qf-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-3); }
+.qf-value { font-family: var(--font-display); font-weight: 600; font-size: 0.98rem; color: var(--text-1); }
+
+/* Purchase actions: Add to Cart / Buy It Now as the primary pair, Make an
+   Offer beneath as a full-width dark bar. None of these are wired to a
+   real cart/checkout (DTC has none), clicking any of them surfaces
+   .cart-toast pointing at the real path (Request a Quote / Request
+   Repair, now in the left column right under the quick facts). */
+.product-actions { display: flex; gap: 10px; align-items: stretch; }
+.product-actions .btn { flex: 1; justify-content: center; }
+/* The cart icon had no explicit size, an un-sized inline <svg> renders at
+   the browser's ~300x150 default box, which was ballooning the pill
+   button (and its flex sibling, via default cross-axis stretch) into a
+   giant circle. */
+.product-actions .btn svg { width: 17px; height: 17px; flex-shrink: 0; }
+.product-actions-offer .btn { width: 100%; justify-content: center; }
+
+.product-actions-secondary {
+  display: flex; align-items: center; flex-wrap: wrap; gap: 8px;
+  font-size: 0.84rem; color: var(--text-3);
+}
+.product-actions-secondary a { font-weight: 600; color: var(--text-1); border-bottom: 1px solid transparent; transition: border-color 0.25s var(--ease); }
+.product-actions-secondary a:hover { border-color: var(--text-1); }
+.product-actions-secondary .sep { color: var(--line-2); }
+
+.cart-toast:empty { display: none; }
+.cart-toast {
+  padding: 12px 16px;
+  border-radius: var(--radius-input);
+  background: var(--accent-tint);
+  color: var(--accent-ink);
+  font-size: 0.84rem;
+  line-height: 1.5;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity 0.25s var(--ease), transform 0.25s var(--ease);
+}
+.cart-toast.is-visible { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .cart-toast { transition: opacity 0.15s linear; transform: none; }
+}
+
+.product-contact { display: flex; flex-direction: column; gap: 6px; font-size: 0.88rem; color: var(--text-2); }
 .product-contact a { font-weight: 600; color: var(--text-1); }
 .product-contact a:hover { color: var(--accent-ink); }
 
-.buying-options { padding-block: 56px; border-top: 1px solid var(--line-1); margin-top: 56px; }
-.buying-options .options-grid { margin-top: 32px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
-.buying-options .option-card { border: 1px solid var(--line-1); border-radius: var(--radius-card); background: var(--surface-2); padding: 22px; }
-.buying-options .option-card h3 { font-size: 0.95rem; }
-.buying-options .option-card ul { margin-top: 10px; padding-left: 18px; display: flex; flex-direction: column; gap: 6px; }
-.buying-options .option-card li { font-size: 0.85rem; color: var(--text-2); line-height: 1.55; }
+/* Buying Options: a single compact row on desktop (was 2 rows of tall
+   cards), the biggest single scroll-length cut on the page besides the
+   tabs below. */
+.buying-options { padding-block: 40px; border-top: 1px solid var(--line-1); margin-top: 40px; }
+.buying-options .options-grid { margin-top: 24px; display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
+.buying-options .option-card { border: 1px solid var(--line-1); border-radius: var(--radius-card); background: var(--surface-2); padding: 16px; }
+.buying-options .option-card h3 { font-size: 0.88rem; }
+.buying-options .option-card ul { margin-top: 8px; padding-left: 16px; display: flex; flex-direction: column; gap: 4px; }
+.buying-options .option-card li { font-size: 0.78rem; color: var(--text-2); line-height: 1.5; }
 
+/* ==========================================================================
+   Tabs: Specifications / Shipping & Returns / Reviews / FAQ collapsed into
+   one section instead of four stacked ones, only the active pane's height
+   counts toward page scroll length. First use of this component, kept
+   page-scoped rather than promoted to core.
+   ========================================================================== */
+
+.product-tabs { padding-block: 40px 64px; border-top: 1px solid var(--line-1); }
+
+.tabs-nav {
+  display: flex; flex-wrap: wrap; gap: 6px;
+  border-bottom: 1px solid var(--line-1);
+}
+.tab-trigger {
+  padding: 12px 4px;
+  margin-right: 22px;
+  font-family: var(--font-display);
+  font-weight: 600; font-size: 0.95rem;
+  color: var(--text-3);
+  border-bottom: 2px solid transparent;
+  transition: color 0.25s var(--ease), border-color 0.25s var(--ease);
+}
+.tab-trigger:hover { color: var(--text-1); }
+.tab-trigger.is-active { color: var(--text-1); border-color: var(--accent-500); }
+
+.tab-panel { padding-top: 32px; }
+.tab-panel[hidden] { display: none; }
+
+/* Specifications pane */
+.spec-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.spec-card {
+  border: 1px solid var(--line-1); border-radius: var(--radius-input);
+  background: var(--surface-2);
+  padding: 16px 18px;
+  display: flex; flex-direction: column; gap: 4px;
+}
+.spec-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-3); }
+.spec-value { font-size: 0.92rem; font-weight: 600; color: var(--text-1); }
+
+.specs-note { margin-top: 22px; color: var(--text-2); font-size: 0.92rem; line-height: 1.7; max-width: 68ch; }
+.specs-note strong { color: var(--text-1); }
+
+/* .product-desc-warranty: the old two-column Description/Warranty layout,
+   same "not yet migrated" situation as .product-frame above, still used by
+   the other 15 product pages. */
 .product-desc-warranty {
   padding-block: 24px; border-top: 1px solid var(--line-1);
   display: grid; grid-template-columns: 1fr 1fr; gap: 48px;
 }
 .product-desc ul, .product-warranty p { margin-top: 12px; color: var(--text-2); font-size: 0.95rem; line-height: 1.7; }
 .product-desc ul { display: flex; flex-direction: column; gap: 6px; }
+@media (max-width: 720px) {
+  .product-desc-warranty { grid-template-columns: 1fr; gap: 40px; }
+}
+
+/* Reviews pane, honest empty state (no fabricated reviews or ratings) */
+.reviews-summary { display: flex; align-items: center; gap: 12px; }
+.reviews-summary .stars { display: flex; gap: 3px; color: var(--text-3); }
+.reviews-summary .stars svg { width: 20px; height: 20px; }
+.reviews-empty { margin-top: 14px; color: var(--text-2); font-size: 0.95rem; max-width: 50ch; }
+.reviews-empty-actions { margin-top: 16px; }
+
+/* FAQ pane */
+.tab-panel .faq-more { margin-top: 20px; color: var(--text-2); font-size: 0.92rem; }
+.tab-panel .faq-more a { font-weight: 600; color: var(--accent-ink); }
+
+/* You May Also Like: horizontal scroll-snap rail (not another static grid,
+   Buying Options/Specifications above already use grids). */
+
+.also-like { padding-block: 48px; border-top: 1px solid var(--line-1); }
+.also-like .section-head { max-width: none; display: flex; align-items: baseline; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin-bottom: 24px; }
+.also-like-head-actions { display: flex; gap: 8px; flex-shrink: 0; }
+
+.carousel-nav {
+  width: 38px; height: 38px; border-radius: 50%;
+  border: 1px solid var(--line-2);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-1);
+  transition: background-color 0.25s var(--ease), border-color 0.25s var(--ease), opacity 0.25s var(--ease);
+}
+.carousel-nav svg { width: 15px; height: 15px; }
+.carousel-nav:hover { background: var(--glass-fill); border-color: var(--text-3); }
+.carousel-nav:disabled { opacity: 0.35; pointer-events: none; }
+
+.also-like-track {
+  display: flex;
+  gap: 18px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-left: 4px;
+  padding-bottom: 4px;
+  margin: 0 -4px;
+  padding-left: 4px;
+  scrollbar-width: none;
+}
+.also-like-track::-webkit-scrollbar { display: none; }
+.also-like-track .part-card {
+  flex: 0 0 260px;
+  scroll-snap-align: start;
+}
+
+@media (max-width: 1180px) {
+  .buying-options .options-grid { grid-template-columns: repeat(3, 1fr); }
+}
 
 @media (max-width: 980px) {
   .product-layout { grid-template-columns: 1fr; }
   .product-frame { max-width: 420px; }
-  .buying-options .options-grid { grid-template-columns: 1fr; }
+  .product-media { max-width: 420px; }
+  .spec-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 720px) {
-  .product-desc-warranty { grid-template-columns: 1fr; gap: 40px; }
+  .buying-options .options-grid { grid-template-columns: 1fr; }
+  .product-quickfacts { flex-wrap: wrap; }
+  .qf-item { flex: 1 1 50%; }
+  .spec-grid { grid-template-columns: 1fr; }
+  .also-like-track .part-card { flex-basis: 220px; }
+  .tabs-nav { gap: 4px 18px; }
 }
