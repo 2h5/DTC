@@ -1,0 +1,69 @@
+/* ==========================================================================
+   Contact Us page only: info panel + form, two-column layout. Loaded only
+   by contact-us.html, after core/*.css.
+   ========================================================================== */
+
+.contact-section { padding-block: 24px 96px; }
+.contact-grid { display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); gap: 48px; align-items: start; }
+
+/* ==========================================================================
+   Info panel
+   ========================================================================== */
+
+.emergency-callout {
+  display: flex; gap: 16px; align-items: flex-start;
+  border: 1px solid var(--alert-500); border-radius: var(--radius-card);
+  background: var(--alert-tint); padding: 22px;
+}
+.emergency-icon {
+  width: 40px; height: 40px; border-radius: 12px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--alert-500); color: var(--on-alert);
+}
+.emergency-icon svg { width: 18px; height: 18px; }
+.emergency-callout h3 { font-size: 1rem; color: var(--text-1); }
+.emergency-callout p { margin-top: 6px; font-size: 0.9rem; color: var(--text-2); line-height: 1.6; }
+.emergency-callout p a { font-weight: 600; color: var(--alert-500); }
+.emergency-callout p a:hover { color: var(--alert-400); }
+
+.contact-lines-list { margin-top: 28px; display: flex; flex-direction: column; gap: 4px; }
+.contact-lines-list li {
+  display: flex; align-items: flex-start; gap: 14px;
+  padding: 16px 0; border-top: 1px solid var(--line-1);
+}
+.cl-icon {
+  width: 34px; height: 34px; border-radius: 10px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--accent-tint); color: var(--accent-ink);
+}
+.cl-icon svg { width: 16px; height: 16px; }
+.cl-label { display: block; font-size: 0.78rem; color: var(--text-3); margin-bottom: 2px; }
+.contact-lines-list a, .contact-lines-list span:not(.cl-label) { font-weight: 600; font-size: 0.94rem; color: var(--text-1); }
+.contact-lines-list a:hover { color: var(--accent-ink); }
+
+/* ==========================================================================
+   Form , reuses .field from core/base.css for label/input styling
+   ========================================================================== */
+
+.contact-form {
+  display: flex; flex-direction: column; gap: 18px;
+  border: 1px solid var(--line-1); border-radius: var(--radius-card); background: var(--surface-2);
+  padding: 32px;
+}
+.contact-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.contact-form .btn { align-self: flex-start; }
+.contact-form-note { font-size: 0.78rem; color: var(--text-3); margin-top: -6px; }
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+
+@media (max-width: 980px) {
+  .contact-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+  .contact-form-row { grid-template-columns: 1fr; }
+  .contact-form { padding: 24px; }
+  .contact-section { padding-block: 16px 64px; }
+}

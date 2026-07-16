@@ -199,16 +199,8 @@
 
 .newsletter-block h3 { font-size: 1.1rem; margin-bottom: 16px; }
 .newsletter-form { display: flex; flex-direction: column; gap: 10px; }
-.newsletter-form label { font-size: 0.8rem; font-weight: 600; color: var(--text-2); }
-.newsletter-form .field { display: flex; flex-direction: column; gap: 6px; }
-.newsletter-form input {
-  padding: 12px 14px; border: 1px solid var(--line-1); border-radius: var(--radius-input);
-  font-size: 0.9rem; color: var(--text-1); background: var(--surface-1);
-  transition: border-color 0.3s var(--ease);
-}
-.newsletter-form input::placeholder { color: var(--text-3); }
-.newsletter-form input:focus { outline: none; border-color: var(--accent-ink); }
 .newsletter-form button { margin-top: 4px; align-self: flex-start; }
+/* .field (label + input) lives in core/base.css, reused by the Contact Us form. */
 .newsletter-note { margin-top: 12px; font-size: 0.78rem; color: var(--text-3); }
 
 /* ==========================================================================

@@ -1,0 +1,60 @@
+/* ==========================================================================
+   Emergency Service page only: alert-tinted hero with hotline callout, the
+   3-step process grid. Loaded only by emergency-service.html, after core/*.css.
+   ========================================================================== */
+
+/* ==========================================================================
+   Hero , same shape as .page-hero but with a restrained alert accent, this
+   is the one page on the site where the alert color is allowed to lead
+   ========================================================================== */
+
+.emergency-hero { padding-block: 24px 8px; border-top: 3px solid var(--alert-500); }
+.emergency-hero .lede { margin-top: 18px; max-width: 70ch; }
+.emergency-hero h1 { margin-top: 12px; }
+.eyebrow-alert { color: var(--alert-500); }
+
+.hotline-block {
+  margin-top: 32px;
+  display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
+  border: 1px solid var(--alert-500); border-radius: var(--radius-card);
+  background: var(--alert-tint); padding: 20px 24px;
+  max-width: 620px;
+}
+.hotline-icon {
+  width: 44px; height: 44px; border-radius: 12px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--alert-500); color: var(--on-alert);
+}
+.hotline-icon svg { width: 20px; height: 20px; }
+.hotline-block > div { flex: 1; min-width: 160px; }
+.hotline-label { display: block; font-size: 0.78rem; color: var(--text-2); }
+.hotline-number { display: block; margin-top: 2px; font-family: var(--font-display); font-size: 1.3rem; font-weight: 600; color: var(--text-1); }
+.hotline-number:hover { color: var(--alert-500); }
+
+/* ==========================================================================
+   Process , 3-step grid
+   ========================================================================== */
+
+.process-section { padding-block: 96px; }
+.process-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.process-step {
+  border: 1px solid var(--line-1); border-radius: var(--radius-card); background: var(--surface-2);
+  padding: 28px 24px;
+}
+.process-num { font-family: var(--font-mono); font-size: 0.85rem; font-weight: 600; color: var(--accent-ink); }
+.process-step h3 { margin-top: 14px; }
+.process-step p { margin-top: 8px; font-size: 0.92rem; color: var(--text-2); line-height: 1.6; }
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+
+@media (max-width: 860px) {
+  .process-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+  .hotline-block { flex-direction: column; align-items: flex-start; }
+  .hotline-block .btn { width: 100%; justify-content: center; }
+  .process-section { padding-block: 64px; }
+}
