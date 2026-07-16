@@ -20,9 +20,13 @@
   border-radius: var(--radius-card);
   background: var(--surface-2);
   overflow: hidden;
-  transition: transform 0.5s var(--ease), border-color 0.3s var(--ease);
+  /* also declares opacity/transform (not just border-color) so this rule,
+     which loads after core's .reveal and wins the cascade on the shared
+     transform/opacity properties, still animates the reveal pop-in and
+     doesn't silently drop it down to an instant snap */
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease), border-color 0.3s var(--ease);
 }
-.news-card:hover { transform: translateY(-4px); border-color: var(--line-2); }
+.news-card:hover { transform: translateY(-4px); border-color: var(--line-2); transition-duration: 0.3s; }
 
 .news-card-media { display: block; }
 .news-card-media img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
