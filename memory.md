@@ -65,8 +65,11 @@ re-discovered later.
 
 ## Small UX details worth remembering
 
-- `.stock-badge .dot` has a slow 2.6s opacity pulse to read as "live" status,
-  intentionally slow, not a rapid blink. Respects `prefers-reduced-motion`.
+- `.stock-badge .dot` uses a "sonar ping" animation (expanding, fading
+  `box-shadow` ring around a solid dot, 2.4s cycle), not an opacity fade.
+  Reference implementation: github.com/2h5/AragveliPalazzolo `index.html`
+  `.eyebrow::before` / `@keyframes pulse`, same technique, recolored to
+  `--accent-500`. Respects `prefers-reduced-motion`.
 - `.brand-pill` logos are grayscale by default, full color on hover (calm
   logo wall, not a busy multi-color rail).
 - Search boxes (`.search-pill`) and the hero search are inert
