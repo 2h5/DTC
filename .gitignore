@@ -1,6 +1,9 @@
 # Local Claude Code tool settings (machine-specific, not shared config)
 .claude/settings.local.json
 
+# Local project memory notes, not for the public repo
+memory.md
+
 # OS junk
 .DS_Store
 Thumbs.db

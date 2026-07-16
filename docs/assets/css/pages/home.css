@@ -16,7 +16,7 @@
   position: relative;
   overflow: hidden;
   padding-top: 88px;
-  padding-bottom: 108px;
+  padding-bottom: 56px;
 }
 .hero-grid {
   position: absolute; inset: 0;
@@ -122,7 +122,7 @@
    Intro band + quick actions (plain links, no cards , avoids 3-card cliché)
    ========================================================================== */
 
-.intro-panel { padding-block: 88px 40px; }
+.intro-panel { padding-block: 24px 40px; }
 .intro-panel .lede { max-width: 74ch; margin-inline: auto; text-align: center; font-size: 1.06rem; line-height: 1.75; }
 .intro-panel .lede a { color: var(--accent-ink); font-weight: 600; }
 
@@ -191,36 +191,24 @@
 }
 .brand-pill img {
   height: 100%; width: auto; max-width: 140px; object-fit: contain;
-  filter: grayscale(1) opacity(0.7);
-  transition: filter 0.3s var(--ease);
 }
-.brand-pill:hover img { filter: none; }
 
 /* ==========================================================================
    News , featured + list cluster (distinct family from the hero bento)
    ========================================================================== */
 
 .news-section { padding-block: 96px; border-top: 1px solid var(--line-1); }
-.news-cluster { display: grid; grid-template-columns: 1.3fr 1fr; gap: 20px; max-width: 980px; margin-inline: auto; }
+.news-cluster { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 1180px; margin-inline: auto; }
 .news-featured {
   border: 1px solid var(--line-1); border-radius: var(--radius-card); background: var(--surface-2);
   padding: 26px; display: flex; flex-direction: column; gap: 18px;
-}
-.news-featured .news-thumb { aspect-ratio: 16 / 10; border-radius: 14px; background: var(--surface-3); border: 1px solid var(--line-1); overflow: hidden; }
-.news-featured .news-thumb img { display: block; width: 100%; height: 100%; object-fit: cover; }
-.news-featured h3 { font-size: 1.2rem; }
-.news-featured p { margin-top: 8px; font-size: 0.92rem; color: var(--text-2); line-height: 1.6; }
-
-.news-list { display: flex; flex-direction: column; gap: 12px; }
-.news-list-item {
-  border: 1px solid var(--line-1); border-radius: var(--radius-card); background: var(--surface-2);
-  padding: 16px; display: flex; align-items: center; gap: 14px; flex: 1;
   transition: border-color 0.3s var(--ease);
 }
-.news-list-item:hover { border-color: var(--line-2); }
-.news-list-item .news-thumb-sm { width: 54px; height: 54px; border-radius: 12px; background: var(--surface-3); border: 1px solid var(--line-1); overflow: hidden; flex-shrink: 0; }
-.news-list-item .news-thumb-sm img { display: block; width: 100%; height: 100%; object-fit: cover; }
-.news-list-item h3 { font-size: 0.92rem; line-height: 1.4; font-weight: 600; }
+.news-featured:hover { border-color: var(--line-2); }
+.news-featured .news-thumb { aspect-ratio: 4 / 3; border-radius: 14px; background: var(--surface-3); border: 1px solid var(--line-1); overflow: hidden; padding: 14px; }
+.news-featured .news-thumb img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.news-featured h3 { font-size: 1.2rem; }
+.news-featured p { margin-top: 8px; font-size: 0.92rem; color: var(--text-2); line-height: 1.6; }
 
 .news-section-foot { text-align: center; margin-top: 32px; }
 
@@ -230,8 +218,12 @@
 
 .info-row { padding-block: 96px; border-top: 1px solid var(--line-1); }
 .info-grid { display: grid; grid-template-columns: 1fr 1fr 1.2fr; gap: 16px; align-items: stretch; }
-.info-illustration { border: 1px solid var(--line-1); border-radius: var(--radius-card); background: var(--surface-2); overflow: hidden; display: flex; }
-.info-illustration svg { width: 100%; height: auto; }
+.info-illustration {
+  border: 1px solid var(--line-1); border-radius: var(--radius-card); background: var(--surface-2);
+  padding: 24px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px;
+}
+.info-illustration img { width: 100%; max-width: 302px; border-radius: 10px; display: block; }
+.info-illustration .btn { width: 100%; justify-content: center; }
 
 .questions-block, .newsletter-block { border: 1px solid var(--line-1); border-radius: var(--radius-card); background: var(--surface-2); padding: 26px; }
 
