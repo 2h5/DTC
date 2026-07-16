@@ -83,7 +83,10 @@
       reposition();
 
       if (!matches.length) {
-        results.innerHTML = '<div class="search-result-empty">No matches for &ldquo;' + escapeHtml(q) + '&rdquo;.</div>';
+        results.innerHTML = '<div class="search-result-empty">' +
+          '<p>No matches for &ldquo;' + escapeHtml(q) + '&rdquo;.</p>' +
+          '<a class="btn btn-outline btn-sm" href="' + basePath + 'parts-shop.html">Browse Parts Shop</a>' +
+        '</div>';
         items = [];
         activeIndex = -1;
         results.classList.add('is-open');

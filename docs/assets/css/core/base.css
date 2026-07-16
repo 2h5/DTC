@@ -225,7 +225,11 @@ a.search-result:hover, a.search-result.is-active { background: var(--surface-3);
   font-size: 0.8rem; color: var(--text-3);
   overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
-.search-result-empty { padding: 14px 12px; font-size: 0.88rem; color: var(--text-3); }
+.search-result-empty {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 10px;
+  padding: 14px 12px; font-size: 0.88rem; color: var(--text-3);
+}
+.search-result-empty p { margin: 0; }
 
 /* ==========================================================================
    Stock badge , real semantic state (availability), not decorative
