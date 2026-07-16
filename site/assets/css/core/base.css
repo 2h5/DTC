@@ -1,0 +1,173 @@
+/* ==========================================================================
+   Base: reset, type scale, buttons, links, skip link, scroll reveal.
+   Loaded on every page, after tokens.css. Selectors here are generic
+   (elements, .btn/.link/.eyebrow/.h1-h3 utility classes) and are meant to be
+   reused by any page-specific stylesheet, not overridden by one.
+   ========================================================================== */
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  color: var(--text-2);
+  background: var(--void);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.6;
+}
+img, svg { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+ul { margin: 0; padding: 0; list-style: none; }
+h1, h2, h3, h4, p { margin: 0; }
+button { font: inherit; cursor: pointer; background: none; }
+input, select, textarea { font: inherit; }
+
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: 24px;
+}
+
+section { position: relative; }
+
+/* ==========================================================================
+   Type
+   ========================================================================== */
+
+.eyebrow {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent-ink);
+}
+
+h1, .h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.1rem, 1.5rem + 2.6vw, 3.6rem);
+  line-height: 1.06;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--text-1);
+}
+
+h2, .h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.7rem, 1.4rem + 1.3vw, 2.5rem);
+  line-height: 1.12;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--text-1);
+}
+
+h3, .h3 {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  line-height: 1.3;
+  font-weight: 600;
+  color: var(--text-1);
+}
+
+.section-head { max-width: 620px; margin-bottom: 44px; }
+.section-head h2 { margin-top: 10px; }
+.section-head p { margin-top: 14px; color: var(--text-2); font-size: 1.02rem; }
+.section-head.center { margin-inline: auto; text-align: center; }
+
+.lede { font-size: 1.08rem; color: var(--text-2); }
+
+/* ==========================================================================
+   Buttons , shape lock: pill for all interactive controls
+   ========================================================================== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 22px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.92rem;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  transition: background-color 0.35s var(--ease), border-color 0.35s var(--ease), transform 0.35s var(--ease);
+}
+.btn:active { transform: scale(0.98); }
+
+.btn-primary { background: var(--accent-500); color: var(--on-accent); }
+.btn-primary:hover { background: var(--accent-400); }
+
+.btn-alert { background: var(--alert-500); color: var(--on-alert); }
+.btn-alert:hover { background: var(--alert-400); }
+
+.btn-outline { background: transparent; color: var(--text-1); border-color: var(--line-2); }
+.btn-outline:hover { background: var(--glass-fill); border-color: var(--text-3); }
+
+.btn-sm { padding: 10px 18px; font-size: 0.85rem; }
+.btn-block { width: 100%; justify-content: center; }
+
+.link {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-weight: 600; font-size: 0.92rem; color: var(--text-1);
+  padding-bottom: 2px; border-bottom: 1px solid var(--line-2);
+  transition: color 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+.link:hover { color: var(--accent-ink); border-color: var(--accent-ink); }
+
+/* ==========================================================================
+   Breadcrumb , used by any nested page (parts categories/listings/products)
+   ========================================================================== */
+
+.breadcrumb { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 0.85rem; color: var(--text-3); }
+.breadcrumb a { color: var(--text-2); font-weight: 500; }
+.breadcrumb a:hover { color: var(--accent-ink); }
+.breadcrumb .sep { color: var(--line-2); }
+.breadcrumb .current { color: var(--text-1); font-weight: 600; }
+
+/* ==========================================================================
+   Search pill , part-number search, reused by parts-shop and category/listing pages
+   ========================================================================== */
+
+.search-pill {
+  display: flex;
+  background: var(--surface-2);
+  border: 1px solid var(--line-1);
+  border-radius: 999px;
+  padding: 6px 6px 6px 20px;
+  max-width: 520px;
+}
+.search-pill input {
+  flex: 1; background: transparent; border: none; outline: none;
+  padding: 12px 12px 12px 0; color: var(--text-1); font-size: 0.94rem;
+}
+.search-pill input::placeholder { color: var(--text-3); }
+.search-pill button {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  background: var(--accent-500); color: var(--on-accent); border: none;
+  border-radius: 999px; padding: 0 20px; height: 44px; font-weight: 600; font-size: 0.875rem;
+  transition: background-color 0.3s var(--ease);
+}
+.search-pill button:hover { background: var(--accent-400); }
+.search-pill button svg { width: 15px; height: 15px; }
+
+/* ==========================================================================
+   Stock badge , real semantic state (availability), not decorative
+   ========================================================================== */
+
+.stock-badge { display: inline-flex; align-items: center; gap: 6px; font-size: 0.78rem; font-weight: 600; color: var(--accent-ink); }
+.stock-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent-500); flex-shrink: 0; }
+
+/* Skip link */
+.skip-link { position: absolute; left: -9999px; top: auto; background: var(--accent-500); color: var(--on-accent); padding: 12px 18px; z-index: 300; border-radius: 999px; font-weight: 600; }
+.skip-link:focus { left: 16px; top: 16px; }
+
+/* Scroll reveal , transform + opacity only */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); }
+.reveal.is-visible { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+}

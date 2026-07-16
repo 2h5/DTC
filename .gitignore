@@ -1,0 +1,6 @@
+# Local Claude Code tool settings (machine-specific, not shared config)
+.claude/settings.local.json
+
+# OS junk
+.DS_Store
+Thumbs.db
