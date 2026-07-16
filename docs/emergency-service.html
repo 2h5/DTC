@@ -305,5 +305,98 @@
 <script src="assets/js/core.js"></script>
 <script src="assets/js/search-data.js"></script>
 <script src="assets/js/search.js"></script>
+<script>
+(function () {
+  var block = document.querySelector('.hotline-block');
+  if (!block) return;
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  // Returns the CSS conic-gradient angle (0deg = top, clockwise) for the point
+  // that sits a given fraction (0-1) of the way around the block's own rounded
+  // border, starting and ending at top-middle. Walking the actual straight
+  // edges and corner arcs (instead of sweeping angle at a constant rate) keeps
+  // the traveling segment a constant physical length everywhere on the border,
+  // since a wide/short box maps equal angles to very unequal border distances.
+  function angleAtFraction(s, w, h, r) {
+    var a = w / 2, b = h / 2;
+    r = Math.min(r, a, b);
+    var straightH = Math.max(w - 2 * r, 0);
+    var straightV = Math.max(h - 2 * r, 0);
+    var arcLen = (Math.PI / 2) * r;
+    var halfTop = Math.max(a - r, 0);
+
+    var segments = [
+      halfTop, arcLen, straightV, arcLen,
+      straightH, arcLen, straightV, arcLen, halfTop
+    ];
+    var total = 0;
+    for (var i = 0; i < segments.length; i++) total += segments[i];
+
+    var target = s * total;
+    var acc = 0, x, y, t, ang;
+    for (var seg = 0; seg < segments.length; seg++) {
+      var len = segments[seg];
+      if (target <= acc + len || seg === segments.length - 1) {
+        t = len > 0 ? Math.min(Math.max((target - acc) / len, 0), 1) : 0;
+        switch (seg) {
+          case 0: x = a + t * halfTop; y = 0; break;
+          case 1: ang = (-90 + t * 90) * Math.PI / 180; x = (w - r) + r * Math.cos(ang); y = r + r * Math.sin(ang); break;
+          case 2: x = w; y = r + t * straightV; break;
+          case 3: ang = (0 + t * 90) * Math.PI / 180; x = (w - r) + r * Math.cos(ang); y = (h - r) + r * Math.sin(ang); break;
+          case 4: x = (w - r) - t * straightH; y = h; break;
+          case 5: ang = (90 + t * 90) * Math.PI / 180; x = r + r * Math.cos(ang); y = (h - r) + r * Math.sin(ang); break;
+          case 6: x = 0; y = (h - r) - t * straightV; break;
+          case 7: ang = (180 + t * 90) * Math.PI / 180; x = r + r * Math.cos(ang); y = r + r * Math.sin(ang); break;
+          default: x = r + t * halfTop; y = 0; break;
+        }
+        break;
+      }
+      acc += len;
+    }
+    var dx = x - a, dy = y - b;
+    return (Math.atan2(dx, -dy) * 180 / Math.PI + 360) % 360;
+  }
+
+  function run() {
+    var w = block.offsetWidth, h = block.offsetHeight;
+    if (!w || !h) return;
+    var radius = parseFloat(getComputedStyle(block).borderRadius) || 20;
+    var duration = 1500;
+    var delay = 400;
+    var segmentS = 0.07;
+
+    function setAngles(headS, tailS) {
+      var headAngle = headS >= 0.999 ? 360 : angleAtFraction(headS, w, h, radius);
+      var tailAngle = tailS >= 0.999 ? 360 : angleAtFraction(tailS, w, h, radius);
+      block.style.setProperty('--hotline-head-angle', headAngle + 'deg');
+      block.style.setProperty('--hotline-tail-angle', tailAngle + 'deg');
+    }
+
+    var startTime = null;
+    function step(ts) {
+      if (startTime === null) startTime = ts;
+      var p = Math.min((ts - startTime) / duration, 1);
+      var headS, tailS;
+      if (p < 0.15) {
+        headS = (p / 0.15) * segmentS;
+        tailS = 0;
+      } else if (p < 0.8) {
+        var p2 = (p - 0.15) / 0.65;
+        headS = segmentS + p2 * (1 - segmentS);
+        tailS = p2 * (1 - segmentS);
+      } else {
+        var p3 = (p - 0.8) / 0.2;
+        headS = 1;
+        tailS = (1 - segmentS) + p3 * segmentS;
+      }
+      setAngles(headS, tailS);
+      if (p < 1) requestAnimationFrame(step);
+    }
+    setTimeout(function () { requestAnimationFrame(step); }, delay);
+  }
+
+  run();
+})();
+</script>
 </body>
 </html>

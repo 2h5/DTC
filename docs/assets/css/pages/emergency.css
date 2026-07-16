@@ -8,17 +8,63 @@
    is the one page on the site where the alert color is allowed to lead
    ========================================================================== */
 
-.emergency-hero { padding-block: 24px 8px; border-top: 3px solid var(--alert-500); }
+.emergency-hero { padding-block: 24px 8px; position: relative; }
+.emergency-hero::before {
+  content: "";
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background-color: var(--alert-500);
+  background-image: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.65) 50%, transparent 100%);
+  background-repeat: no-repeat;
+  background-size: 40% 100%;
+  animation: alert-bar-sweep 3s ease-in-out infinite;
+}
+
+@keyframes alert-bar-sweep {
+  0% { background-position: -40% 0; }
+  100% { background-position: 140% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .emergency-hero::before { animation: none; }
+}
 .emergency-hero .lede { margin-top: 18px; max-width: 70ch; }
 .emergency-hero h1 { margin-top: 12px; }
 .eyebrow-alert { color: var(--alert-500); }
 
 .hotline-block {
+  position: relative;
   margin-top: 32px;
   display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
   border: 1px solid var(--alert-500); border-radius: var(--radius-card);
   background: var(--alert-tint); padding: 20px 24px;
   max-width: 620px;
+}
+.hotline-block::after {
+  content: "";
+  position: absolute; inset: -1px;
+  border: 2px solid var(--alert-500);
+  border-radius: var(--radius-card);
+  pointer-events: none;
+  --hotline-head-angle: 0deg;
+  --hotline-tail-angle: 0deg;
+  -webkit-mask-image: conic-gradient(from 0deg,
+    transparent 0deg,
+    transparent var(--hotline-tail-angle),
+    black var(--hotline-tail-angle),
+    black var(--hotline-head-angle),
+    transparent var(--hotline-head-angle),
+    transparent 360deg);
+          mask-image: conic-gradient(from 0deg,
+    transparent 0deg,
+    transparent var(--hotline-tail-angle),
+    black var(--hotline-tail-angle),
+    black var(--hotline-head-angle),
+    transparent var(--hotline-head-angle),
+    transparent 360deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hotline-block::after { display: none; }
 }
 .hotline-icon {
   width: 44px; height: 44px; border-radius: 12px; flex-shrink: 0;
