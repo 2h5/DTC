@@ -1,0 +1,29 @@
+/* ==========================================================================
+   News article (detail) pages only. One shared stylesheet for all 29
+   news/<slug>.html pages, per the "one stylesheet per page type" rule.
+   Reuses core's .pcb-frame for the hero image and .page-hero/.breadcrumb/
+   .cta-band as-is.
+   ========================================================================== */
+
+.news-article-date { margin-top: 10px; }
+
+.news-article { padding-block: 8px 64px; }
+.news-article-inner { max-width: 760px; }
+
+.news-article-media { margin-bottom: 36px; }
+.news-article-media img { aspect-ratio: 16 / 9; }
+
+.news-article-body p { color: var(--text-2); font-size: 1rem; line-height: 1.8; }
+.news-article-body p + p { margin-top: 18px; }
+.news-article-body h2 { margin-top: 34px; font-size: 1.25rem; }
+.news-article-body h2 + p { margin-top: 14px; }
+.news-article-body ul { margin-top: 14px; display: flex; flex-direction: column; gap: 8px; }
+.news-article-body li { color: var(--text-2); font-size: 1rem; line-height: 1.7; padding-left: 20px; position: relative; }
+.news-article-body li::before { content: ""; position: absolute; left: 0; top: 12px; width: 6px; height: 6px; border-radius: 50%; background: var(--accent-500); }
+
+.news-article-foot { margin-top: 40px; padding-top: 28px; border-top: 1px solid var(--line-1); }
+
+@media (max-width: 720px) {
+  .news-article { padding-block: 8px 48px; }
+  .news-article-media { margin-bottom: 26px; }
+}
