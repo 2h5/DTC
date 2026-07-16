@@ -7,7 +7,7 @@
    Photo band , full-width framed photo with a stat strip underneath
    ========================================================================== */
 
-.photo-band { padding-block: 40px 96px; }
+.photo-band { padding-block: 24px 48px; }
 .photo-band-frame {
   border: 1px solid var(--line-1); border-radius: var(--radius-card); overflow: hidden;
   aspect-ratio: 21 / 9;
@@ -30,7 +30,7 @@
    Six reasons , 2-column card grid (not a zigzag list)
    ========================================================================== */
 
-.reasons-section { padding-block: 96px; border-top: 1px solid var(--line-1); }
+.reasons-section { padding-block: 56px; border-top: 1px solid var(--line-1); }
 .reasons-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
 .reason-card {
   border: 1px solid var(--line-1); border-radius: var(--radius-card); background: var(--surface-2);
@@ -59,6 +59,7 @@
 }
 
 @media (max-width: 720px) {
-  .photo-band { padding-block: 24px 64px; }
-  .reasons-section, .cta-band { padding-block: 64px; }
+  .photo-band { padding-block: 16px 32px; }
+  .reasons-section { padding-block: 40px; }
+  .cta-band { padding-block: 40px; }
 }

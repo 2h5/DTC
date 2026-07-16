@@ -40,7 +40,7 @@
    live in core/base.css
    ========================================================================== */
 
-.apart-section { padding-block: 96px; border-top: 1px solid var(--line-1); }
+.apart-section { padding-block: 56px; border-top: 1px solid var(--line-1); }
 .apart-foot { margin-top: 32px; text-align: center; }
 
 /* ==========================================================================
@@ -54,6 +54,8 @@
 }
 
 @media (max-width: 720px) {
-  .founder-story, .apart-section, .cta-band { padding-block: 64px; }
+  .founder-story { padding-block: 64px; }
+  .apart-section { padding-block: 40px; }
+  .cta-band { padding-block: 40px; }
   .story-banner { padding-block: 72px; }
 }

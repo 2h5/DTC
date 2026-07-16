@@ -35,7 +35,7 @@
    Process , 3-step grid
    ========================================================================== */
 
-.process-section { padding-block: 96px; }
+.process-section { padding-block: 48px 56px; }
 .process-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 .process-step {
   border: 1px solid var(--line-1); border-radius: var(--radius-card); background: var(--surface-2);
@@ -56,5 +56,5 @@
 @media (max-width: 640px) {
   .hotline-block { flex-direction: column; align-items: flex-start; }
   .hotline-block .btn { width: 100%; justify-content: center; }
-  .process-section { padding-block: 64px; }
+  .process-section { padding-block: 32px 40px; }
 }

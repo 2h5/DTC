@@ -25,7 +25,7 @@
    Testimonial grid
    ========================================================================== */
 
-.testimonial-section { padding-block: 88px; }
+.testimonial-section { padding-block: 56px; }
 .testimonial-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
 .testimonial-card {
   margin: 0; border: 1px solid var(--line-1); border-radius: var(--radius-card); background: var(--surface-2);
@@ -54,5 +54,5 @@
 
 @media (max-width: 720px) {
   .testimonials-hero { padding-block: 64px 44px; }
-  .testimonial-section { padding-block: 56px; }
+  .testimonial-section { padding-block: 40px; }
 }

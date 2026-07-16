@@ -35,12 +35,19 @@
 .buying-options .option-card ul { margin-top: 10px; padding-left: 18px; display: flex; flex-direction: column; gap: 6px; }
 .buying-options .option-card li { font-size: 0.85rem; color: var(--text-2); line-height: 1.55; }
 
-.product-desc, .product-warranty { padding-block: 40px; border-top: 1px solid var(--line-1); max-width: 70ch; }
+.product-desc-warranty {
+  padding-block: 24px; border-top: 1px solid var(--line-1);
+  display: grid; grid-template-columns: 1fr 1fr; gap: 48px;
+}
 .product-desc ul, .product-warranty p { margin-top: 12px; color: var(--text-2); font-size: 0.95rem; line-height: 1.7; }
-.product-desc ul { padding-left: 18px; display: flex; flex-direction: column; gap: 6px; }
+.product-desc ul { display: flex; flex-direction: column; gap: 6px; }
 
 @media (max-width: 980px) {
   .product-layout { grid-template-columns: 1fr; }
   .product-frame { max-width: 420px; }
   .buying-options .options-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 720px) {
+  .product-desc-warranty { grid-template-columns: 1fr; gap: 40px; }
 }

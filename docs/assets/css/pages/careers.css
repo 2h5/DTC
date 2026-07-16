@@ -4,7 +4,7 @@
    after core/*.css.
    ========================================================================== */
 
-.careers-perks { padding-block: 32px 96px; }
+.careers-perks { padding-block: 32px 48px; }
 
 .apply-section { padding-block: 0 96px; }
 .apply-card {
@@ -16,7 +16,7 @@
 .apply-actions { margin-top: 24px; display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
 
 @media (max-width: 720px) {
-  .careers-perks { padding-block: 24px 64px; }
+  .careers-perks { padding-block: 24px 32px; }
   .apply-section { padding-block: 0 64px; }
   .apply-card { padding: 28px; }
 }
