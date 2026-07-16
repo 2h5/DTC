@@ -1,0 +1,126 @@
+/* ==========================================================================
+   Services detail pages (shared page *type*, not one page instance):
+   test-and-certify.html, repair-refurbish.html, spare-parts.html,
+   custom-service.html, remanufacturing.html, asset-recovery.html.
+   Each page sets its own hero photo via an inline `style="background-image:"`
+   on .service-hero; every other rule here is identical across all six.
+   ========================================================================== */
+
+/* ==========================================================================
+   Hero , photo background variant of .page-hero, same family as
+   testimonials.css's .testimonials-hero (dark gradient overlay for text
+   contrast), reused here since 6 pages need it instead of 1.
+   ========================================================================== */
+
+.service-hero {
+  position: relative;
+  overflow: hidden;
+  padding-block: 72px 40px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.service-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, rgba(4, 22, 30, 0.88) 0%, rgba(4, 22, 30, 0.72) 45%, rgba(4, 22, 30, 0.5) 100%);
+}
+.service-hero .container { position: relative; z-index: 1; }
+.service-hero .breadcrumb { color: rgba(255, 255, 255, 0.6); }
+.service-hero .breadcrumb a { color: rgba(255, 255, 255, 0.85); }
+.service-hero .breadcrumb .current { color: #ffffff; }
+.service-hero .eyebrow { color: var(--accent-400); margin-top: 18px; display: inline-block; }
+.service-hero h1 { margin-top: 12px; color: #ffffff; }
+.service-hero .lede { margin-top: 16px; max-width: 62ch; color: rgba(255, 255, 255, 0.82); }
+
+/* ==========================================================================
+   Intro , photo + text split, reuses core's .pcb-frame for the image half
+   ========================================================================== */
+
+.service-intro { padding-block: 56px; }
+.service-intro-grid { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 48px; align-items: center; }
+.service-intro-grid.is-reversed .pcb-frame { order: 2; }
+.service-intro-text p { margin-top: 16px; color: var(--text-2); font-size: 1rem; line-height: 1.75; }
+.service-intro-text p:first-child { margin-top: 0; }
+.service-intro-text .btn { margin-top: 28px; }
+
+/* ==========================================================================
+   Highlight stat , single callout number + description (e.g. flat-rate
+   repair pricing), used sparingly, real figures only
+   ========================================================================== */
+
+.service-highlight {
+  display: flex; align-items: center; gap: 24px; flex-wrap: wrap;
+  border: 1px solid var(--line-1); border-radius: var(--radius-card); background: var(--surface-2);
+  padding: 28px 30px; margin-top: 36px;
+}
+.service-highlight .stat-num { font-family: var(--font-display); font-size: 2.4rem; font-weight: 600; color: var(--accent-ink); line-height: 1; flex-shrink: 0; }
+.service-highlight p { margin: 0; color: var(--text-2); font-size: 0.96rem; line-height: 1.6; max-width: 46ch; }
+
+/* ==========================================================================
+   Process steps , numbered sequence, distinct family from icon-card-grid
+   ========================================================================== */
+
+.process-section { padding-block: 56px; border-top: 1px solid var(--line-1); }
+.process-steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 18px; }
+.process-step { display: flex; flex-direction: column; gap: 12px; }
+.process-step .step-num {
+  width: 34px; height: 34px; border-radius: 50%; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--accent-tint); color: var(--accent-ink);
+  font-family: var(--font-mono); font-weight: 600; font-size: 0.85rem;
+}
+.process-step h3 { font-size: 1rem; }
+.process-step p { font-size: 0.88rem; color: var(--text-2); line-height: 1.6; }
+
+/* ==========================================================================
+   Condition codes , spare parts grading grid (2-col spec cards, not a
+   bordered row table, per the project's spec-sheet layout convention)
+   ========================================================================== */
+
+.condition-section { padding-block: 56px; border-top: 1px solid var(--line-1); }
+.condition-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+.condition-card { border: 1px solid var(--line-1); border-radius: var(--radius-card); background: var(--surface-2); padding: 24px 26px; }
+.condition-card .code {
+  display: inline-flex; align-items: center; justify-content: center;
+  font-family: var(--font-mono); font-weight: 600; font-size: 0.72rem; letter-spacing: 0.06em;
+  color: var(--accent-ink); background: var(--accent-tint); border-radius: 999px; padding: 4px 12px;
+}
+.condition-card h3 { margin-top: 14px; font-size: 1rem; }
+.condition-card p { margin-top: 8px; font-size: 0.9rem; color: var(--text-2); line-height: 1.6; }
+
+/* ==========================================================================
+   Plain content section , heading + prose, used for sections that are just
+   text (no photo, no grid) between the richer sections above
+   ========================================================================== */
+
+.service-section { padding-block: 56px; border-top: 1px solid var(--line-1); }
+.service-section .section-head { max-width: 70ch; }
+.service-section p { color: var(--text-2); font-size: 1rem; line-height: 1.75; max-width: 70ch; }
+.service-section p + p { margin-top: 14px; }
+.service-section ul.plain-list { margin-top: 8px; display: flex; flex-direction: column; gap: 4px; max-width: 70ch; }
+.service-section ul.plain-list li { color: var(--text-2); font-size: 0.98rem; line-height: 1.7; padding-left: 18px; position: relative; }
+.service-section ul.plain-list li::before { content: ""; position: absolute; left: 0; top: 12px; width: 6px; height: 6px; border-radius: 50%; background: var(--accent-500); }
+
+/* Icon card grid section headed with grouped intro (reuses core .icon-card-grid) */
+.service-benefits { padding-block: 56px; border-top: 1px solid var(--line-1); }
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+
+@media (max-width: 980px) {
+  .service-intro-grid { grid-template-columns: 1fr; }
+  .service-intro-grid.is-reversed .pcb-frame { order: 0; }
+  .service-intro-grid .pcb-frame { max-width: 460px; margin-inline: auto; }
+  .process-steps { grid-template-columns: repeat(2, 1fr); }
+  .condition-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 720px) {
+  .service-hero { padding-block: 48px 36px; }
+  .service-intro, .process-section, .condition-section, .service-section, .service-benefits { padding-block: 40px; }
+  .process-steps { grid-template-columns: 1fr; }
+  .service-highlight { flex-direction: column; align-items: flex-start; }
+}

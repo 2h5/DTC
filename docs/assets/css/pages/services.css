@@ -1,0 +1,48 @@
+/* ==========================================================================
+   Services (hub/landing) page only: intro + 6-tile grid linking to each
+   service detail page. Loaded only by services.html, after core/*.css.
+   Structurally different from services-detail.css's photo-hero pages, this
+   one uses the plain light .page-hero (core/base.css), matching Parts Shop/
+   About/Contact, since it's an index page, not a page with its own story.
+   ========================================================================== */
+
+.services-intro { padding-block: 8px 28px; }
+.services-intro .lede { max-width: 74ch; }
+
+.services-grid {
+  padding-block: 8px 64px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.services-tile {
+  display: flex; flex-direction: column;
+  border: 1px solid var(--line-1); border-radius: var(--radius-card); background: var(--surface-2);
+  padding: 28px 26px;
+  transition: transform 0.5s var(--ease), border-color 0.3s var(--ease);
+}
+.services-tile:hover { transform: translateY(-4px); border-color: var(--line-2); }
+
+.services-tile-icon {
+  width: 46px; height: 46px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--accent-tint); color: var(--accent-ink);
+  flex-shrink: 0;
+}
+.services-tile-icon svg { width: 21px; height: 21px; }
+.services-tile h2 { margin-top: 18px; font-size: 1.1rem; }
+.services-tile p { margin-top: 8px; font-size: 0.92rem; color: var(--text-2); line-height: 1.6; flex: 1; }
+.services-tile-link {
+  margin-top: 18px; display: inline-flex; align-items: center; gap: 6px;
+  font-weight: 600; font-size: 0.86rem; color: var(--accent-ink);
+}
+.services-tile-link svg { width: 13px; height: 13px; transition: transform 0.4s var(--ease); }
+.services-tile:hover .services-tile-link svg { transform: translate(2px, -2px); }
+
+@media (max-width: 980px) {
+  .services-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 620px) {
+  .services-grid { grid-template-columns: 1fr; }
+}
