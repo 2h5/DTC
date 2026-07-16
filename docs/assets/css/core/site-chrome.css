@@ -27,7 +27,7 @@
   transition: box-shadow 0.3s var(--ease);
 }
 .site-header.is-scrolled { box-shadow: var(--shadow-sm); }
-.nav-row { display: flex; align-items: center; gap: 20px; height: 72px; }
+.nav-row { position: relative; display: flex; align-items: center; gap: 20px; height: 72px; }
 
 .brand { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
 .brand-mark {
@@ -45,7 +45,7 @@
 .main-nav .nav-item { position: relative; }
 .main-nav .nav-link {
   display: flex; align-items: center; gap: 5px; padding: 9px 12px;
-  font-size: 0.85rem; font-weight: 600;
+  font-size: 0.85rem; font-weight: 600; white-space: nowrap;
   color: var(--text-2); border-radius: 999px;
   transition: color 0.3s var(--ease), background-color 0.3s var(--ease);
 }
@@ -88,6 +88,88 @@
 .nav-toggle.is-open .bar:nth-child(1) { top: 20px; transform: rotate(45deg); }
 .nav-toggle.is-open .bar:nth-child(2) { opacity: 0; }
 .nav-toggle.is-open .bar:nth-child(3) { top: 20px; transform: rotate(-45deg); }
+
+/* ==========================================================================
+   Nav search , icon toggles the whole nav row into a full-width search bar.
+   Behavior in core.js (toggles .search-active on .site-header); the input
+   itself is picked up by assets/js/search.js like any other search box.
+   ========================================================================== */
+
+.nav-search-toggle {
+  display: flex; align-items: center; justify-content: center;
+  width: 40px; height: 40px; flex-shrink: 0;
+  background: var(--surface-3);
+  border: 1px solid var(--line-1);
+  border-radius: 999px;
+  color: var(--text-2);
+  transition: background-color 0.3s var(--ease), color 0.3s var(--ease), transform 0.2s var(--ease);
+}
+.nav-search-toggle svg { width: 17px; height: 17px; }
+.nav-search-toggle:hover { background: var(--glass-fill); color: var(--text-1); }
+.nav-search-toggle:active { transform: scale(0.92); }
+
+.brand, .main-nav, .nav-search-toggle, .nav-cta, .nav-toggle {
+  transition: opacity 0.25s var(--ease), visibility 0.25s;
+}
+.site-header.search-active .brand,
+.site-header.search-active .main-nav,
+.site-header.search-active .nav-search-toggle,
+.site-header.search-active .nav-cta,
+.site-header.search-active .nav-toggle {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.nav-search {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; gap: 14px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(-18px);
+  transition: opacity 0.38s var(--ease), transform 0.38s var(--ease), visibility 0.38s;
+}
+.site-header.search-active .nav-search {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+.nav-search > svg { flex-shrink: 0; width: 19px; height: 19px; color: var(--text-3); }
+.nav-search input {
+  flex: 1; min-width: 0;
+  background: transparent; border: none; outline: none;
+  color: var(--text-1); font-size: 1rem;
+}
+.nav-search input::placeholder { color: var(--text-3); }
+.nav-search-close {
+  display: flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px; flex-shrink: 0;
+  background: var(--surface-3);
+  border: none; border-radius: 999px; color: var(--text-2);
+  transition: background-color 0.3s var(--ease), color 0.3s var(--ease), transform 0.2s var(--ease);
+}
+.nav-search-close svg { width: 15px; height: 15px; }
+.nav-search-close:hover { background: var(--glass-fill); color: var(--text-1); }
+.nav-search-close:active { transform: scale(0.92); }
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-search { transition: opacity 0.15s linear, visibility 0.15s; transform: none; }
+  .nav-search-toggle, .nav-search-close { transition: background-color 0.3s var(--ease), color 0.3s var(--ease); }
+  .nav-search-toggle:active, .nav-search-close:active { transform: none; }
+}
+
+/* Header flash , triggered by core.js only when the home hero's "Search for
+   Parts" CTA opens the bar (not the header icon itself, that one's already
+   right there). The button lives mid-page, so a plain open is easy to
+   miss; this pulls the eye up to the header the instant it opens. Skipped
+   entirely under prefers-reduced-motion. */
+@keyframes nav-search-flash {
+  0% { background-color: var(--accent-tint); }
+  100% { background-color: rgba(245, 245, 243, 0.86); }
+}
+.site-header.search-flash { animation: nav-search-flash 0.7s var(--ease); }
 
 @media (min-width: 1160px) {
   .nav-phone { display: flex; }

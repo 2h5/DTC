@@ -9,6 +9,8 @@
   var countEl = document.querySelector('[data-listing-count]');
   var emptyEl = document.querySelector('[data-listing-empty]');
   var resetBtn = document.querySelector('[data-filter-reset]');
+  var searchInput = document.querySelector('.filter-search input');
+  var query = '';
 
   var noun = cards.length === 1 ? 'item' : 'items';
 
@@ -32,18 +34,25 @@
     });
   }
 
+  function matchesQuery(card) {
+    if (!query) return true;
+    var desc = card.querySelector('.part-desc');
+    var text = (card.getAttribute('data-part-number') + ' ' + (desc ? desc.textContent : '')).toLowerCase();
+    return text.indexOf(query) !== -1;
+  }
+
   function applyFilter() {
     var active = activeStatuses();
     var visible = 0;
     cards.forEach(function (card) {
-      var show = active.length === 0 || active.indexOf(card.getAttribute('data-availability')) !== -1;
+      var show = (active.length === 0 || active.indexOf(card.getAttribute('data-availability')) !== -1) && matchesQuery(card);
       card.classList.toggle('is-filtered-out', !show);
       if (show) visible++;
     });
 
     if (countEl) countEl.textContent = visible + ' of ' + cards.length + ' ' + noun;
     if (emptyEl) emptyEl.hidden = visible !== 0;
-    if (resetBtn) resetBtn.hidden = active.length === 0;
+    if (resetBtn) resetBtn.hidden = active.length === 0 && !query;
   }
 
   function applySort() {
@@ -66,9 +75,17 @@
   }
 
   checkboxes.forEach(function (cb) { cb.addEventListener('change', applyFilter); });
+  if (searchInput) {
+    searchInput.addEventListener('input', function () {
+      query = searchInput.value.trim().toLowerCase();
+      applyFilter();
+    });
+  }
   if (resetBtn) {
     resetBtn.addEventListener('click', function () {
       checkboxes.forEach(function (cb) { cb.checked = false; });
+      if (searchInput) searchInput.value = '';
+      query = '';
       applyFilter();
     });
   }

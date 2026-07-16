@@ -142,26 +142,89 @@ h3, .h3 {
    ========================================================================== */
 
 .search-pill {
-  display: flex;
+  display: flex; align-items: center; gap: 12px;
   background: var(--surface-2);
   border: 1px solid var(--line-1);
   border-radius: 999px;
-  padding: 6px 6px 6px 20px;
+  padding: 4px 22px;
   max-width: 520px;
+  transition: border-color 0.3s var(--ease), box-shadow 0.3s var(--ease), transform 0.3s var(--ease);
 }
+.search-pill svg { flex-shrink: 0; width: 17px; height: 17px; color: var(--text-3); transition: color 0.3s var(--ease); }
 .search-pill input {
   flex: 1; background: transparent; border: none; outline: none;
-  padding: 12px 12px 12px 0; color: var(--text-1); font-size: 0.94rem;
+  padding: 13px 0; color: var(--text-1); font-size: 0.94rem;
 }
 .search-pill input::placeholder { color: var(--text-3); }
-.search-pill button {
-  display: flex; align-items: center; justify-content: center; gap: 8px;
-  background: var(--accent-500); color: var(--on-accent); border: none;
-  border-radius: 999px; padding: 0 20px; height: 44px; font-weight: 600; font-size: 0.875rem;
-  transition: background-color 0.3s var(--ease);
+
+.search-pill:focus-within {
+  border-color: var(--accent-500);
+  box-shadow: 0 0 0 4px var(--accent-tint);
+  transform: scale(1.015);
 }
-.search-pill button:hover { background: var(--accent-400); }
-.search-pill button svg { width: 15px; height: 15px; }
+.search-pill:focus-within svg { color: var(--accent-ink); }
+
+@media (prefers-reduced-motion: reduce) {
+  .search-pill { transition: border-color 0.3s var(--ease), box-shadow 0.3s var(--ease); }
+  .search-pill:focus-within { transform: none; }
+}
+
+/* ==========================================================================
+   Search results dropdown , live typeahead for search-pill/nav-search.
+   Behavior in assets/js/search.js against the shared assets/js/search-data.js
+   index; lives in core since it's shared by the parts-shop, brand page and
+   nav-search-in-header page types. Hidden state uses opacity/transform (not
+   display:none) so open/close can transition; `.is-open` is toggled by
+   search.js.
+   ========================================================================== */
+
+.search-results {
+  position: fixed;
+  background: var(--surface-1);
+  border: 1px solid var(--line-1);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-md);
+  padding: 8px;
+  max-height: 360px;
+  overflow-y: auto;
+  z-index: 300;
+  opacity: 0;
+  transform: translateY(-8px) scale(0.98);
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.22s var(--ease), transform 0.22s var(--ease), visibility 0.22s;
+}
+.search-results.is-open {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  visibility: visible;
+  pointer-events: auto;
+}
+@media (prefers-reduced-motion: reduce) {
+  .search-results { transition: opacity 0.15s linear; transform: none; }
+  .search-results.is-open { transform: none; }
+}
+.search-result {
+  display: flex; align-items: baseline; gap: 12px;
+  padding: 10px 12px;
+  border-radius: var(--radius-input);
+  color: inherit;
+  cursor: pointer;
+}
+a.search-result:hover, a.search-result.is-active { background: var(--surface-3); }
+.search-result.is-disabled { cursor: default; opacity: 0.55; }
+.search-result-type {
+  flex-shrink: 0; width: 46px;
+  font-size: 0.7rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase;
+  color: var(--text-3);
+}
+.search-result-body { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.search-result-title { font-weight: 600; color: var(--text-1); font-size: 0.92rem; }
+.search-result-subtitle {
+  font-size: 0.8rem; color: var(--text-3);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.search-result-empty { padding: 14px 12px; font-size: 0.88rem; color: var(--text-3); }
 
 /* ==========================================================================
    Stock badge , real semantic state (availability), not decorative

@@ -50,6 +50,66 @@
 
   var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  /* Nav search: the icon (or, on the home page, the hero's "Search for
+     Parts" button) morphs the whole nav row into a full-width search bar
+     (brand/links/CTA fade out via .search-active on .site-header, see
+     site-chrome.css). The input itself is wired up separately by
+     assets/js/search.js, same as any other search box on the page. */
+  var navSearchToggle = document.querySelector('.nav-search-toggle');
+  var navSearchClose = document.querySelector('.nav-search-close');
+  var navSearchInput = document.querySelector('.nav-search input');
+  var heroSearchCta = document.querySelector('.hero-search-cta');
+
+  if (header && navSearchToggle) {
+    var openNavSearch = function () {
+      header.classList.add('search-active');
+      navSearchToggle.setAttribute('aria-expanded', 'true');
+      /* Focusing immediately can lose to the opening transition (the input
+         is still visibility:hidden mid-frame), landing focus back on the
+         page instead - defer a couple of frames so the bar has actually
+         painted visible before we try. */
+      if (navSearchInput) {
+        window.requestAnimationFrame(function () {
+          window.requestAnimationFrame(function () { navSearchInput.focus(); });
+        });
+      }
+    };
+    var closeNavSearch = function () {
+      header.classList.remove('search-active');
+      navSearchToggle.setAttribute('aria-expanded', 'false');
+      if (navSearchInput) navSearchInput.value = '';
+    };
+
+    navSearchToggle.addEventListener('click', function (e) {
+      e.stopPropagation();
+      openNavSearch();
+    });
+    if (navSearchClose) navSearchClose.addEventListener('click', closeNavSearch);
+
+    document.addEventListener('click', function (e) {
+      if (header.classList.contains('search-active') && !header.contains(e.target)) closeNavSearch();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && header.classList.contains('search-active')) closeNavSearch();
+    });
+
+    /* The hero CTA is a trigger only, it has no search state of its own.
+       Since the button lives mid-page and the bar it opens is up in the
+       header, a plain open is easy to miss - flash the header with the
+       accent color the instant it opens so the eye gets pulled up there. */
+    if (heroSearchCta) {
+      heroSearchCta.addEventListener('click', function (e) {
+        e.stopPropagation();
+        openNavSearch();
+        if (!prefersReduced) {
+          header.classList.remove('search-flash');
+          void header.offsetWidth; /* restart the animation if clicked again quickly */
+          header.classList.add('search-flash');
+        }
+      });
+    }
+  }
+
   /* In-page anchor links (e.g. the skip link) scroll smoothly via JS. */
   document.addEventListener('click', function (e) {
     var a = e.target.closest ? e.target.closest('a[href^="#"]') : null;

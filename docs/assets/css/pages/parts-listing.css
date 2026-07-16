@@ -42,10 +42,20 @@
   border: 1px solid var(--line-1);
   border-radius: 999px;
   padding: 10px 14px;
-  transition: border-color 0.25s var(--ease);
+  transition: border-color 0.25s var(--ease), box-shadow 0.25s var(--ease), transform 0.25s var(--ease);
 }
-.filter-search:focus-within { border-color: var(--accent-500); }
-.filter-search svg { flex-shrink: 0; width: 15px; height: 15px; color: var(--text-3); }
+.filter-search:focus-within {
+  border-color: var(--accent-500);
+  box-shadow: 0 0 0 4px var(--accent-tint);
+  transform: scale(1.015);
+}
+.filter-search:focus-within svg { color: var(--accent-ink); }
+.filter-search svg { flex-shrink: 0; width: 15px; height: 15px; color: var(--text-3); transition: color 0.25s var(--ease); }
+
+@media (prefers-reduced-motion: reduce) {
+  .filter-search { transition: border-color 0.25s var(--ease), box-shadow 0.25s var(--ease); }
+  .filter-search:focus-within { transform: none; }
+}
 .filter-search input {
   flex: 1; min-width: 0;
   background: transparent; border: none; outline: none;

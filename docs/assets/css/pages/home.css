@@ -28,29 +28,33 @@
 .hero h1 .accent { color: var(--accent-400); }
 .hero-sub { margin-top: 18px; font-size: 1.08rem; color: rgba(255, 255, 255, 0.82); max-width: 52ch; }
 
-.hero-search {
+/* Hero search: a plain CTA, not a live input. Clicking it opens the header's
+   own .nav-search bar and flashes the header (core.js) - the hero itself
+   has no search state of its own, it only ever triggers the shared one. */
+.hero-search-cta {
   margin-top: 30px;
-  display: flex;
+  display: inline-flex; align-items: center; gap: 10px;
   background: var(--surface-2);
   border: 1px solid var(--line-1);
   border-radius: 999px;
-  padding: 6px 6px 6px 20px;
-  max-width: 520px;
+  padding: 15px 26px;
+  font-weight: 600; font-size: 0.95rem; color: var(--text-1);
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
 }
-.hero-search input {
-  flex: 1; background: transparent; border: none; outline: none;
-  padding: 12px 12px 12px 0; color: var(--text-1); font-size: 0.94rem;
+.hero-search-cta svg { flex-shrink: 0; width: 17px; height: 17px; color: var(--accent-ink); }
+.hero-search-cta:hover { transform: translateY(-2px); box-shadow: 0 16px 36px rgba(0, 0, 0, 0.3); }
+.hero-search-cta:active { transform: translateY(0) scale(0.97); }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-search-cta { transition: box-shadow 0.3s var(--ease); }
+  .hero-search-cta:hover, .hero-search-cta:active { transform: none; }
 }
-.hero-search input::placeholder { color: var(--text-3); }
-.hero-search button {
-  display: flex; align-items: center; justify-content: center; gap: 8px;
-  background: var(--accent-500); color: var(--on-accent); border: none;
-  border-radius: 999px; padding: 0 20px; height: 44px; font-weight: 600; font-size: 0.875rem;
-  transition: background-color 0.3s var(--ease);
-}
-.hero-search button:hover { background: var(--accent-400); }
-.hero-search button svg { width: 15px; height: 15px; }
+
+/* The header's own search icon is redundant on the home page since this CTA
+   already opens the same bar - hidden here only (other pages still need it,
+   they have no equivalent hero button). */
+.nav-search-toggle { display: none; }
 
 /* ==========================================================================
    Service bento (hero's visual asset) , 5 items, exact cell count, tinted diversity
