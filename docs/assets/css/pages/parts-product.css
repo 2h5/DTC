@@ -3,7 +3,7 @@
    Loaded by every future product page, not one file per part number.
    ========================================================================== */
 
-.product-hero { padding-block: 40px 0; }
+.product-hero { padding-block: 24px 0; }
 .product-layout {
   display: grid;
   grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);

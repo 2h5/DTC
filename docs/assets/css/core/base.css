@@ -122,7 +122,7 @@ h3, .h3 {
    a pages/*.css file) because it's shared across page *types*, not just one.
    ========================================================================== */
 
-.page-hero { padding-block: 48px 8px; }
+.page-hero { padding-block: 24px 8px; }
 .page-hero .lede { margin-top: 18px; max-width: 74ch; }
 .page-hero h1 { margin-top: 12px; }
 .page-hero .search-pill { margin-top: 28px; }
