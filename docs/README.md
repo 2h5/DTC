@@ -9,7 +9,7 @@ build pages at the same time without editing the same file.
 ## File map
 
 ```
-site/
+docs/  (named docs/ so GitHub Pages "Deploy from a branch" can serve it directly)
   index.html                                          home
   parts-shop.html                                     brand grid (top of parts IA)
   parts/
