@@ -35,7 +35,7 @@
    photo simply omits .gallery-thumbs from the markup, the main frame fills
    the column on its own, no empty rail. */
 
-.product-gallery { display: flex; flex-direction: column; gap: 12px; }
+.product-gallery { position: relative; display: flex; flex-direction: column; gap: 12px; }
 
 .gallery-main {
   position: relative;
@@ -66,7 +66,10 @@
 .gallery-zoom-hint svg { width: 16px; height: 16px; }
 .gallery-main:hover .gallery-zoom-hint { opacity: 1; transform: scale(1); }
 
-.gallery-thumbs { display: flex; gap: 10px; flex-wrap: wrap; }
+.gallery-thumbs {
+  display: flex; flex-direction: column; gap: 10px;
+  position: absolute; top: 0; right: 100%; margin-right: 12px;
+}
 .gallery-thumb {
   width: 64px; height: 64px;
   border-radius: 12px;
@@ -287,6 +290,8 @@
   .product-layout { grid-template-columns: 1fr; }
   .product-frame { max-width: 420px; }
   .product-media { max-width: 420px; }
+  .gallery-thumbs { position: static; flex-direction: row; margin-right: 0; }
+  .gallery-thumb { width: 64px; height: 64px; }
   .spec-grid { grid-template-columns: repeat(2, 1fr); }
 }
 

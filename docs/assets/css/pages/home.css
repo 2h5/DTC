@@ -78,6 +78,8 @@
   gap: 14px;
 }
 .service-card {
+  --card-accent: var(--accent-600);
+  --card-tint: var(--accent-tint);
   background: var(--surface-2);
   border: 1px solid var(--line-1);
   border-radius: var(--radius-card);
@@ -87,10 +89,16 @@
 }
 .service-card:hover { transform: translateY(-4px); border-color: var(--line-2); }
 
+.service-card--blue { --card-accent: #2f6fb0; --card-tint: rgba(47, 111, 176, 0.12); }
+.service-card--orange { --card-accent: #d97a2e; --card-tint: rgba(217, 122, 46, 0.12); }
+.service-card--green { --card-accent: #237a4f; --card-tint: rgba(35, 122, 79, 0.12); }
+.service-card--red { --card-accent: #c0392f; --card-tint: rgba(192, 57, 47, 0.12); }
+.service-card--gold { --card-accent: #b8901f; --card-tint: rgba(184, 144, 31, 0.14); }
+
 .service-icon {
   width: 42px; height: 42px; border-radius: 12px;
   display: flex; align-items: center; justify-content: center;
-  background: var(--accent-tint); color: var(--accent-ink);
+  background: var(--card-tint); color: var(--card-accent);
   flex-shrink: 0;
 }
 .service-icon svg { width: 19px; height: 19px; }
@@ -103,7 +111,7 @@
   transition: transform 0.4s var(--ease), background-color 0.3s var(--ease), color 0.3s var(--ease);
 }
 .service-arrow svg { width: 12px; height: 12px; }
-.service-card:hover .service-arrow { transform: translate(2px, -2px); background: var(--accent-500); color: var(--on-accent); }
+.service-card:hover .service-arrow { transform: translate(2px, -2px); background: var(--card-accent); color: #fff; }
 
 /* ==========================================================================
    Intro band + quick actions (plain links, no cards , avoids 3-card cliché)
@@ -121,8 +129,9 @@
 .quick-actions a svg { width: 15px; height: 15px; }
 .quick-actions .qa-primary { color: var(--accent-ink); }
 .quick-actions .qa-alert { color: var(--alert-400); }
-.quick-actions .qa-neutral { color: var(--text-2); }
+.quick-actions .qa-neutral { color: #5a9b2e; }
 .quick-actions a:hover { color: var(--text-1); }
+.quick-actions .qa-neutral:hover { color: #4a8322; }
 .quick-actions .qa-sep { width: 1px; height: 16px; background: var(--line-2); }
 
 /* ==========================================================================

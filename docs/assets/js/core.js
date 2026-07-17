@@ -152,14 +152,20 @@
     el.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'start' });
   });
 
-  /* FAQ accordion (.faq-item, shared by the FAQs page and any product
-     page's FAQ tab): native <details>/<summary> can't transition its own
-     open/close (the browser toggles display:none instantly), so this
-     intercepts the click and animates the inner .faq-body's max-height
-     instead, only touching the `open` attribute at the start/end of that
-     transition. Same scrollHeight-before-transition technique as the
-     mobile submenu above. Falls back to the native instant toggle under
-     reduced motion. */
+  /* FAQ accordion (.faq-item, shared by any product page's FAQ tab):
+     native <details>/<summary> can't transition its own open/close (the
+     browser toggles display:none instantly), so this intercepts the click
+     and animates the inner .faq-body's max-height instead, only touching
+     the `open` attribute at the start/end of that transition. Same
+     scrollHeight-before-transition technique as the mobile submenu above.
+     Falls back to the native instant toggle under reduced motion.
+     Skipped on the dedicated FAQs page (identified by .faq-section, present
+     in the DOM by the time this runs unlike its own <script> tag further
+     down the page): assets/js/pages/faqs.js binds its own (different)
+     accordion there, and having both attach a click listener to the same
+     <summary> fought over the `open` attribute and made the panels snap
+     instead of animate. */
+  if (!document.querySelector('.faq-section')) {
   document.querySelectorAll('.faq-item > summary').forEach(function (summary) {
     var details = summary.parentElement;
     var body = details.querySelector('.faq-body');
@@ -191,6 +197,7 @@
       }
     });
   });
+  }
 
   /* Scroll-triggered reveal */
   var revealEls = document.querySelectorAll('.reveal');

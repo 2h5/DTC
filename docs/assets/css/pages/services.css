@@ -17,6 +17,8 @@
 }
 
 .services-tile {
+  --card-accent: var(--accent-600);
+  --card-tint: var(--accent-tint);
   display: flex; flex-direction: column;
   border: 1px solid var(--line-1); border-radius: var(--radius-card); background: var(--surface-2);
   padding: 28px 26px;
@@ -24,10 +26,17 @@
 }
 .services-tile:hover { transform: translateY(-4px); border-color: var(--line-2); }
 
+.services-tile--blue { --card-accent: #2f6fb0; --card-tint: rgba(47, 111, 176, 0.12); }
+.services-tile--purple { --card-accent: #6a4fa0; --card-tint: rgba(106, 79, 160, 0.12); }
+.services-tile--orange { --card-accent: #d97a2e; --card-tint: rgba(217, 122, 46, 0.12); }
+.services-tile--green { --card-accent: #237a4f; --card-tint: rgba(35, 122, 79, 0.12); }
+.services-tile--red { --card-accent: #c0392f; --card-tint: rgba(192, 57, 47, 0.12); }
+.services-tile--gold { --card-accent: #b8901f; --card-tint: rgba(184, 144, 31, 0.14); }
+
 .services-tile-icon {
   width: 46px; height: 46px; border-radius: 12px;
   display: flex; align-items: center; justify-content: center;
-  background: var(--accent-tint); color: var(--accent-ink);
+  background: var(--card-tint); color: var(--card-accent);
   flex-shrink: 0;
 }
 .services-tile-icon svg { width: 21px; height: 21px; }
