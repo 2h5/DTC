@@ -153,48 +153,72 @@
   });
 
   /* FAQ accordion (.faq-item, shared by any product page's FAQ tab):
-     native <details>/<summary> can't transition its own open/close (the
-     browser toggles display:none instantly), so this intercepts the click
-     and animates the inner .faq-body's max-height instead, only touching
-     the `open` attribute at the start/end of that transition. Same
-     scrollHeight-before-transition technique as the mobile submenu above.
+     native <details>/<summary> can't transition its own open/close, so this
+     animates the complete details element between its measured current and
+     target heights. Direct element-height animation avoids the delayed
+     max-height resolution that can occur when closing or reversing a panel.
      Falls back to the native instant toggle under reduced motion.
-     Skipped on the dedicated FAQs page (identified by .faq-section, present
-     in the DOM by the time this runs unlike its own <script> tag further
-     down the page): assets/js/pages/faqs.js binds its own (different)
-     accordion there, and having both attach a click listener to the same
-     <summary> fought over the `open` attribute and made the panels snap
-     instead of animate. */
-  if (!document.querySelector('.faq-section')) {
+     Skipped on the dedicated FAQs page (identified by its stable body class,
+     not a page-content class): assets/js/pages/faqs.js binds its own
+     height-animation controller there. Both handlers must never bind to the
+     same <summary>, because they each prevent the native toggle and then
+     fight over the `open` attribute. */
+  if (!document.body.classList.contains('faqs-page')) {
   document.querySelectorAll('.faq-item > summary').forEach(function (summary) {
     var details = summary.parentElement;
     var body = details.querySelector('.faq-body');
+    var animation = null;
     if (!body) return;
+
+    function finish(open) {
+      details.open = open;
+      details.classList.toggle('is-open', open);
+      details.style.height = '';
+      details.style.overflow = '';
+      animation = null;
+    }
+
     summary.addEventListener('click', function (e) {
       e.preventDefault();
       if (prefersReduced) {
         details.open = !details.open;
+        details.classList.toggle('is-open', details.open);
         return;
       }
-      if (details.hasAttribute('open')) {
-        body.style.maxHeight = body.scrollHeight + 'px';
-        requestAnimationFrame(function () { body.style.maxHeight = '0px'; });
-        body.addEventListener('transitionend', function handler(ev) {
-          if (ev.propertyName !== 'max-height') return;
-          details.removeAttribute('open');
-          body.style.maxHeight = '';
-          body.removeEventListener('transitionend', handler);
-        });
-      } else {
-        details.setAttribute('open', '');
-        body.style.maxHeight = '0px';
-        requestAnimationFrame(function () { body.style.maxHeight = body.scrollHeight + 'px'; });
-        body.addEventListener('transitionend', function handler(ev) {
-          if (ev.propertyName !== 'max-height') return;
-          body.style.maxHeight = '';
-          body.removeEventListener('transitionend', handler);
-        });
+      var opening = !details.classList.contains('is-open');
+      var startHeight = details.getBoundingClientRect().height;
+
+      if (animation) {
+        var previousAnimation = animation;
+        animation = null;
+        previousAnimation.cancel();
       }
+
+      details.style.height = startHeight + 'px';
+      details.style.overflow = 'hidden';
+
+      if (opening) {
+        details.open = true;
+        details.classList.add('is-open');
+      } else {
+        details.classList.remove('is-open');
+      }
+
+      var endHeight = opening
+        ? summary.offsetHeight + body.offsetHeight
+        : summary.offsetHeight;
+      var activeAnimation = details.animate(
+        { height: [startHeight + 'px', endHeight + 'px'] },
+        { duration: opening ? 220 : 150, easing: 'cubic-bezier(0.16, 1, 0.3, 1)' }
+      );
+      animation = activeAnimation;
+      activeAnimation.onfinish = function () {
+        if (animation !== activeAnimation) return;
+        finish(opening);
+      };
+      activeAnimation.oncancel = function () {
+        if (animation === activeAnimation) animation = null;
+      };
     });
   });
   }

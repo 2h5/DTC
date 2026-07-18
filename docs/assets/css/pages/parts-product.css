@@ -303,3 +303,377 @@
   .also-like-track .part-card { flex-basis: 220px; }
   .tabs-nav { gap: 4px 18px; }
 }
+
+/* ==========================================================================
+   Product page skin: "Engineered Uptime" — the homepage's visual language
+   (dark navy/mint hero, monospace technical labels, blueprint-grid
+   backgrounds, clip-path corner cuts, floating white spec-cards) carried
+   over to the product detail page. Scoped under body.product-page, same
+   pattern as home.css's .home-page scoping, so the other 15 not-yet-
+   migrated product pages (still body without this class) are untouched.
+   Reuses every functional class/hook from the rules above (.gallery-main,
+   .product-info, .tab-trigger, .part-card, etc.) unchanged — JS selectors
+   in parts-product.js and the shared cart-toast/tab logic keep working.
+   ========================================================================== */
+
+.product-page {
+  --pp-ink: #061f2b;
+  --pp-mint: #60c3ad;
+  --pp-mint-light: #9ce0cf;
+  --pp-paper: #f3f4f0;
+  --pp-white: #ffffff;
+  --pp-keyline: rgba(6, 31, 43, 0.12);
+  background: var(--pp-paper);
+}
+
+.product-page main { overflow: hidden; }
+
+@keyframes pp-ping {
+  0%, 28% { opacity: 0; transform: scale(0.5); }
+  45% { opacity: 0.7; }
+  78%, 100% { opacity: 0; transform: scale(1.35); }
+}
+
+.product-page .status-dot,
+.product-page .outage-pulse {
+  position: relative;
+  width: 7px; height: 7px; flex: 0 0 7px;
+  border-radius: 50%;
+  background: var(--pp-mint);
+}
+.product-page .outage-pulse { background: #ff7b66; }
+.product-page .status-dot::after,
+.product-page .outage-pulse::after {
+  content: "";
+  position: absolute; inset: -5px;
+  border: 1px solid currentColor;
+  border-radius: inherit;
+  color: var(--pp-mint);
+  animation: pp-ping 2.4s var(--ease) infinite;
+}
+.product-page .outage-pulse::after { color: #ff7b66; }
+
+/* Chrome: global dark utility bar / product-specific glass header. */
+.product-page .site-header { background: rgba(255, 255, 255, 0.94); border-bottom-color: rgba(6, 31, 43, 0.09); backdrop-filter: blur(18px); }
+.product-page .site-header.is-scrolled { box-shadow: 0 12px 34px rgba(6, 31, 43, 0.08); }
+.product-page .brand-name { color: var(--pp-ink); }
+.product-page .main-nav .nav-link { color: #4e626c; }
+.product-page .main-nav .nav-link:hover { color: var(--pp-ink); background: rgba(6, 31, 43, 0.05); }
+.product-page .main-nav .nav-link[aria-current="page"] { color: var(--pp-ink); background: rgba(96, 195, 173, 0.16); }
+.product-page .nav-cta .btn-primary { color: var(--pp-ink); background: var(--pp-mint); box-shadow: none; }
+.product-page .nav-cta .btn-primary:hover { background: #78d0bc; }
+
+/* ==========================================================================
+   Hero: dark blueprint band, breadcrumb + eyebrow + H1 up top, gallery and
+   buy-box below as a two-column layout, stat rail closes it out.
+   ========================================================================== */
+
+.product-page .product-hero {
+  position: relative;
+  isolation: isolate;
+  padding: 0 0 0;
+  color: rgba(255, 255, 255, 0.78);
+  background:
+    radial-gradient(circle at 82% 12%, rgba(96, 195, 173, 0.14), transparent 32%),
+    linear-gradient(135deg, #041923 0%, #082a38 62%, #0c3543 100%);
+}
+.product-page .product-hero::before {
+  content: "";
+  position: absolute; inset: 0; z-index: -1;
+  opacity: 0.14;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.16) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.16) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 26%, #000 100%);
+}
+
+.product-page .breadcrumb { position: relative; z-index: 2; padding-top: 22px; color: rgba(255, 255, 255, 0.38); }
+.product-page .breadcrumb a { color: rgba(255, 255, 255, 0.68); }
+.product-page .breadcrumb a:hover { color: #ffffff; }
+.product-page .breadcrumb .sep { color: rgba(255, 255, 255, 0.2); }
+.product-page .breadcrumb .current { color: #ffffff; }
+
+.product-page .product-heading { position: relative; z-index: 2; max-width: 760px; padding-top: 20px; }
+.product-page .product-heading .eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  color: var(--pp-mint-light);
+  font-family: var(--font-mono);
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase;
+}
+.product-page .product-heading h1 {
+  margin-top: 14px;
+  color: #ffffff;
+  font-size: clamp(2.3rem, 3.6vw, 3.6rem);
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+}
+.product-page .product-lede { max-width: 62ch; margin-top: 14px; color: rgba(255, 255, 255, 0.68); font-size: 1.02rem; line-height: 1.72; }
+
+.product-page .product-layout { position: relative; z-index: 2; margin-top: 36px; padding-bottom: 44px; }
+
+.product-page .product-media { position: relative; }
+.product-page .product-gallery { position: relative; }
+.product-page .product-gallery::before {
+  content: "";
+  position: absolute; z-index: 0;
+  inset: -14px 22px 22px -14px;
+  border-top: 1px solid rgba(96, 195, 173, 0.55);
+  border-left: 1px solid rgba(96, 195, 173, 0.55);
+  pointer-events: none;
+}
+
+.product-page .gallery-main {
+  position: relative; z-index: 1;
+  border: none;
+  border-radius: 0;
+  clip-path: polygon(0 0, calc(100% - 34px) 0, 100% 34px, 100% 100%, 0 100%);
+  background: var(--pp-white);
+  box-shadow: 0 22px 50px rgba(0, 0, 0, 0.28);
+}
+.product-page .photo-index {
+  position: absolute; z-index: 3; top: 14px; left: 16px;
+  color: rgba(6, 31, 43, 0.55);
+  font-family: var(--font-mono);
+  font-size: 0.62rem; letter-spacing: 0.1em;
+  background: rgba(255, 255, 255, 0.85);
+  padding: 5px 8px;
+}
+/* Thumbnails sit in a row under the main frame at every width (the base
+   rules above default to an absolute rail to the left on desktop; product-
+   page overrides that back to the static/row layout the mobile breakpoint
+   already used, just unconditionally). */
+.product-page .gallery-thumbs { position: static; flex-direction: row; margin-right: 0; }
+.product-page .gallery-thumb { width: 76px; height: 76px; background: var(--pp-white); border-color: rgba(6, 31, 43, 0.1); }
+.product-page .gallery-thumb.is-active { border-color: var(--pp-mint); }
+
+/* Buy box: solid white card floating on the dark hero, same treatment as
+   the homepage's .board-specimen / .process-stamp callouts. */
+.product-page .product-info {
+  position: relative; z-index: 1;
+  background: var(--pp-white);
+  border-left: 3px solid var(--pp-mint);
+  padding: 30px 30px 28px;
+  box-shadow: 0 22px 50px rgba(0, 0, 0, 0.22);
+}
+
+/* Now lives inside the white buy card (moved from under the gallery), a
+   quiet secondary path under the purchase actions rather than stranded on
+   the dark hero background where it read as orphaned. */
+.product-page .product-actions-secondary { padding-top: 14px; border-top: 1px solid var(--pp-keyline); }
+
+.product-page .product-stat-rail {
+  position: relative; z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+}
+.product-page .pstat { position: relative; display: flex; flex-direction: column; gap: 4px; padding: 22px 24px 26px; }
+.product-page .pstat + .pstat { border-left: 1px solid rgba(255, 255, 255, 0.14); }
+.product-page .pstat::before { content: ""; position: absolute; top: -1px; left: 24px; width: 32px; height: 2px; background: var(--pp-mint); }
+.product-page .pstat strong { color: #ffffff; font-family: var(--font-display); font-size: 1.15rem; font-weight: 600; }
+.product-page .pstat span { color: rgba(255, 255, 255, 0.5); font-size: 0.72rem; font-family: var(--font-mono); letter-spacing: 0.05em; text-transform: uppercase; }
+.product-page .pstat--accent::before { background: #ff7b66; }
+.product-page .pstat--accent strong { color: var(--pp-mint-light); }
+
+/* ==========================================================================
+   Buying Options: index-numbered row, same rhythm as the homepage's
+   .service-index / .process-list numbering.
+   ========================================================================== */
+
+.product-page .buying-options { padding: 72px 0 76px; border-top: none; margin-top: 0; background: var(--pp-paper); }
+.product-page .buying-options .section-head {
+  display: grid; grid-template-columns: minmax(280px, 0.8fr) minmax(340px, 1fr);
+  align-items: end; gap: clamp(36px, 8vw, 110px); max-width: none; margin-bottom: 34px;
+}
+.product-page .buying-options .eyebrow { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.15em; }
+.product-page .buying-options h2 { margin-top: 9px; color: var(--pp-ink); font-size: clamp(1.9rem, 3.2vw, 2.7rem); letter-spacing: -0.03em; }
+.product-page .buying-options .section-head p { max-width: 58ch; justify-self: end; padding-bottom: 3px; color: #5d6c73; line-height: 1.7; }
+
+.product-page .options-grid {
+  counter-reset: opt;
+  margin-top: 0;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--pp-keyline);
+  border-left: 1px solid var(--pp-keyline);
+}
+.product-page .option-card {
+  position: relative;
+  min-height: 154px;
+  display: flex;
+  flex-direction: column;
+  border: none; border-right: 1px solid var(--pp-keyline); border-bottom: 1px solid var(--pp-keyline);
+  border-radius: 0; background: transparent;
+  padding: 39px 22px 24px;
+  transition: background-color 0.2s var(--ease), box-shadow 0.2s var(--ease);
+}
+.product-page .option-card::before {
+  counter-increment: opt;
+  content: "0" counter(opt);
+  position: absolute; top: 17px; left: 22px;
+  color: #7a888d; font-family: var(--font-mono); font-size: 0.64rem;
+}
+.product-page .option-card h3 { color: var(--pp-ink); font-size: 1.04rem; }
+.product-page .option-card ul { margin-top: 14px; padding-left: 0; gap: 7px; list-style: none; }
+.product-page .option-card li { display: flex; align-items: flex-start; gap: 8px; font-size: 0.79rem; }
+.product-page .option-card li::before { content: ""; width: 5px; height: 5px; flex: 0 0 5px; margin-top: 0.48em; background: var(--pp-mint); }
+
+@media (hover: hover) {
+  .product-page .option-card:hover {
+    background: rgba(96, 195, 173, 0.11);
+    box-shadow: inset 0 2px 0 var(--pp-mint);
+  }
+  .product-page .option-card:hover::before { color: #2f6f63; }
+}
+
+.product-page .buying-options-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  padding-top: 23px;
+}
+.product-page .buying-options-foot p { max-width: 68ch; color: #65757c; font-size: 0.84rem; line-height: 1.6; }
+.product-page .buying-options-foot p strong { color: var(--pp-ink); }
+.product-page .buying-options-foot a {
+  display: inline-flex; align-items: center; gap: 9px; flex-shrink: 0;
+  color: var(--pp-ink); font-size: 0.82rem; font-weight: 700;
+  padding-bottom: 3px; border-bottom: 1px solid rgba(6, 31, 43, 0.28);
+  transition: gap 0.25s var(--ease), color 0.25s var(--ease), border-color 0.25s var(--ease);
+}
+.product-page .buying-options-foot a:hover { gap: 13px; color: #176f65; border-color: var(--pp-mint); }
+
+/* ==========================================================================
+   Tabs: monospace triggers, blueprint-grid spec cards.
+   ========================================================================== */
+
+.product-page .product-tabs { padding: 40px 0 72px; border-top: 1px solid var(--pp-keyline); background: var(--pp-paper); }
+.product-page .tabs-nav { border-bottom-color: var(--pp-keyline); }
+.product-page .tab-trigger {
+  font-family: var(--font-mono);
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  color: #7a888d;
+}
+.product-page .tab-trigger:hover { color: var(--pp-ink); }
+.product-page .tab-trigger.is-active { color: var(--pp-ink); border-color: var(--pp-mint); }
+
+/* Tab-panel switch: [hidden] toggles display:none <-> block, and a CSS
+   animation restarts whenever an element re-enters rendering that way, so
+   this replays on every tab switch with no JS changes needed. */
+.product-page .tab-panel { animation: pp-tab-in 0.45s var(--ease); }
+@keyframes pp-tab-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+
+.product-page .spec-card {
+  border-color: var(--pp-keyline);
+  border-radius: 0;
+  background:
+    linear-gradient(rgba(6, 31, 43, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(6, 31, 43, 0.04) 1px, transparent 1px),
+    #ffffff;
+  background-size: 22px 22px;
+}
+.product-page .spec-label { font-family: var(--font-mono); }
+
+.product-page .icon-card { border-radius: 0; border-color: var(--pp-keyline); }
+.product-page .icon-card-icon { border-radius: 0; }
+.product-page .faq-list { border-radius: 0; border-color: var(--pp-keyline); }
+
+/* ==========================================================================
+   You May Also Like: same blueprint-grid media treatment as the homepage's
+   .system-card platform tiles.
+   ========================================================================== */
+
+.product-page .also-like { padding-block: 76px; border-top: 1px solid var(--pp-keyline); background: #ffffff; }
+.product-page .also-like h2 { color: var(--pp-ink); font-size: clamp(1.85rem, 3vw, 2.5rem); letter-spacing: -0.03em; }
+.product-page .part-card { border-radius: 0; border-color: var(--pp-keyline); }
+.product-page .part-card:hover { border-color: rgba(6, 31, 43, 0.24); box-shadow: 0 18px 40px rgba(6, 31, 43, 0.09); }
+.product-page .part-media {
+  background:
+    linear-gradient(rgba(6, 31, 43, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(6, 31, 43, 0.045) 1px, transparent 1px),
+    #f4f5f2;
+  background-size: 26px 26px;
+}
+.product-page .part-media img { object-fit: contain; padding: 16px; }
+.product-page .carousel-nav { border-color: var(--pp-keyline); }
+.product-page .carousel-nav:hover { border-color: #7a888d; }
+
+/* ==========================================================================
+   Closing CTA: dark band mirroring the homepage's .response-section.
+   ========================================================================== */
+
+.product-page .pp-cta {
+  position: relative; isolation: isolate;
+  padding: 76px 0;
+  color: rgba(255, 255, 255, 0.68);
+  background: #0a2a37;
+}
+.product-page .pp-cta::before {
+  content: "";
+  position: absolute; inset: 0; z-index: -1;
+  background:
+    linear-gradient(115deg, rgba(96, 195, 173, 0.12), transparent 38%),
+    repeating-linear-gradient(135deg, transparent 0 34px, rgba(255, 255, 255, 0.025) 34px 35px);
+}
+.product-page .pp-cta-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(340px, 0.66fr); align-items: center; gap: 56px; }
+.product-page .pp-cta-status { display: inline-flex; align-items: center; gap: 11px; color: #ff9c8b; font-family: var(--font-mono); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+.product-page .pp-cta h2 { margin-top: 14px; color: #ffffff; font-size: clamp(1.9rem, 3.4vw, 2.9rem); line-height: 1.05; letter-spacing: -0.03em; }
+.product-page .pp-cta p { max-width: 52ch; margin-top: 14px; color: rgba(255, 255, 255, 0.58); line-height: 1.7; }
+.product-page .pp-cta-actions { display: grid; gap: 14px; padding-left: 38px; border-left: 1px solid rgba(255, 255, 255, 0.15); }
+.product-page .pp-cta-phone { display: flex; flex-direction: column; }
+.product-page .pp-cta-phone small { color: rgba(255, 255, 255, 0.46); font-family: var(--font-mono); font-size: 0.61rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+.product-page .pp-cta-phone strong { color: #ffffff; font-family: var(--font-display); font-size: 1.4rem; }
+.product-page .pp-cta-phone:hover strong { color: var(--pp-mint-light); }
+.product-page .pp-cta .btn { border-radius: 8px; justify-content: center; }
+.product-page .pp-cta-email { width: fit-content; color: rgba(255, 255, 255, 0.62); font-size: 0.8rem; border-bottom: 1px solid rgba(255, 255, 255, 0.23); }
+.product-page .pp-cta-email:hover { color: #ffffff; }
+
+/* Footer becomes a continuation of the dark CTA, same as the homepage. */
+.product-page .site-footer { color: rgba(255, 255, 255, 0.58); border-top-color: rgba(255, 255, 255, 0.1); background: #041923; }
+.product-page .footer-top { border-bottom-color: rgba(255, 255, 255, 0.1); }
+.product-page .site-footer .brand-name { color: #ffffff; }
+.product-page .site-footer .brand-tag { color: rgba(255, 255, 255, 0.43); }
+.product-page .footer-nav { color: rgba(255, 255, 255, 0.6); }
+.product-page .footer-nav a:hover, .product-page .footer-legal a:hover { color: var(--pp-mint-light); }
+.product-page .footer-social a { color: rgba(255, 255, 255, 0.58); border-color: rgba(255, 255, 255, 0.16); }
+.product-page .footer-social a:hover { color: #ffffff; border-color: rgba(255, 255, 255, 0.32); }
+.product-page .footer-bottom-inner, .product-page .footer-disclaimer { color: rgba(255, 255, 255, 0.4); }
+
+@media (max-width: 1180px) {
+  .product-page .options-grid { grid-template-columns: repeat(3, 1fr); }
+  .product-page .pp-cta-grid { gap: 36px; }
+}
+
+@media (max-width: 980px) {
+  .product-page .product-layout { grid-template-columns: 1fr; }
+  .product-page .product-gallery::before { inset: -10px 16px 16px -10px; }
+  .product-page .product-stat-rail { grid-template-columns: repeat(2, 1fr); }
+  .product-page .pstat:nth-child(3) { border-left: 0; border-top: 1px solid rgba(255, 255, 255, 0.14); }
+  .product-page .pstat:nth-child(4) { border-top: 1px solid rgba(255, 255, 255, 0.14); }
+  .product-page .buying-options .section-head { grid-template-columns: 1fr; gap: 18px; }
+  .product-page .buying-options .section-head p { justify-self: start; }
+  .product-page .options-grid { grid-template-columns: repeat(2, 1fr); }
+  .product-page .pp-cta-grid { grid-template-columns: 1fr; }
+  .product-page .pp-cta-actions { padding: 24px 0 0; border-left: 0; border-top: 1px solid rgba(255, 255, 255, 0.15); }
+}
+
+@media (max-width: 720px) {
+  .product-page .product-heading h1 { font-size: clamp(2.1rem, 11vw, 2.8rem); }
+  .product-page .options-grid { grid-template-columns: 1fr; }
+  .product-page .buying-options { padding: 58px 0 62px; }
+  .product-page .buying-options-foot { align-items: flex-start; flex-direction: column; gap: 14px; }
+  .product-page .product-stat-rail { grid-template-columns: 1fr; }
+  .product-page .pstat + .pstat { border-left: 0; border-top: 1px solid rgba(255, 255, 255, 0.14); }
+  .product-page .pp-cta { padding-block: 60px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .product-page .status-dot::after,
+  .product-page .outage-pulse::after { animation: none; }
+  .product-page .tab-panel { animation: none; }
+  .product-page .option-card { transition: none; }
+}

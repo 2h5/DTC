@@ -11,9 +11,10 @@
 <link rel="stylesheet" href="assets/css/core/tokens.css">
 <link rel="stylesheet" href="assets/css/core/base.css">
 <link rel="stylesheet" href="assets/css/core/site-chrome.css">
+<link rel="stylesheet" href="assets/css/pages/about-family.css">
 <link rel="stylesheet" href="assets/css/pages/why-choose.css">
 </head>
-<body>
+<body class="about-family why-page">
 <a class="skip-link" href="#main">Skip to content</a>
 
 <!-- Utility bar -->
@@ -190,80 +191,72 @@
 
 <main id="main">
 
-  <!-- Page hero -->
-  <section class="page-hero reveal">
-    <div class="container">
-      <nav class="breadcrumb" aria-label="Breadcrumb">
-        <a href="index.html">Home</a>
-        <span class="sep">/</span>
-        <span class="current">Why Choose Us?</span>
-      </nav>
-      <span class="eyebrow">Why DTC</span>
-      <h1>Why Choose Us?</h1>
-      <p class="lede">Of all the good reasons to choose Direct Turbine Controls for your control system repairs, perhaps none matters more than our vast experience in the field.</p>
+  <section class="about-masthead reveal">
+    <div class="container about-masthead-grid">
+      <div class="about-masthead-copy">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a><span class="sep">/</span><span class="current">Why Choose Us?</span></nav>
+        <span class="eyebrow">Company / 02</span>
+        <h1>Why Choose Us?</h1>
+        <p class="lede">Control system repair depends on what happens after the unit reaches the bench: how the fault is traced, how the repair is validated and who can answer when the plant needs context.</p>
+        <div class="masthead-actions"><a class="btn btn-primary" href="contact-us.html">Discuss a Repair</a><a class="about-text-link" href="client-testimonials.html">Read client outcomes <span aria-hidden="true">↗</span></a></div>
+      </div>
+      <div class="about-masthead-media">
+        <img src="assets/img/about/hero-why-choose.jpg" alt="DTC engineer testing a GE turbine control board with a multimeter">
+        <span class="media-index">LIVE-PANEL TEST / COMPONENT LEVEL</span>
+      </div>
     </div>
   </section>
 
-  <!-- Photo band with stats -->
-  <section class="photo-band reveal">
-    <div class="container">
-      <div class="photo-band-frame">
-        <img src="assets/img/about/hero-why-choose.jpg" alt="DTC engineer testing a GE turbine control board with a multimeter" loading="lazy">
-      </div>
-      <div class="photo-band-stats">
-        <div class="pb-stat"><span class="num">20+</span><span class="label">Years of board repair experience</span></div>
-        <div class="pb-stat"><span class="num">24/7</span><span class="label">Engineer support, no call center</span></div>
-        <div class="pb-stat"><span class="num">Same-day</span><span class="label">Repair turnaround available</span></div>
-      </div>
-    </div>
-  </section>
+  <nav class="about-section-nav" aria-label="About pages"><div class="container"><a href="about-us.html"><span>01</span> About Us</a><a href="why-choose-us.html" aria-current="page"><span>02</span> Why Choose Us</a><a href="client-testimonials.html"><span>03</span> Testimonials</a></div></nav>
+
+  <section class="proof-strip reveal"><div class="container"><div><strong>20+</strong><span>Years of board repair experience</span></div><div><strong>24 / 7</strong><span>Engineer support, no call center</span></div><div><strong>Same-day</strong><span>Repair turnaround available</span></div></div></section>
 
   <!-- Six reasons -->
   <section class="reasons-section reveal">
     <div class="container">
-      <div class="section-head">
-        <h2>Reasons to Choose Us</h2>
-      </div>
+      <div class="about-section-head"><div><span class="eyebrow">Technical Difference</span><h2>Reasons to Choose Us</h2></div><p>Six practical differences in the way DTC diagnoses, repairs and validates turbine control equipment.</p></div>
 
       <div class="reasons-grid">
         <article class="reason-card" id="experience">
-          <span class="reason-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 7v5l3.5 2M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="reason-index">01 / EXPERIENCE</span>
           <h3>20+ years of experience in Control System board repairs</h3>
           <p>Our unparalleled expertise and hands-on proficiency in both Control System and Circuit Board component-level repair set us apart from a generic electronics shop.</p>
         </article>
 
         <article class="reason-card" id="advanced">
-          <span class="reason-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12h4l2-7 4 14 2-7h4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="reason-index">02 / DIAGNOSTICS</span>
           <h3>Advanced diagnostics</h3>
           <p>We go beyond surface-level troubleshooting, using real-time monitoring and data analysis to pinpoint root causes and build repair solutions tailored to the actual failure, not just the symptom.</p>
         </article>
 
         <article class="reason-card" id="quality">
-          <span class="reason-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3l8 4v5c0 4.5-3.2 8.3-8 9-4.8-.7-8-4.5-8-9V7l8-4z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="reason-index">03 / COMPONENTS</span>
           <h3>Top quality replacement parts</h3>
           <p>We use industrial-standard components for quality and reliability, and specialize in manufacturing obsolete components when they can no longer be sourced.</p>
         </article>
 
         <article class="reason-card" id="functional">
-          <span class="reason-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="reason-index">04 / VALIDATION</span>
           <h3>Functional testing</h3>
           <p>Every unit that leaves DTC undergoes thorough functional testing on live control panels to confirm it meets requirements before it ships.</p>
         </article>
 
         <article class="reason-card" id="fastservice">
-          <span class="reason-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg></span>
+          <span class="reason-index">05 / RESPONSE</span>
           <h3>Fast service</h3>
           <p>Deep experience and ready stock of components significantly reduce turnaround time. Our in-house lab runs state-of-the-art equipment and live control panels, ask about same-day repair.</p>
         </article>
 
         <article class="reason-card" id="warranty">
-          <span class="reason-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 15a3 3 0 100-6 3 3 0 000 6z" stroke="currentColor" stroke-width="1.3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 11-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 11-4 0v-.09a1.65 1.65 0 00-1-1.51 1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 110-4h.09a1.65 1.65 0 001.51-1 1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 114 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 112.83 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 110 4h-.09a1.65 1.65 0 00-1.51 1z" stroke="currentColor" stroke-width="0.9"/></svg></span>
+          <span class="reason-index">06 / ASSURANCE</span>
           <h3>Warranty exceeding industry standards</h3>
           <p>Alongside every other test, each unit undergoes a stress and soak test to confirm it's functional under real operating conditions, giving us the confidence to back it with an industry-leading warranty.</p>
         </article>
       </div>
     </div>
   </section>
+
+  <section class="validation-band reveal"><div class="container validation-grid"><div><span class="eyebrow">Before It Ships</span><h2>Functional Testing</h2><p>Every unit that leaves DTC undergoes functional testing on live control panels. Stress and soak testing adds evidence that the repair will operate under real conditions—not only on a static bench.</p><a class="about-text-link" href="test-and-certify.html">See testing and certification capabilities <span aria-hidden="true">↗</span></a></div><div class="validation-spec"><span>TEST SEQUENCE</span><ol><li><b>01</b> Confirm reported fault</li><li><b>02</b> Repair at component level</li><li><b>03</b> Validate on live panel</li></ol></div></div></section>
 
   <!-- CTA band -->
   <section class="cta-band reveal">

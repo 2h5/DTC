@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="assets/css/core/site-chrome.css">
 <link rel="stylesheet" href="assets/css/pages/services-detail.css">
 </head>
-<body>
+<body class="service-detail-page">
 <a class="skip-link" href="#main">Skip to content</a>
 
 <!-- Utility bar -->
@@ -190,8 +190,8 @@
 
 <main id="main">
 
-  <!-- Hero -->
-  <section class="service-hero reveal" style="background-image:url('assets/img/services/hero-remanufacturing.gif')">
+  <!-- Masthead -->
+  <section class="service-masthead reveal">
     <div class="container">
       <nav class="breadcrumb" aria-label="Breadcrumb">
         <a href="index.html">Home</a>
@@ -200,9 +200,35 @@
         <span class="sep">/</span>
         <span class="current">Remanufacturing</span>
       </nav>
-      <span class="eyebrow">Restoring Circuit Boards</span>
-      <h1>Remanufacturing</h1>
-      <p class="lede">Comprehensive diagnostics, component replacement and re-soldering to restore a board to its original &mdash; or improved &mdash; functionality.</p>
+      <div class="service-hero-grid">
+        <div class="service-hero-copy">
+          <span class="eyebrow">Service 05 / Restoring Circuit Boards</span>
+          <h1>Remanufacturing</h1>
+          <p class="lede">Comprehensive diagnostics, component replacement and re-soldering to restore a board to its original &mdash; or improved &mdash; functionality.</p>
+          <div class="service-hero-actions">
+            <a class="btn btn-primary" href="contact-us.html">Request a Quote</a>
+            <a class="service-engineer-link" href="tel:+12012446477">Talk to an engineer <span aria-hidden="true">201-244-6477</span></a>
+          </div>
+        </div>
+
+        <aside class="service-readout" aria-label="Remanufacturing at a glance">
+          <div class="service-readout-head">
+            <span>Service detail</span>
+            <span class="service-readout-live"><i></i> Live</span>
+          </div>
+          <div class="service-readout-primary">
+            <strong>5</strong>
+            <span>stage remanufacturing process on every board</span>
+          </div>
+          <dl class="service-readout-list">
+            <div><dt>Diagnostics</dt><dd>Advanced</dd></div>
+            <div><dt>Rework</dt><dd>Re-solder &amp; replace</dd></div>
+            <div><dt>Final QA</dt><dd>Full functional</dd></div>
+            <div><dt>Warranty</dt><dd>24-month</dd></div>
+          </dl>
+          <p>Unlike a simple repair, remanufacturing restores a board to its original specification.</p>
+        </aside>
+      </div>
     </div>
   </section>
 
@@ -224,8 +250,12 @@
   <!-- Benefits -->
   <section class="service-benefits reveal">
     <div class="container">
-      <div class="section-head">
-        <h2>Benefits of Remanufacturing</h2>
+      <div class="service-section-head">
+        <div>
+          <span class="eyebrow">Why It Works</span>
+          <h2>Benefits of Remanufacturing</h2>
+        </div>
+        <p>An effective, economical and environmentally friendly way to keep pace without constantly buying new.</p>
       </div>
       <div class="icon-card-grid">
         <div class="icon-card">
@@ -260,8 +290,12 @@
   <!-- Process -->
   <section class="process-section reveal">
     <div class="container">
-      <div class="section-head">
-        <h2>The Remanufacturing Process</h2>
+      <div class="service-section-head">
+        <div>
+          <span class="eyebrow">Process / 05 Stages</span>
+          <h2>The Remanufacturing Process</h2>
+        </div>
+        <p>From collection to final QA, each board moves through five controlled stages before it ships.</p>
       </div>
       <div class="process-steps">
         <div class="process-step">
@@ -296,8 +330,11 @@
   <!-- Applications -->
   <section class="service-section reveal">
     <div class="container">
-      <div class="section-head">
-        <h2>Applications</h2>
+      <div class="service-section-head">
+        <div>
+          <span class="eyebrow">Applications / Industries</span>
+          <h2>Applications</h2>
+        </div>
         <p>Remanufactured circuit boards are widely used across industries, including:</p>
       </div>
       <ul class="plain-list">
@@ -310,16 +347,19 @@
   </section>
 
   <!-- CTA -->
-  <section class="cta-band reveal">
-    <div class="container cta-band-inner">
-      <div>
-        <h2>Questions?</h2>
+  <section class="service-cta reveal">
+    <div class="container">
+      <aside class="service-cta-inner">
+        <div>
+          <span class="eyebrow">Questions?</span>
+          <h2>Restore a board to spec.</h2>
+        </div>
         <p>Speak with our engineers to know more about our customizable services and availability of parts.</p>
-      </div>
-      <div class="cta-band-actions">
-        <a class="btn btn-primary" href="contact-us.html">Contact Us Now</a>
-        <a class="btn btn-outline" href="tel:+12012446477">201-244-6477</a>
-      </div>
+        <div class="service-cta-actions">
+          <a class="btn btn-primary" href="contact-us.html">Contact Us Now</a>
+          <a href="tel:+12012446477">201-244-6477</a>
+        </div>
+      </aside>
     </div>
   </section>
 

@@ -11,9 +11,10 @@
 <link rel="stylesheet" href="assets/css/core/tokens.css">
 <link rel="stylesheet" href="assets/css/core/base.css">
 <link rel="stylesheet" href="assets/css/core/site-chrome.css">
+<link rel="stylesheet" href="assets/css/pages/about-family.css">
 <link rel="stylesheet" href="assets/css/pages/testimonials.css">
 </head>
-<body>
+<body class="about-family testimonials-page">
 <a class="skip-link" href="#main">Skip to content</a>
 
 <!-- Utility bar -->
@@ -190,25 +191,31 @@
 
 <main id="main">
 
-  <!-- Page hero -->
-  <section class="testimonials-hero reveal">
-    <div class="container">
-      <nav class="breadcrumb" aria-label="Breadcrumb">
-        <a href="index.html">Home</a>
-        <span class="sep">/</span>
-        <span class="current">Client Testimonials</span>
-      </nav>
-      <span class="eyebrow">Client Feedback</span>
-      <h1>Client Testimonials</h1>
-      <p class="lede">We hear from plant managers, purchasing managers and supervisors after the repair ships, not before. Here's some of what they've told us.</p>
+  <section class="about-masthead reveal">
+    <div class="container about-masthead-grid">
+      <div class="about-masthead-copy">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a><span class="sep">/</span><span class="current">Client Testimonials</span></nav>
+        <span class="eyebrow">Company / 03</span>
+        <h1>Client Testimonials</h1>
+        <p class="lede">Feedback from plant managers, purchasing managers and supervisors after the repair ships and the equipment is back in service.</p>
+        <div class="masthead-actions"><a class="btn btn-primary" href="contact-us.html">Start a Conversation</a><a class="about-text-link" href="why-choose-us.html">Why plants choose DTC <span aria-hidden="true">↗</span></a></div>
+      </div>
+      <div class="about-masthead-media">
+        <img src="assets/img/about/hero-testimonials.jpg" alt="Close-up of an industrial turbine control circuit board">
+        <span class="media-index">CLIENT RECORD / FIELD OUTCOMES</span>
+      </div>
     </div>
   </section>
+
+  <nav class="about-section-nav" aria-label="About pages"><div class="container"><a href="about-us.html"><span>01</span> About Us</a><a href="why-choose-us.html"><span>02</span> Why Choose Us</a><a href="client-testimonials.html" aria-current="page"><span>03</span> Testimonials</a></div></nav>
 
   <!-- Testimonial grid -->
   <section class="testimonial-section reveal">
     <div class="container">
+      <div class="about-section-head"><div><span class="eyebrow">Client Record</span><h2>Field Outcomes</h2></div><p>Real comments preserved from DTC clients, without manufactured ratings or stock portraits.</p></div>
       <div class="testimonial-grid">
-        <figure class="testimonial-card">
+        <figure class="testimonial-card testimonial-featured">
+          <span class="outcome-tag">MARK V / PANEL RECOVERY</span>
           <blockquote>&ldquo;Your engineers are so knowledgeable. We spent a lot of time trying to configure the Mark V panel, that's when we called you. Hari figured out the SDCC issue and the panel was up in no time.&rdquo;</blockquote>
           <figcaption>
             <span class="avatar-initials">RM</span>
@@ -220,6 +227,7 @@
         </figure>
 
         <figure class="testimonial-card">
+          <span class="outcome-tag">SAME-DAY / DELIVERY</span>
           <blockquote>&ldquo;Thank you for the same-day delivery. You guys saved me a lot of headache.&rdquo;</blockquote>
           <figcaption>
             <span class="avatar-initials">DS</span>
@@ -231,6 +239,7 @@
         </figure>
 
         <figure class="testimonial-card">
+          <span class="outcome-tag">MAX 100 / LEGACY SUPPORT</span>
           <blockquote>&ldquo;Thank you for coming up with support for our Max 100. We tried many avenues, but you people delivered.&rdquo;</blockquote>
           <figcaption>
             <span class="avatar-initials">MF</span>
@@ -242,6 +251,7 @@
         </figure>
 
         <figure class="testimonial-card">
+          <span class="outcome-tag">2-DAY / TURNAROUND</span>
           <blockquote>&ldquo;The lead time for repair from the manufacturer was 20 days. My engineer was genuinely surprised when you returned the board in two days, and in great condition. You guys are awesome.&rdquo;</blockquote>
           <figcaption>
             <span class="avatar-initials">PD</span>
@@ -252,6 +262,7 @@
           </figcaption>
         </figure>
       </div>
+      <div class="testimonial-note"><span>04</span><p>Four client records. Names are shown in the same abbreviated format used by the source material.</p></div>
     </div>
   </section>
 

@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="assets/css/core/site-chrome.css">
 <link rel="stylesheet" href="assets/css/pages/services-detail.css">
 </head>
-<body>
+<body class="service-detail-page">
 <a class="skip-link" href="#main">Skip to content</a>
 
 <!-- Utility bar -->
@@ -190,8 +190,8 @@
 
 <main id="main">
 
-  <!-- Hero -->
-  <section class="service-hero reveal" style="background-image:url('assets/img/services/hero-repair-refurbish.jpg')">
+  <!-- Masthead -->
+  <section class="service-masthead reveal">
     <div class="container">
       <nav class="breadcrumb" aria-label="Breadcrumb">
         <a href="index.html">Home</a>
@@ -200,9 +200,35 @@
         <span class="sep">/</span>
         <span class="current">Circuit Board Repair &amp; Refurbish</span>
       </nav>
-      <span class="eyebrow">Control Panel Cards &amp; Parts</span>
-      <h1>Circuit Board Repair &amp; Refurbish</h1>
-      <p class="lede">A flat-rate repair on your existing circuit board, done by GE Speedtronic-trained engineers, at a fraction of the cost of buying new.</p>
+      <div class="service-hero-grid">
+        <div class="service-hero-copy">
+          <span class="eyebrow">Service 02 / Control Panel Cards</span>
+          <h1>Circuit Board Repair &amp; Refurbish</h1>
+          <p class="lede">A flat-rate repair on your existing circuit board, done by GE Speedtronic-trained engineers, at a fraction of the cost of buying new.</p>
+          <div class="service-hero-actions">
+            <a class="btn btn-primary" href="contact-us.html">Request a Quote</a>
+            <a class="service-engineer-link" href="tel:+12012446477">Talk to an engineer <span aria-hidden="true">201-244-6477</span></a>
+          </div>
+        </div>
+
+        <aside class="service-readout" aria-label="Repair &amp; Refurbish at a glance">
+          <div class="service-readout-head">
+            <span>Service detail</span>
+            <span class="service-readout-live"><i></i> Live</span>
+          </div>
+          <div class="service-readout-primary">
+            <strong>~35%</strong>
+            <span>typical flat-rate repair vs. original purchase cost</span>
+          </div>
+          <dl class="service-readout-list">
+            <div><dt>Pricing</dt><dd>Flat-rate</dd></div>
+            <div><dt>Engineers</dt><dd>Speedtronic-trained</dd></div>
+            <div><dt>Coverage</dt><dd>MK II&ndash;VIe / EX</dd></div>
+            <div><dt>Lab</dt><dd>Bergenfield, NJ</dd></div>
+          </dl>
+          <p>Most board problems are fixable by an experienced engineer for a fraction of the replacement cost.</p>
+        </aside>
+      </div>
     </div>
   </section>
 
@@ -230,8 +256,11 @@
   <!-- Why boards fail -->
   <section class="service-section reveal">
     <div class="container">
-      <div class="section-head">
-        <h2>Why Circuit Boards Fail</h2>
+      <div class="service-section-head">
+        <div>
+          <span class="eyebrow">Diagnostics / Root Cause</span>
+          <h2>Why Circuit Boards Fail</h2>
+        </div>
         <p>Our engineers pinpoint the issue with a physical inspection in most cases, then tackle the deeper problem after a full examination. Five common factors affect circuit board performance:</p>
       </div>
       <ul class="plain-list">
@@ -247,8 +276,12 @@
   <!-- Brands supported -->
   <section class="service-benefits reveal">
     <div class="container">
-      <div class="section-head">
-        <h2>Brands We Repair</h2>
+      <div class="service-section-head">
+        <div>
+          <span class="eyebrow">Coverage / Systems</span>
+          <h2>Brands We Repair</h2>
+        </div>
+        <p>We test, repair and certify control panel cards across the major turbine, excitation and monitoring platforms.</p>
       </div>
       <div class="icon-card-grid">
         <div class="icon-card">
@@ -271,16 +304,19 @@
   </section>
 
   <!-- CTA -->
-  <section class="cta-band reveal">
-    <div class="container cta-band-inner">
-      <div>
-        <h2>Questions?</h2>
+  <section class="service-cta reveal">
+    <div class="container">
+      <aside class="service-cta-inner">
+        <div>
+          <span class="eyebrow">Questions?</span>
+          <h2>Repair it for a fraction of new.</h2>
+        </div>
         <p>Speak to a Direct Turbine representative to learn more about our testing and repairs.</p>
-      </div>
-      <div class="cta-band-actions">
-        <a class="btn btn-primary" href="contact-us.html">Contact Us</a>
-        <a class="btn btn-outline" href="tel:+12012446477">201-244-6477</a>
-      </div>
+        <div class="service-cta-actions">
+          <a class="btn btn-primary" href="contact-us.html">Contact Us</a>
+          <a href="tel:+12012446477">201-244-6477</a>
+        </div>
+      </aside>
     </div>
   </section>
 

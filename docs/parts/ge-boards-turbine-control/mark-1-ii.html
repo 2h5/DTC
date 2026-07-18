@@ -190,9 +190,9 @@
 
 <main id="main">
 
-  <!-- Page hero -->
-  <section class="page-hero reveal">
-    <div class="container">
+  <!-- Series hero -->
+  <section class="series-hero reveal">
+    <div class="container series-hero-shell">
       <nav class="breadcrumb" aria-label="Breadcrumb">
         <a href="../../index.html">Home</a>
         <span class="sep">/</span>
@@ -202,15 +202,48 @@
         <span class="sep">/</span>
         <span class="current">Mark 1 &amp; II</span>
       </nav>
-      <span class="eyebrow">GE Speedtronic</span>
-      <h1>Mark 1 &amp; II</h1>
-      <p class="lede">Seven Mark I &amp; II boards currently in stock, from DIN rail adapter brackets to power supply driver boards. Every unit ships from our Bergenfield, NJ lab.</p>
+      <div class="series-hero-grid">
+        <div class="series-hero-copy">
+          <span class="eyebrow">GE Speedtronic / Series 01</span>
+          <h1>Mark 1 &amp; II</h1>
+          <p class="lede">Seven Mark I &amp; II boards currently in stock, from DIN rail adapter brackets to power supply driver boards. Every unit ships from our Bergenfield, NJ lab.</p>
+          <div class="series-hero-actions">
+            <a class="btn btn-primary" href="../../contact-us.html">Request a Quote</a>
+            <a class="series-engineer-link" href="tel:+12012446477">Talk to an engineer <span aria-hidden="true">201-244-6477</span></a>
+          </div>
+        </div>
+
+        <aside class="series-readout" aria-label="Mark I &amp; II inventory status">
+          <div class="series-readout-head">
+            <span>Series status</span>
+            <span class="series-live-state"><i></i> Live</span>
+          </div>
+          <div class="series-readout-primary">
+            <strong>7</strong>
+            <span>part records in stock, ready to ship</span>
+          </div>
+          <dl class="series-readout-list">
+            <div><dt>Ships</dt><dd>3-5 Days</dd></div>
+            <div><dt>Warranty</dt><dd>24 Months</dd></div>
+            <div><dt>Lab</dt><dd>Bergenfield, NJ</dd></div>
+            <div><dt>System</dt><dd>Speedtronic</dd></div>
+          </dl>
+          <p>Need one of these repaired instead of replaced? Send the board number for a direct repair quote.</p>
+        </aside>
+      </div>
     </div>
   </section>
 
   <!-- Part listing -->
   <section class="listing-section reveal">
     <div class="container">
+      <div class="listing-intro">
+        <div>
+          <span class="eyebrow">Available inventory</span>
+          <h2>Find the board your unit needs.</h2>
+        </div>
+        <p>Search by part number or narrow the active inventory below. Each record routes straight to its part detail and a direct quote path.</p>
+      </div>
       <div class="listing-layout">
 
         <aside class="listing-filters" aria-label="Filter parts">
@@ -240,6 +273,7 @@
 
         <div class="listing-main">
           <div class="listing-head">
+            <p class="listing-status"><span></span>7 records ready to ship</p>
             <div class="listing-sort" data-dropdown>
               <span class="listing-sort-label">Sort by</span>
               <button type="button" class="dropdown-trigger" data-dropdown-trigger aria-haspopup="listbox" aria-expanded="false">

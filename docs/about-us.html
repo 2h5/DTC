@@ -11,9 +11,10 @@
 <link rel="stylesheet" href="assets/css/core/tokens.css">
 <link rel="stylesheet" href="assets/css/core/base.css">
 <link rel="stylesheet" href="assets/css/core/site-chrome.css">
+<link rel="stylesheet" href="assets/css/pages/about-family.css">
 <link rel="stylesheet" href="assets/css/pages/about.css">
 </head>
-<body>
+<body class="about-family about-page">
 <a class="skip-link" href="#main">Skip to content</a>
 
 <!-- Utility bar -->
@@ -190,84 +191,55 @@
 
 <main id="main">
 
-  <!-- Page hero -->
-  <section class="page-hero reveal">
-    <div class="container">
-      <nav class="breadcrumb" aria-label="Breadcrumb">
-        <a href="index.html">Home</a>
-        <span class="sep">/</span>
-        <span class="current">About Us</span>
-      </nav>
-      <span class="eyebrow">Our Company</span>
-      <h1>About Us</h1>
-      <p class="lede">Direct Turbine Controls was formed in 2018 by control system engineers who wanted to work directly with plants, not through a call center. That's still how we operate.</p>
+  <section class="about-masthead reveal">
+    <div class="container about-masthead-grid">
+      <div class="about-masthead-copy">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a><span class="sep">/</span><span class="current">About Us</span></nav>
+        <span class="eyebrow">Company / 01</span>
+        <h1>About Us</h1>
+        <p class="lede">Direct Turbine Controls was formed in 2018 by control system engineers who wanted to work directly with plants, not through a call center. That is still how we operate.</p>
+        <div class="masthead-actions"><a class="btn btn-primary" href="contact-us.html">Talk to an Engineer</a><a class="about-text-link" href="parts-shop.html">Search the parts catalog <span aria-hidden="true">↗</span></a></div>
+      </div>
+      <div class="about-masthead-media">
+        <img src="assets/img/about/hero-about.jpg" alt="Close-up of a GE Speedtronic gas turbine control panel">
+        <span class="media-index">DTC / ENGINEER-LED / 2018</span>
+      </div>
     </div>
   </section>
 
-  <!-- Founder story -->
+  <nav class="about-section-nav" aria-label="About pages"><div class="container"><a href="about-us.html" aria-current="page"><span>01</span> About Us</a><a href="why-choose-us.html"><span>02</span> Why Choose Us</a><a href="client-testimonials.html"><span>03</span> Testimonials</a></div></nav>
+
+  <section class="company-intro reveal">
+    <div class="container company-intro-grid">
+      <div><span class="eyebrow">Our Company</span><h2>Our Story</h2></div>
+      <div class="company-statement"><p>We built DTC as a direct channel between plant engineers and the technical team doing the work—removing third-party layers when a critical control system needs a clear answer.</p><p>Since 2018, the mission has stayed focused: deliver component-level support that helps plants save time, control cost and keep essential equipment operating.</p></div>
+    </div>
+  </section>
+
   <section class="founder-story reveal">
-    <div class="container">
-      <div class="founder-split">
-        <div class="pcb-frame">
-          <img src="assets/img/about/hero-about.jpg" alt="Close-up of a GE Speedtronic gas turbine control panel" loading="lazy">
-        </div>
-
-        <div>
-          <h2>Our Founders</h2>
-          <p>Our founding engineer, Harikumar, spent years as chief control system engineer at a controls solutions company, building the lab and test procedures that made component-level repair possible in the first place. He was later joined by James T, who brought 15+ years of his own control system engineering experience.</p>
-          <p>Working across the industry, it became clear that as companies started prioritizing margins over quality, there was room for one that didn't. Direct Turbine Controls was formed as a direct channel between plant engineers and the technical team actually doing the repair, cutting out the third-party layers and the fees that come with them.</p>
-
-          <div class="founder-stats">
-            <div class="founder-stat"><span class="num">2018</span><span class="label">Founded</span></div>
-            <div class="founder-stat"><span class="num">20+</span><span class="label">Years combined experience</span></div>
-            <div class="founder-stat"><span class="num">24/7</span><span class="label">Engineer support</span></div>
-          </div>
-        </div>
+    <div class="container founder-grid">
+      <div class="founder-copy">
+        <span class="eyebrow">Engineering Leadership</span>
+        <h2>Our Founders</h2>
+        <p>Founding engineer Harikumar spent years as a chief control system engineer, developing the lab and test procedures behind component-level repair. He was later joined by James T, who brought more than 15 years of control system engineering experience.</p>
+        <p>The company was shaped around a simple operating principle: the person diagnosing the board should be accessible to the plant team depending on it.</p>
+        <a class="about-text-link" href="why-choose-us.html">See how that changes the service model <span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="company-facts" aria-label="Company facts">
+        <div><span class="fact-value">2018</span><span class="fact-label">Founded by control system engineers</span></div>
+        <div><span class="fact-value">20+</span><span class="fact-label">Years of board repair experience</span></div>
+        <div><span class="fact-value">24 / 7</span><span class="fact-label">Direct engineer support</span></div>
       </div>
     </div>
   </section>
 
-  <!-- Our story banner -->
-  <section class="story-banner reveal">
-    <div class="story-banner-media">
-      <img src="assets/img/about/story-bg.png" alt="" loading="lazy">
-    </div>
+  <section class="operating-model reveal">
     <div class="container">
-      <div class="story-banner-content">
-        <h2>Our Story</h2>
-        <p>Since 2018, our mission has been the same: give plants exemplary component-level support so they save time and money, and stay competitive. Our engineers are on call around the clock and answer technical questions directly, no account manager in between.</p>
-        <a class="btn btn-primary" href="why-choose-us.html">Why Choose Us?</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- What sets us apart -->
-  <section class="apart-section reveal">
-    <div class="container">
-      <div class="section-head">
-        <h2>What Sets Us Apart</h2>
-      </div>
-
-      <div class="icon-card-grid">
-        <div class="icon-card">
-          <span class="icon-card-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 7v5l3.5 2M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          <h3>20+ years of board repair</h3>
-          <p>Deep, hands-on expertise in Control System and Circuit Board component-level repair, not a generic electronics bench.</p>
-        </div>
-        <div class="icon-card">
-          <span class="icon-card-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12h4l2-7 4 14 2-7h4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          <h3>Advanced diagnostics</h3>
-          <p>Root-cause analysis on the full control system, not just the failing component, so problems stay fixed.</p>
-        </div>
-        <div class="icon-card">
-          <span class="icon-card-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3l8 4v5c0 4.5-3.2 8.3-8 9-4.8-.7-8-4.5-8-9V7l8-4z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          <h3>Warranty beyond standard</h3>
-          <p>Every unit is stress and soak tested under real operating conditions before it ships back to you.</p>
-        </div>
-      </div>
-
-      <div class="apart-foot">
-        <a class="link" href="why-choose-us.html">See all six reasons to choose DTC</a>
+      <div class="about-section-head"><div><span class="eyebrow">How We Work</span><h2>Our Operating Model</h2></div><p>Built for plants that need technical clarity before another layer of account management.</p></div>
+      <div class="operating-list">
+        <article><span class="op-index">01</span><h3>Direct engineer access</h3><p>Technical questions go to the people diagnosing, repairing and testing the equipment.</p></article>
+        <article><span class="op-index">02</span><h3>Component-level repair</h3><p>We trace the failure beyond the board-level symptom and repair at component level where practical.</p></article>
+        <article><span class="op-index">03</span><h3>Live-panel validation</h3><p>Units are functionally tested on live control panels before they return to service.</p></article>
       </div>
     </div>
   </section>

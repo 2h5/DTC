@@ -11,8 +11,9 @@
 <link rel="stylesheet" href="assets/css/core/tokens.css">
 <link rel="stylesheet" href="assets/css/core/base.css">
 <link rel="stylesheet" href="assets/css/core/site-chrome.css">
+<link rel="stylesheet" href="assets/css/pages/faqs.css">
 </head>
-<body>
+<body class="faqs-page">
 <a class="skip-link" href="#main">Skip to content</a>
 
 <!-- Utility bar -->
@@ -189,24 +190,61 @@
 
 <main id="main">
 
-  <!-- Page hero -->
-  <section class="page-hero reveal">
+  <!-- Masthead -->
+  <section class="faqs-masthead reveal">
     <div class="container">
       <nav class="breadcrumb" aria-label="Breadcrumb">
         <a href="index.html">Home</a>
         <span class="sep">/</span>
         <span class="current">FAQs</span>
       </nav>
-      <span class="eyebrow">Frequently Asked Questions</span>
-      <h1>FAQs</h1>
-      <p class="lede">Answers to the questions we hear most often about repair turnaround, payment terms, shipping and warranty. Can't find what you're looking for? Contact us directly.</p>
+      <div class="faqs-masthead-grid">
+        <div class="faqs-masthead-copy">
+          <span class="eyebrow">Service Desk / Common Questions</span>
+          <h1>FAQs</h1>
+          <p class="lede">Repair turnaround, shipping, payment terms and warranty information for your turbine control boards. If your situation is time-sensitive, speak directly with our team.</p>
+          <div class="faqs-masthead-actions">
+            <a class="btn btn-primary" href="contact-us.html">Contact Us</a>
+            <a class="faqs-engineer-link" href="tel:+18773828721">Technical Hotline <span>877-382-8721</span></a>
+          </div>
+        </div>
+        <aside class="faqs-readout" aria-label="Frequently asked questions overview">
+          <div class="faqs-readout-head"><span>Service desk reference</span><span><i></i> Available</span></div>
+          <div class="faqs-readout-primary"><strong>11</strong><span>answers for repair, shipping and board support</span></div>
+          <dl class="faqs-readout-list">
+            <div><dt>Standard repair</dt><dd>3-5 business days</dd></div>
+            <div><dt>Rush service</dt><dd>Same / next day</dd></div>
+            <div><dt>Technical hotline</dt><dd>Mon-Fri, 9-5 EST</dd></div>
+          </dl>
+        </aside>
+      </div>
     </div>
   </section>
 
-  <!-- FAQ accordion -->
-  <section class="faq-section reveal">
+  <!-- FAQ reference -->
+  <section class="faqs-reference reveal">
     <div class="container">
-      <div class="faq-list">
+      <div class="faqs-reference-head">
+        <div>
+          <span class="eyebrow">Reference / 04 Topics</span>
+          <h2>Find an Answer</h2>
+        </div>
+        <p>Start with the topic closest to your question. Every answer below is based on Direct Turbine's current service information.</p>
+      </div>
+
+      <div class="faqs-workspace">
+        <aside class="faqs-topic-nav" aria-label="FAQ topics">
+          <span class="faqs-topic-nav-label">On this page</span>
+          <a href="#service">Service &amp; turnaround <span>01</span></a>
+          <a href="#orders">Orders &amp; shipping <span>02</span></a>
+          <a href="#repairs">Repairs &amp; pricing <span>03</span></a>
+          <a href="#support">Technical support <span>04</span></a>
+        </aside>
+
+        <div class="faqs-groups">
+          <section class="faqs-group" id="service">
+            <div class="faqs-group-heading"><span>01 / Service</span><h3>Service &amp; Turnaround</h3></div>
+            <div class="faq-list">
 
         <details class="faq-item">
           <summary>
@@ -232,6 +270,23 @@
 
         <details class="faq-item">
           <summary>
+            <span>I need a board quick. What's the fastest way to receive a board from Direct Turbine?</span>
+            <span class="faq-icon" aria-hidden="true"></span>
+          </summary>
+          <div class="faq-body">
+            <p>Direct Turbine's Advance Exchange program can provide you with a replacement circuit board by the next morning. For boards not available through our exchange program, emergency rush repair service is also available.</p>
+            <p>Call your Direct Turbine Customer Service Representative for more details on these programs.</p>
+          </div>
+        </details>
+            </div>
+          </section>
+
+          <section class="faqs-group" id="orders">
+            <div class="faqs-group-heading"><span>02 / Logistics</span><h3>Orders &amp; Shipping</h3></div>
+            <div class="faq-list">
+
+        <details class="faq-item">
+          <summary>
             <span>What are Direct Turbine's payment terms?</span>
             <span class="faq-icon" aria-hidden="true"></span>
           </summary>
@@ -254,23 +309,28 @@
 
         <details class="faq-item">
           <summary>
+            <span>How are boards packaged for return shipment from Direct Turbine?</span>
+            <span class="faq-icon" aria-hidden="true"></span>
+          </summary>
+          <div class="faq-body">
+            <p>Each repaired board is placed in an anti-static bag and wrapped in cushioning bubble-wrap material, then placed in an individual anti-static certified storage box. A label describing the board is attached to the outside of the box. These boxes make for easy transport between parts room and the field, and help to prevent damage to the board. It also makes for a very professional appearance to your customers and allows for easy handling and storage within your parts room. On multiple-board orders, these individual boxes are shipped inside one or more master cartons containing all boards from that order.</p>
+          </div>
+        </details>
+            </div>
+          </section>
+
+          <section class="faqs-group" id="repairs">
+            <div class="faqs-group-heading"><span>03 / Repair Desk</span><h3>Repairs &amp; Pricing</h3></div>
+            <div class="faq-list">
+
+        <details class="faq-item">
+          <summary>
             <span>What does Direct Turbine charge for repair of a circuit board?</span>
             <span class="faq-icon" aria-hidden="true"></span>
           </summary>
           <div class="faq-body">
             <p>Direct Turbine charges a flat rate for repairs on each individual circuit board. The charge covers any parts and labor required to repair the board.</p>
             <p>The repair price is usually around 35% of the cost of purchasing a new board. Up-to-date pricing information is always available upon request. If you have questions concerning repair pricing, please contact us before sending the board for repair. Boards that are missing components or have cosmetic damage upon receipt at Direct Turbine may incur additional charges, above the flat rate, to replace these components.</p>
-          </div>
-        </details>
-
-        <details class="faq-item">
-          <summary>
-            <span>Who should I contact if I'm not sure what board is defective in my machine?</span>
-            <span class="faq-icon" aria-hidden="true"></span>
-          </summary>
-          <div class="faq-body">
-            <p>You may contact the Direct Turbine Technical Hotline at <a href="tel:+18773828721">877-382-8721</a> between the hours of 9:00am and 5:00pm EST, Monday through Friday. The Direct Turbine technical supervisor for the OEM you need assistance on can help you pinpoint the specific board in your system that may be causing your problem(s).</p>
-            <p><strong>Please note:</strong> technical assistance is provided as a courtesy to our customers, and does not replace the need for your own qualified technician to diagnose the machine. Direct Turbine is not responsible for boards ordered that do not resolve all of the problems.</p>
           </div>
         </details>
 
@@ -286,33 +346,12 @@
         </details>
 
         <details class="faq-item">
-          <summary>
-            <span>I need a board quick. What's the fastest way to receive a board from Direct Turbine?</span>
-            <span class="faq-icon" aria-hidden="true"></span>
-          </summary>
-          <div class="faq-body">
-            <p>Direct Turbine's Advance Exchange program can provide you with a replacement circuit board by the next morning. For boards not available through our exchange program, emergency rush repair service is also available.</p>
-            <p>Call your Direct Turbine Customer Service Representative for more details on these programs.</p>
-          </div>
-        </details>
-
-        <details class="faq-item">
-          <summary>
+            <summary>
             <span>What is Direct Turbine's warranty on repaired boards?</span>
             <span class="faq-icon" aria-hidden="true"></span>
           </summary>
           <div class="faq-body">
             <p>Direct Turbine offers a warranty on each repaired board for one full year from the date of repair. Each board is labeled with a serial number and barcode indicating the date of repair. Please do not remove this sticker from the board, as this will void the warranty. All boards must be sent back to Direct Turbine for any necessary warranty repairs.</p>
-          </div>
-        </details>
-
-        <details class="faq-item">
-          <summary>
-            <span>How are boards packaged for return shipment from Direct Turbine?</span>
-            <span class="faq-icon" aria-hidden="true"></span>
-          </summary>
-          <div class="faq-body">
-            <p>Each repaired board is placed in an anti-static bag and wrapped in cushioning bubble-wrap material, then placed in an individual anti-static certified storage box. A label describing the board is attached to the outside of the box. These boxes make for easy transport between parts room and the field, and help to prevent damage to the board. It also makes for a very professional appearance to your customers and allows for easy handling and storage within your parts room. On multiple-board orders, these individual boxes are shipped inside one or more master cartons containing all boards from that order.</p>
           </div>
         </details>
 
@@ -332,22 +371,43 @@
             </ul>
           </div>
         </details>
+            </div>
+          </section>
 
+          <section class="faqs-group" id="support">
+            <div class="faqs-group-heading"><span>04 / Engineer Desk</span><h3>Technical Support</h3></div>
+            <div class="faq-list">
+        <details class="faq-item">
+          <summary>
+            <span>Who should I contact if I'm not sure what board is defective in my machine?</span>
+            <span class="faq-icon" aria-hidden="true"></span>
+          </summary>
+          <div class="faq-body">
+            <p>You may contact the Direct Turbine Technical Hotline at <a href="tel:+18773828721">877-382-8721</a> between the hours of 9:00am and 5:00pm EST, Monday through Friday. The Direct Turbine technical supervisor for the OEM you need assistance on can help you pinpoint the specific board in your system that may be causing your problem(s).</p>
+            <p><strong>Please note:</strong> technical assistance is provided as a courtesy to our customers, and does not replace the need for your own qualified technician to diagnose the machine. Direct Turbine is not responsible for boards ordered that do not resolve all of the problems.</p>
+          </div>
+        </details>
+            </div>
+          </section>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Closing CTA -->
-  <section class="cta-band reveal">
-    <div class="container cta-band-inner">
+  <!-- Closing availability band -->
+  <section class="faqs-cta reveal">
+    <div class="container">
+      <aside class="faqs-cta-inner">
       <div>
-        <h2>Questions?</h2>
-        <p>Speak with our engineers to know more about our customizable services and availability of parts.</p>
+        <span class="eyebrow">Need an answer now?</span>
+        <h2>Talk with the service desk.</h2>
       </div>
-      <div class="cta-band-actions">
+      <p>Share the board number, control system and urgency. We will help route your repair, exchange or technical question.</p>
+      <div class="faqs-cta-actions">
         <a class="btn btn-primary" href="contact-us.html">Contact Us</a>
-        <a class="btn btn-outline" href="tel:+12012446477">Call Us</a>
+        <a href="tel:+12012446477">201-244-6477</a>
       </div>
+      </aside>
     </div>
   </section>
 

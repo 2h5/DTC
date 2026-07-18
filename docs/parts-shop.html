@@ -12,8 +12,9 @@
 <link rel="stylesheet" href="assets/css/core/base.css">
 <link rel="stylesheet" href="assets/css/core/site-chrome.css">
 <link rel="stylesheet" href="assets/css/pages/parts-category.css">
+<link rel="stylesheet" href="assets/css/pages/parts-shop.css">
 </head>
-<body>
+<body class="parts-shop-page">
 <a class="skip-link" href="#main">Skip to content</a>
 
 <!-- Utility bar -->
@@ -191,21 +192,26 @@
 <main id="main">
 
   <!-- Page hero -->
-  <section class="page-hero reveal">
+  <section class="page-hero parts-catalog-hero reveal">
     <div class="container">
       <nav class="breadcrumb" aria-label="Breadcrumb">
         <a href="index.html">Home</a>
         <span class="sep">/</span>
         <span class="current">Parts Shop</span>
       </nav>
-      <span class="eyebrow">Parts Catalog</span>
+      <span class="eyebrow">Parts Catalog / Live Search</span>
       <h1>Parts Shop</h1>
-      <p class="lede">Our stock of circuit boards and components helps extend the operational life of your controls, monitoring and protection systems, every unit is certified for functionality and reliability before it ships.</p>
+      <p class="lede">Find the control board your system needs, then put it in front of an engineer who knows the application. Every unit is checked for functionality and reliability before it ships.</p>
 
       <form class="search-pill" role="search" onsubmit="return false;">
         <svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.8"/><path d="M21 21l-4.3-4.3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-        <input type="text" placeholder="Search for a part number or series name" aria-label="Search for a part number or series name">
+        <input type="text" placeholder="Enter a part number or control series" aria-label="Search for a part number or series name">
       </form>
+      <div class="catalog-readout" aria-label="Catalog coverage">
+        <div><span class="catalog-readout-value">1,244</span><span class="catalog-readout-label">GE control parts indexed</span></div>
+        <div><span class="catalog-readout-value">11</span><span class="catalog-readout-label">OEM families in the catalog</span></div>
+        <div><span class="catalog-readout-value">24/7</span><span class="catalog-readout-label">Emergency engineer access</span></div>
+      </div>
     </div>
   </section>
 
@@ -213,8 +219,9 @@
   <section class="tile-section reveal">
     <div class="container">
       <div class="section-head">
-        <span class="eyebrow">11 Brands, 1 Source</span>
+        <span class="eyebrow">Browse by OEM</span>
         <h2>Select Your Brand</h2>
+        <p>GE Boards &amp; Turbine Control is available to browse today. For every other OEM family, send the part number and system details to an engineer for availability.</p>
       </div>
 
       <div class="tile-grid">
@@ -326,6 +333,11 @@
           </span>
         </div>
       </div>
+      <aside class="catalog-assist">
+        <div><span class="eyebrow">Part not listed?</span><h2>Send the number. We’ll check the system.</h2></div>
+        <p>Include the part number, control system and any urgency in your request.</p>
+        <a class="btn btn-primary" href="contact-us.html">Request Availability</a>
+      </aside>
     </div>
   </section>
 

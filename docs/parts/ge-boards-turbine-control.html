@@ -12,8 +12,9 @@
 <link rel="stylesheet" href="../assets/css/core/base.css">
 <link rel="stylesheet" href="../assets/css/core/site-chrome.css">
 <link rel="stylesheet" href="../assets/css/pages/parts-category.css">
+<link rel="stylesheet" href="../assets/css/pages/ge-category.css">
 </head>
-<body>
+<body class="ge-category-page">
 <a class="skip-link" href="#main">Skip to content</a>
 
 <!-- Utility bar -->
@@ -190,9 +191,9 @@
 
 <main id="main">
 
-  <!-- Page hero -->
-  <section class="page-hero reveal">
-    <div class="container">
+  <!-- GE catalog hero -->
+  <section class="ge-catalog-hero reveal">
+    <div class="container ge-hero-shell">
       <nav class="breadcrumb" aria-label="Breadcrumb">
         <a href="../index.html">Home</a>
         <span class="sep">/</span>
@@ -200,98 +201,125 @@
         <span class="sep">/</span>
         <span class="current">GE Boards &amp; Turbine Control</span>
       </nav>
-      <span class="eyebrow">GE Speedtronic</span>
-      <h1>GE Boards &amp; Turbine Control</h1>
-      <p class="lede">Component-level repair, testing and remanufacturing for GE Speedtronic Mark I, II, III, IV, V, V LM, VI and VIe control systems, plus EX2000 and EX2100/2100e excitation boards. Every unit is tested on live control panels in our Bergenfield, NJ lab before it ships.</p>
+      <div class="ge-hero-grid">
+        <div class="ge-hero-copy">
+          <span class="eyebrow">Catalog / GE Speedtronic &amp; Excitation</span>
+          <h1>GE Boards &amp; Turbine Control</h1>
+          <p class="lede">Source, repair and test GE Speedtronic and excitation control boards with direct access to a turbine-controls engineer. Every completed unit is tested on live control panels in our Bergenfield, NJ lab before it ships.</p>
 
-      <form class="search-pill" role="search" onsubmit="return false;">
-        <svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.8"/><path d="M21 21l-4.3-4.3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-        <input type="text" placeholder="Search for a part number or series name" aria-label="Search for a part number or series name">
-      </form>
+          <form class="search-pill" role="search" onsubmit="return false;">
+            <svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.8"/><path d="M21 21l-4.3-4.3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            <input type="text" placeholder="Enter a GE part number or control series" aria-label="Search for a GE part number or control series">
+          </form>
+          <div class="ge-hero-actions">
+            <a class="btn btn-primary" href="../contact-us.html">Send a Part Number</a>
+            <a class="ge-engineer-link" href="tel:+12012446477">Talk to an engineer <span aria-hidden="true">201-244-6477</span></a>
+          </div>
+        </div>
+
+        <aside class="ge-system-readout" aria-label="GE catalog coverage">
+          <div class="ge-readout-head">
+            <span>Catalog status</span>
+            <span class="ge-live-state"><i></i> Live</span>
+          </div>
+          <div class="ge-readout-primary">
+            <strong>13</strong>
+            <span>part records available to browse now</span>
+          </div>
+          <dl class="ge-readout-list">
+            <div><dt>Live series</dt><dd>Mark I &amp; II / Mark IV</dd></div>
+            <div><dt>Systems indexed</dt><dd>Speedtronic / EX</dd></div>
+            <div><dt>Lab access</dt><dd>Bergenfield, NJ</dd></div>
+            <div><dt>Emergency line</dt><dd>24 / 7</dd></div>
+          </dl>
+          <p>Need a series that is not online yet? Send the board number for a direct availability check.</p>
+        </aside>
+      </div>
     </div>
   </section>
 
-  <!-- Series grid -->
-  <section class="tile-section reveal">
+  <!-- Available series -->
+  <section class="ge-live-series reveal">
     <div class="container">
-      <div class="section-head">
-        <span class="eyebrow">8 Series</span>
-        <h2>Browse by Series</h2>
+      <div class="ge-section-head">
+        <div>
+          <span class="eyebrow">Available Now / 02 Series</span>
+          <h2>Browse Live Inventory</h2>
+        </div>
+        <p>Open a series to filter real part records, review technical details and continue to quote, repair or purchase options.</p>
       </div>
 
-      <div class="tile-grid">
-        <a class="tile-card" href="ge-boards-turbine-control/mark-1-ii.html">
-          <span class="tile-media is-photo"><img src="../assets/img/parts/ge-mark-1-ii.webp" alt="Mark 1 & II control board" loading="lazy"></span>
-          <span class="tile-body">
-            <h3>Mark 1 &amp; II</h3>
-            <span class="tile-count">7 parts</span>
-            <span class="tile-browse">Browse Parts</span>
+      <div class="ge-live-grid">
+        <a class="ge-series-card" href="ge-boards-turbine-control/mark-1-ii.html">
+          <span class="ge-series-media"><img src="../assets/img/parts/ge-mark-1-ii.webp" alt="Mark I and II control board" loading="lazy"></span>
+          <span class="ge-series-content">
+            <span class="ge-series-index">Series 01 / Speedtronic</span>
+            <span class="ge-series-title"><strong>Mark I &amp; II</strong><small>7 parts</small></span>
+            <span class="ge-series-meta"><span>Gas &amp; steam turbine control</span><span class="ge-series-browse">Browse Series</span></span>
           </span>
         </a>
 
-        <a class="tile-card" href="ge-boards-turbine-control/mark-iv.html">
-          <span class="tile-media is-photo"><img src="../assets/img/parts/ge-mark-iv.webp" alt="Mark IV control board" loading="lazy"></span>
-          <span class="tile-body">
-            <h3>Mark IV</h3>
-            <span class="tile-count">6 parts</span>
-            <span class="tile-browse">Browse Parts</span>
+        <a class="ge-series-card" href="ge-boards-turbine-control/mark-iv.html">
+          <span class="ge-series-media"><img src="../assets/img/parts/ge-mark-iv.webp" alt="Mark IV control board" loading="lazy"></span>
+          <span class="ge-series-content">
+            <span class="ge-series-index">Series 02 / Speedtronic</span>
+            <span class="ge-series-title"><strong>Mark IV</strong><small>6 parts</small></span>
+            <span class="ge-series-meta"><span>Panel-tested control boards</span><span class="ge-series-browse">Browse Series</span></span>
           </span>
         </a>
+      </div>
+    </div>
+  </section>
 
-        <div class="tile-card is-disabled" aria-disabled="true">
-          <span class="tile-media is-photo"><img src="../assets/img/parts/ge-mark-v.webp" alt="Mark V control board" loading="lazy"></span>
-          <span class="tile-body">
-            <h3>Mark V</h3>
-            <span class="tile-count">244 parts</span>
-            <span class="tile-browse">Coming soon</span>
-          </span>
+  <!-- Indexed series -->
+  <section class="ge-indexed-series reveal">
+    <div class="container">
+      <div class="ge-section-head">
+        <div>
+          <span class="eyebrow">Catalog Index / 06 Series</span>
+          <h2>Additional GE Systems</h2>
         </div>
+        <p>These systems are indexed but not yet open for self-service browsing. DTC can still check a specific part number directly.</p>
+      </div>
 
-        <div class="tile-card is-disabled" aria-disabled="true">
-          <span class="tile-media is-photo"><img src="../assets/img/parts/ge-mark-vi.webp" alt="Mark VI control board" loading="lazy"></span>
-          <span class="tile-body">
-            <h3>Mark VI</h3>
-            <span class="tile-count">353 parts</span>
-            <span class="tile-browse">Coming soon</span>
-          </span>
+      <div class="ge-index-grid">
+        <div class="ge-index-card">
+          <span class="ge-index-media"><img src="../assets/img/parts/ge-mark-v.webp" alt="Mark V control board" loading="lazy"></span>
+          <span class="ge-index-body"><span class="ge-index-number">01</span><span><strong>Mark V</strong><small>244 indexed parts</small></span><span class="ge-index-status">Request availability</span></span>
         </div>
-
-        <div class="tile-card is-disabled" aria-disabled="true">
-          <span class="tile-media is-photo"><img src="../assets/img/parts/ge-mark-vie.webp" alt="Mark VIe control board" loading="lazy"></span>
-          <span class="tile-body">
-            <h3>Mark VIE</h3>
-            <span class="tile-count">406 parts</span>
-            <span class="tile-browse">Coming soon</span>
-          </span>
+        <div class="ge-index-card">
+          <span class="ge-index-media"><img src="../assets/img/parts/ge-mark-vi.webp" alt="Mark VI control board" loading="lazy"></span>
+          <span class="ge-index-body"><span class="ge-index-number">02</span><span><strong>Mark VI</strong><small>353 indexed parts</small></span><span class="ge-index-status">Request availability</span></span>
         </div>
-
-        <div class="tile-card is-disabled" aria-disabled="true">
-          <span class="tile-media is-photo"><img src="../assets/img/parts/ge-ex2000.webp" alt="EX2000 excitation board" loading="lazy"></span>
-          <span class="tile-body">
-            <h3>EX2000</h3>
-            <span class="tile-count">90 parts</span>
-            <span class="tile-browse">Coming soon</span>
-          </span>
+        <div class="ge-index-card">
+          <span class="ge-index-media"><img src="../assets/img/parts/ge-mark-vie.webp" alt="Mark VIe control board" loading="lazy"></span>
+          <span class="ge-index-body"><span class="ge-index-number">03</span><span><strong>Mark VIe</strong><small>406 indexed parts</small></span><span class="ge-index-status">Request availability</span></span>
         </div>
-
-        <div class="tile-card is-disabled" aria-disabled="true">
-          <span class="tile-media is-photo"><img src="../assets/img/parts/ge-ex2100.webp" alt="EX2100 and EX2100e excitation board" loading="lazy"></span>
-          <span class="tile-body">
-            <h3>EX2100 &amp; E</h3>
-            <span class="tile-count">51 parts</span>
-            <span class="tile-browse">Coming soon</span>
-          </span>
+        <div class="ge-index-card">
+          <span class="ge-index-media"><img src="../assets/img/parts/ge-ex2000.webp" alt="EX2000 excitation board" loading="lazy"></span>
+          <span class="ge-index-body"><span class="ge-index-number">04</span><span><strong>EX2000</strong><small>90 indexed parts</small></span><span class="ge-index-status">Request availability</span></span>
         </div>
-
-        <div class="tile-card is-disabled" aria-disabled="true">
-          <span class="tile-media is-photo"><img src="../assets/img/parts/ge-others.jpg" alt="Other GE turbine control board" loading="lazy"></span>
-          <span class="tile-body">
-            <h3>Others</h3>
-            <span class="tile-count">100 parts</span>
-            <span class="tile-browse">Coming soon</span>
-          </span>
+        <div class="ge-index-card">
+          <span class="ge-index-media"><img src="../assets/img/parts/ge-ex2100.webp" alt="EX2100 and EX2100e excitation board" loading="lazy"></span>
+          <span class="ge-index-body"><span class="ge-index-number">05</span><span><strong>EX2100 &amp; E</strong><small>51 indexed parts</small></span><span class="ge-index-status">Request availability</span></span>
+        </div>
+        <div class="ge-index-card">
+          <span class="ge-index-media"><img src="../assets/img/parts/ge-others.jpg" alt="Other GE turbine control board" loading="lazy"></span>
+          <span class="ge-index-body"><span class="ge-index-number">06</span><span><strong>Others</strong><small>100 indexed parts</small></span><span class="ge-index-status">Request availability</span></span>
         </div>
       </div>
+
+      <aside class="ge-availability-band">
+        <div>
+          <span class="eyebrow">Part not listed?</span>
+          <h2>Send the GE board number.</h2>
+        </div>
+        <p>Add the control series, turbine application and urgency. An engineer can check sourcing or repair options.</p>
+        <div class="ge-availability-actions">
+          <a class="btn btn-primary" href="../contact-us.html">Request Availability</a>
+          <a href="mailto:info@dtc247.com">info@dtc247.com</a>
+        </div>
+      </aside>
     </div>
   </section>
 

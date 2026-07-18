@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="assets/css/core/site-chrome.css">
 <link rel="stylesheet" href="assets/css/pages/services-detail.css">
 </head>
-<body>
+<body class="service-detail-page">
 <a class="skip-link" href="#main">Skip to content</a>
 
 <!-- Utility bar -->
@@ -190,8 +190,8 @@
 
 <main id="main">
 
-  <!-- Hero -->
-  <section class="service-hero reveal" style="background-image:url('assets/img/services/hero-spare-parts.png')">
+  <!-- Masthead -->
+  <section class="service-masthead reveal">
     <div class="container">
       <nav class="breadcrumb" aria-label="Breadcrumb">
         <a href="index.html">Home</a>
@@ -200,9 +200,35 @@
         <span class="sep">/</span>
         <span class="current">Spare Parts</span>
       </nav>
-      <span class="eyebrow">End-of-Life &amp; Current Systems</span>
-      <h1>Spare Parts</h1>
-      <p class="lede">Replacement parts for systems declared end-of-life by the OEM, plus current models &mdash; genuine, tested and warrantied.</p>
+      <div class="service-hero-grid">
+        <div class="service-hero-copy">
+          <span class="eyebrow">Service 03 / End-of-Life &amp; Current Systems</span>
+          <h1>Spare Parts</h1>
+          <p class="lede">Replacement parts for systems declared end-of-life by the OEM, plus current models &mdash; genuine, tested and warrantied.</p>
+          <div class="service-hero-actions">
+            <a class="btn btn-primary" href="parts-shop.html">Browse Parts</a>
+            <a class="service-engineer-link" href="tel:+12012446477">Talk to an engineer <span aria-hidden="true">201-244-6477</span></a>
+          </div>
+        </div>
+
+        <aside class="service-readout" aria-label="Spare Parts at a glance">
+          <div class="service-readout-head">
+            <span>Service detail</span>
+            <span class="service-readout-live"><i></i> Live</span>
+          </div>
+          <div class="service-readout-primary">
+            <strong>4</strong>
+            <span>condition grades on every part we supply</span>
+          </div>
+          <dl class="service-readout-list">
+            <div><dt>Grades</dt><dd>FN / CN / RF / UD</dd></div>
+            <div><dt>Stock</dt><dd>New &amp; refurbished</dd></div>
+            <div><dt>Warranty</dt><dd>2-year DTC</dd></div>
+            <div><dt>Testing</dt><dd>Functional</dd></div>
+          </dl>
+          <p>Every unit that leaves our lab undergoes thorough functional testing before it ships.</p>
+        </aside>
+      </div>
     </div>
   </section>
 
@@ -210,9 +236,10 @@
   <section class="service-intro reveal">
     <div class="container">
       <div class="service-intro-text" style="max-width: 78ch;">
+        <span class="eyebrow">Overview</span>
         <p>We maintain a large inventory of ready-to-ship new and refurbished circuit boards, certified for functionality and reliability. For models no longer supported by the OEM, our refurbished units are often a better choice than a so-called "new" unit on the open market &mdash; we do a complete overhaul and upgrade to negate the effect of prolonged shelf storage. Some "new" units we've tested for certification didn't meet spec, since their original production date was well past the recommended shelf life.</p>
         <p>Every unit that leaves our lab undergoes thorough functional testing, so you get parts that meet or exceed industry standards and keep your control system running worry-free.</p>
-        <div class="cta-band-actions" style="margin-top: 28px;">
+        <div class="cta-band-actions">
           <a class="btn btn-primary" href="contact-us.html">Contact Us</a>
           <a class="btn btn-outline" href="parts-shop.html">Browse Parts</a>
         </div>
@@ -223,8 +250,11 @@
   <!-- Condition codes -->
   <section class="condition-section reveal">
     <div class="container">
-      <div class="section-head">
-        <h2>Condition Codes</h2>
+      <div class="service-section-head">
+        <div>
+          <span class="eyebrow">Grading / Know What You Buy</span>
+          <h2>Condition Codes</h2>
+        </div>
         <p>Every part we supply is graded by one of four condition codes, so you know exactly what you're buying.</p>
       </div>
       <div class="condition-grid">
@@ -253,16 +283,19 @@
   </section>
 
   <!-- CTA -->
-  <section class="cta-band reveal">
-    <div class="container cta-band-inner">
-      <div>
-        <h2>Questions?</h2>
+  <section class="service-cta reveal">
+    <div class="container">
+      <aside class="service-cta-inner">
+        <div>
+          <span class="eyebrow">Questions?</span>
+          <h2>Find the spare part you need.</h2>
+        </div>
         <p>Talk to one of our experts to find the spare parts you need.</p>
-      </div>
-      <div class="cta-band-actions">
-        <a class="btn btn-primary" href="contact-us.html">Contact Us Now</a>
-        <a class="btn btn-outline" href="tel:+12012446477">201-244-6477</a>
-      </div>
+        <div class="service-cta-actions">
+          <a class="btn btn-primary" href="contact-us.html">Contact Us Now</a>
+          <a href="tel:+12012446477">201-244-6477</a>
+        </div>
+      </aside>
     </div>
   </section>
 

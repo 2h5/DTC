@@ -1,0 +1,82 @@
+/* Parts Shop only: a live catalog entry point, distinct from shared brand/series grids. */
+
+.parts-shop-page { background: var(--void); }
+
+.parts-shop-page .parts-catalog-hero {
+  overflow: hidden;
+  padding: 28px 0 0;
+  color: #f3f4f0;
+  background: #061f2b;
+}
+.parts-shop-page .parts-catalog-hero::before {
+  content: ""; position: absolute; inset: 0; opacity: .48;
+  background-image: linear-gradient(rgba(96,195,173,.14) 1px, transparent 1px), linear-gradient(90deg, rgba(96,195,173,.14) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: linear-gradient(90deg, #000, transparent 78%);
+}
+.parts-shop-page .parts-catalog-hero .container { position: relative; }
+.parts-shop-page .parts-catalog-hero .breadcrumb { color: rgba(243,244,240,.64); }
+.parts-shop-page .parts-catalog-hero .breadcrumb a { color: rgba(243,244,240,.82); }
+.parts-shop-page .parts-catalog-hero .breadcrumb .sep { color: var(--accent-500); }
+.parts-shop-page .parts-catalog-hero .breadcrumb .current { color: #fff; }
+.parts-shop-page .parts-catalog-hero .eyebrow { margin-top: 48px; color: var(--accent-300); }
+.parts-shop-page .parts-catalog-hero h1 { margin-top: 12px; color: #fff; }
+.parts-shop-page .parts-catalog-hero .lede { max-width: 680px; color: rgba(243,244,240,.78); }
+.parts-shop-page .parts-catalog-hero .search-pill { max-width: 680px; background: #fff; box-shadow: 0 18px 36px rgba(0,0,0,.2); }
+
+.catalog-readout { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 54px; border-top: 1px solid rgba(243,244,240,.18); }
+.catalog-readout > div { min-height: 108px; display: grid; align-content: center; gap: 5px; padding: 22px 28px 24px 0; border-right: 1px solid rgba(243,244,240,.18); }
+.catalog-readout > div + div { padding-left: 28px; }
+.catalog-readout > div:last-child { border-right: 0; }
+.catalog-readout-value { font: 600 clamp(1.55rem,2.5vw,2.2rem)/1 var(--font-display); color: var(--accent-300); }
+.catalog-readout-label { max-width: 19ch; color: rgba(243,244,240,.68); font: .68rem/1.35 var(--font-mono); letter-spacing: .06em; text-transform: uppercase; }
+
+.parts-shop-page .tile-section { padding: 76px 0 96px; }
+.parts-shop-page .section-head { display: grid; grid-template-columns: minmax(0, .9fr) minmax(300px, .7fr); gap: 32px 70px; max-width: none; align-items: end; margin-bottom: 36px; }
+.parts-shop-page .section-head .eyebrow, .parts-shop-page .section-head h2 { grid-column: 1; }
+.parts-shop-page .section-head h2 { margin-top: -22px; }
+.parts-shop-page .section-head p { grid-column: 2; grid-row: 1 / span 2; align-self: center; margin: 0; }
+.parts-shop-page .tile-grid { grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 0; }
+.parts-shop-page .tile-card { min-height: 220px; border-radius: 14px; }
+.parts-shop-page .tile-card:first-child { grid-column: span 2; display: grid; grid-template-columns: minmax(200px, .78fr) 1fr; min-height: 278px; color: #fff; background: var(--accent-ink); border: 0; box-shadow: var(--shadow-md); }
+.parts-shop-page .tile-card:first-child .tile-media { aspect-ratio: auto; border: 0; background: #fff; }
+.parts-shop-page .tile-card:first-child .tile-media img { padding: 46px; }
+.parts-shop-page .tile-card:first-child .tile-body { justify-content: center; padding: 34px; text-align: left; }
+.parts-shop-page .tile-card:first-child .tile-body h3 { color: #fff; font: 600 clamp(1.35rem,2vw,1.8rem)/1.08 var(--font-display); }
+.parts-shop-page .tile-card:first-child .tile-count { color: rgba(243,244,240,.68); }
+.parts-shop-page .tile-card:first-child .tile-browse { color: var(--accent-300); }
+.parts-shop-page .tile-card.is-disabled { opacity: 1; background: var(--surface-1); }
+.parts-shop-page .tile-card.is-disabled .tile-media { aspect-ratio: 16 / 7; }
+.parts-shop-page .tile-card.is-disabled .tile-media img { padding: 18px 30px; }
+.parts-shop-page .tile-card.is-disabled .tile-body { min-height: 88px; padding: 14px 18px 17px; text-align: left; }
+.parts-shop-page .tile-card.is-disabled .tile-body::after { content: "Request availability"; margin-top: 4px; color: var(--accent-ink); font: .67rem var(--font-mono); letter-spacing: .05em; text-transform: uppercase; }
+.parts-shop-page .tile-card.is-disabled .tile-browse { display: none; }
+
+.catalog-assist { display: grid; grid-template-columns: 1.25fr 1fr auto; gap: 34px; align-items: center; margin-top: 28px; padding: 30px 36px; background: var(--accent-tint); border-top: 3px solid var(--accent-500); }
+.catalog-assist h2 { margin-top: 8px; font-size: clamp(1.35rem,2vw,1.8rem); }
+.catalog-assist p { margin: 0; color: var(--text-2); }
+
+@media (max-width: 980px) {
+  .parts-shop-page .tile-grid { grid-template-columns: repeat(2, 1fr); }
+  .parts-shop-page .section-head { grid-template-columns: 1fr; gap: 14px; }
+  .parts-shop-page .section-head .eyebrow, .parts-shop-page .section-head h2, .parts-shop-page .section-head p { grid-column: auto; grid-row: auto; }
+  .parts-shop-page .section-head h2 { margin-top: -4px; }
+  .catalog-assist { grid-template-columns: 1fr auto; }
+  .catalog-assist p { grid-row: 2; }
+  .catalog-assist .btn { grid-row: 1 / span 2; }
+}
+@media (max-width: 720px) {
+  .parts-shop-page .parts-catalog-hero { padding-top: 20px; }
+  .parts-shop-page .parts-catalog-hero .eyebrow { margin-top: 36px; }
+  .catalog-readout { grid-template-columns: 1fr; margin-top: 40px; }
+  .catalog-readout > div, .catalog-readout > div + div { min-height: 0; padding: 17px 0; border-right: 0; border-bottom: 1px solid rgba(243,244,240,.18); }
+  .catalog-readout > div:last-child { border-bottom: 0; }
+  .parts-shop-page .tile-section { padding: 56px 0 64px; }
+  .parts-shop-page .tile-grid { grid-template-columns: 1fr; }
+  .parts-shop-page .tile-card:first-child { grid-column: auto; grid-template-columns: 1fr; }
+  .parts-shop-page .tile-card:first-child .tile-media { min-height: 140px; }
+  .parts-shop-page .tile-card:first-child .tile-media img { padding: 32px; }
+  .catalog-assist { grid-template-columns: 1fr; gap: 20px; padding: 28px 24px; }
+  .catalog-assist p, .catalog-assist .btn { grid-row: auto; }
+  .catalog-assist .btn { justify-self: start; }
+}

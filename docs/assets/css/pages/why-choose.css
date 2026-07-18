@@ -1,65 +1,38 @@
-/* ==========================================================================
-   Why Choose Us page only: photo band with stat strip, six-reason card grid,
-   CTA band. Loaded only by why-choose-us.html, after core/*.css.
-   ========================================================================== */
+.proof-strip { background: #e8eeea; border-bottom: 1px solid rgba(6,31,43,.12); }
+.proof-strip .container { display: grid; grid-template-columns: repeat(3, 1fr); padding-block: 0; }
+.proof-strip .container > div { display: flex; flex-direction: column; min-height: 132px; padding: 28px 30px; border-left: 1px solid rgba(6,31,43,.12); }
+.proof-strip .container > div:last-child { border-right: 1px solid rgba(6,31,43,.12); }
+.proof-strip strong { color: var(--accent-ink); font-family: var(--font-display); font-size: 2rem; line-height: 1; }
+.proof-strip span { max-width: 190px; margin-top: 10px; color: var(--text-2); font-size: .78rem; line-height: 1.45; }
 
-/* ==========================================================================
-   Photo band , full-width framed photo with a stat strip underneath
-   ========================================================================== */
+.reasons-section { padding-block: 60px 64px; background: var(--about-paper); }
+.reasons-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid rgba(6,31,43,.2); border-left: 1px solid rgba(6,31,43,.2); }
+.reason-card { min-height: 330px; padding: 30px 28px; border-right: 1px solid rgba(6,31,43,.2); border-bottom: 1px solid rgba(6,31,43,.2); background: rgba(255,255,255,.44); scroll-margin-top: 96px; transition: background .25s ease, transform .25s ease; }
+.reason-index { color: #458f81; font-family: var(--font-mono); font-size: .64rem; letter-spacing: .1em; }
+.reason-card h3 { margin-top: 30px; font-size: 1.28rem; line-height: 1.25; }
+.reason-card p { margin-top: 14px; color: var(--text-2); font-size: .91rem; line-height: 1.68; }
+@media (hover:hover) { .reason-card:hover { position: relative; z-index: 1; background: #fff; transform: translateY(-4px); } }
 
-.photo-band { padding-block: 24px 48px; }
-.photo-band-frame {
-  border: 1px solid var(--line-1); border-radius: var(--radius-card); overflow: hidden;
-  aspect-ratio: 21 / 9;
-}
-.photo-band-frame img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.validation-band { padding-block: 88px; color: #fff; background: var(--about-navy-2); }
+.validation-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(360px, .72fr); gap: 88px; align-items: center; }
+.validation-band .eyebrow { color: #8dd9c7; }
+.validation-band h2 { margin-top: 10px; color: #fff; }
+.validation-band p { max-width: 650px; margin-top: 18px; color: rgba(255,255,255,.68); line-height: 1.75; }
+.validation-band .about-text-link { display: inline-block; margin-top: 24px; color: #a7e4d6; }
+.validation-spec { border: 1px solid rgba(255,255,255,.18); }
+.validation-spec > span { display: block; padding: 14px 18px; color: #8dd9c7; border-bottom: 1px solid rgba(255,255,255,.18); font-family: var(--font-mono); font-size: .65rem; letter-spacing: .12em; }
+.validation-spec ol { list-style: none; }
+.validation-spec li { display: flex; gap: 20px; padding: 20px 18px; color: rgba(255,255,255,.78); border-bottom: 1px solid rgba(255,255,255,.1); }
+.validation-spec li:last-child { border-bottom: 0; }
+.validation-spec b { color: #8dd9c7; font-family: var(--font-mono); font-size: .68rem; }
 
-.photo-band-stats {
-  margin-top: -1px;
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  border: 1px solid var(--line-1); border-top: none;
-  border-radius: 0 0 var(--radius-card) var(--radius-card);
-  background: var(--surface-2);
-}
-.pb-stat { padding: 22px 24px; display: flex; flex-direction: column; }
-.pb-stat + .pb-stat { border-left: 1px solid var(--line-1); }
-.pb-stat .num { font-family: var(--font-display); font-size: 1.5rem; font-weight: 600; color: var(--accent-ink); }
-.pb-stat .label { margin-top: 4px; font-size: 0.85rem; color: var(--text-2); }
-
-/* ==========================================================================
-   Six reasons , 2-column card grid (not a zigzag list)
-   ========================================================================== */
-
-.reasons-section { padding-block: 56px; border-top: 1px solid var(--line-1); }
-.reasons-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-.reason-card {
-  border: 1px solid var(--line-1); border-radius: var(--radius-card); background: var(--surface-2);
-  padding: 30px 28px; scroll-margin-top: 96px;
-}
-.reason-icon {
-  width: 46px; height: 46px; border-radius: 12px;
-  display: flex; align-items: center; justify-content: center;
-  background: var(--accent-tint); color: var(--accent-ink);
-}
-.reason-icon svg { width: 21px; height: 21px; }
-.reason-card h3 { margin-top: 18px; }
-.reason-card p { margin-top: 10px; font-size: 0.93rem; color: var(--text-2); line-height: 1.65; }
-
-/* .cta-band lives in core/base.css, reused by every content page. */
-
-/* ==========================================================================
-   Responsive
-   ========================================================================== */
-
-@media (max-width: 860px) {
-  .photo-band-frame { aspect-ratio: 4 / 3; }
-  .photo-band-stats { grid-template-columns: 1fr; }
-  .pb-stat + .pb-stat { border-left: none; border-top: 1px solid var(--line-1); }
-  .reasons-grid { grid-template-columns: 1fr; }
-}
-
+@media (max-width: 980px) { .reasons-grid { grid-template-columns: repeat(2,1fr); } .validation-grid { grid-template-columns: 1fr; gap: 44px; } }
 @media (max-width: 720px) {
-  .photo-band { padding-block: 16px 32px; }
-  .reasons-section { padding-block: 40px; }
-  .cta-band { padding-block: 40px; }
+  .proof-strip .container, .reasons-grid { grid-template-columns: 1fr; }
+  .proof-strip .container > div { min-height: 0; border-right: 1px solid rgba(6,31,43,.12); }
+  .reasons-section { padding-block: 48px 52px; }
+  .validation-band { padding-block: 64px; }
+  .reason-card { min-height: 0; }
+  .reason-card h3 { margin-top: 24px; }
 }
+@media (prefers-reduced-motion: reduce) { .reason-card { transition: none; } }

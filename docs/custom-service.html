@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="assets/css/core/site-chrome.css">
 <link rel="stylesheet" href="assets/css/pages/services-detail.css">
 </head>
-<body>
+<body class="service-detail-page">
 <a class="skip-link" href="#main">Skip to content</a>
 
 <!-- Utility bar -->
@@ -190,8 +190,8 @@
 
 <main id="main">
 
-  <!-- Hero -->
-  <section class="service-hero reveal" style="background-image:url('assets/img/services/hero-custom-service.jpg')">
+  <!-- Masthead -->
+  <section class="service-masthead reveal">
     <div class="container">
       <nav class="breadcrumb" aria-label="Breadcrumb">
         <a href="index.html">Home</a>
@@ -200,9 +200,31 @@
         <span class="sep">/</span>
         <span class="current">Custom Service</span>
       </nav>
-      <span class="eyebrow">Comprehensive Solutions for Control Systems</span>
-      <h1>Custom Service</h1>
-      <p class="lede">Not every requirement fits a catalog. Tell us what your plant needs and we'll work out a way to do it.</p>
+      <div class="service-hero-grid">
+        <div class="service-hero-copy">
+          <span class="eyebrow">Service 04 / Comprehensive Solutions</span>
+          <h1>Custom Service</h1>
+          <p class="lede">Not every requirement fits a catalog. Tell us what your plant needs and we'll work out a way to do it.</p>
+          <div class="service-hero-actions">
+            <a class="btn btn-primary" href="contact-us.html">Request a Quote</a>
+            <a class="service-engineer-link" href="tel:+12012446477">Talk to an engineer <span aria-hidden="true">201-244-6477</span></a>
+          </div>
+        </div>
+
+        <aside class="service-readout" aria-label="Custom Service at a glance">
+          <div class="service-readout-head">
+            <span>Service detail</span>
+            <span class="service-readout-live"><i></i> Live</span>
+          </div>
+          <dl class="service-readout-list">
+            <div><dt>Coverage</dt><dd>MK I&ndash;VIe</dd></div>
+            <div><dt>Excitation</dt><dd>EX2000 / 2100 / 2100e</dd></div>
+            <div><dt>Field</dt><dd>Operator training</dd></div>
+            <div><dt>Access</dt><dd>Direct engineer</dd></div>
+          </dl>
+          <p>Any current service we offer can be customized. Lay out the idea and we will make it work.</p>
+        </aside>
+      </div>
     </div>
   </section>
 
@@ -225,8 +247,11 @@
   <!-- Field capabilities -->
   <section class="service-section reveal">
     <div class="container">
-      <div class="section-head">
-        <h2>Field Training &amp; Equipment Capabilities</h2>
+      <div class="service-section-head">
+        <div>
+          <span class="eyebrow">Field / Capabilities</span>
+          <h2>Field Training &amp; Equipment Capabilities</h2>
+        </div>
         <p>Direct Turbine field service technicians and engineers are experienced in handling GE Frame and LM turbines, and can provide industrial training for your operators and technicians. Our GE equipment capabilities cover control types including:</p>
       </div>
       <ul class="plain-list">
@@ -239,16 +264,19 @@
   </section>
 
   <!-- CTA -->
-  <section class="cta-band reveal">
-    <div class="container cta-band-inner">
-      <div>
-        <h2>Questions?</h2>
+  <section class="service-cta reveal">
+    <div class="container">
+      <aside class="service-cta-inner">
+        <div>
+          <span class="eyebrow">Questions?</span>
+          <h2>Tell us what your plant needs.</h2>
+        </div>
         <p>Please speak to a DTC representative to learn more about our services.</p>
-      </div>
-      <div class="cta-band-actions">
-        <a class="btn btn-primary" href="contact-us.html">Contact Us</a>
-        <a class="btn btn-outline" href="tel:+12012446477">201-244-6477</a>
-      </div>
+        <div class="service-cta-actions">
+          <a class="btn btn-primary" href="contact-us.html">Contact Us</a>
+          <a href="tel:+12012446477">201-244-6477</a>
+        </div>
+      </aside>
     </div>
   </section>
 

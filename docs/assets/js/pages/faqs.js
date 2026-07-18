@@ -25,6 +25,11 @@
 
     shrink() {
       this.isClosing = true;
+      /* Icon flips the instant you click, independent of this.el.open
+         (only flipped false once the collapse animation finishes below —
+         native <details> can't stay measurable through the animation
+         otherwise). See the .faq-item.is-open comment in base.css. */
+      this.el.classList.remove('is-open');
       const startHeight = `${this.el.offsetHeight}px`;
       const endHeight = `${this.summary.offsetHeight}px`;
       if (this.animation) this.animation.cancel();
@@ -39,6 +44,7 @@
     open() {
       this.el.style.height = `${this.el.offsetHeight}px`;
       this.el.open = true;
+      this.el.classList.add('is-open');
       window.requestAnimationFrame(() => this.expand());
     }
 

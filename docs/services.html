@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="assets/css/core/site-chrome.css">
 <link rel="stylesheet" href="assets/css/pages/services.css">
 </head>
-<body>
+<body class="services-page">
 <a class="skip-link" href="#main">Skip to content</a>
 
 <!-- Utility bar -->
@@ -190,89 +190,137 @@
 
 <main id="main">
 
-  <!-- Page hero -->
-  <section class="page-hero reveal">
+  <!-- Masthead -->
+  <section class="services-hero reveal">
     <div class="container">
       <nav class="breadcrumb" aria-label="Breadcrumb">
         <a href="index.html">Home</a>
         <span class="sep">/</span>
         <span class="current">Services</span>
       </nav>
-      <span class="eyebrow">What We Do</span>
-      <h1>Services</h1>
-      <p class="lede">Testing, repair, spare parts and remanufacturing for turbine, generator and excitation control systems &mdash; GE Speedtronic, Bently Nevada, Woodward, Rolls-Royce Entronics and more.</p>
+      <div class="services-hero-grid">
+        <div class="services-hero-copy">
+          <span class="eyebrow">What We Do / Turbine Control Services</span>
+          <h1>Services</h1>
+          <p class="lede">Testing, repair, spare parts, remanufacturing and asset recovery for turbine, generator and excitation control systems &mdash; GE Speedtronic, Bently Nevada, Woodward, Rolls-Royce Entronics and more, tested on live control panels in our Bergenfield, NJ lab.</p>
+          <div class="services-hero-actions">
+            <a class="btn btn-primary" href="contact-us.html">Contact Us</a>
+            <a class="services-engineer-link" href="tel:+12012446477">Talk to an engineer <span aria-hidden="true">201-244-6477</span></a>
+          </div>
+        </div>
+
+        <aside class="services-readout" aria-label="Services coverage">
+          <div class="services-readout-head">
+            <span>Service capability</span>
+            <span class="services-readout-live"><i></i> Live</span>
+          </div>
+          <div class="services-readout-primary">
+            <strong>6</strong>
+            <span>core services across the control-system lifecycle</span>
+          </div>
+          <dl class="services-readout-list">
+            <div><dt>Lab</dt><dd>Bergenfield, NJ</dd></div>
+            <div><dt>Systems</dt><dd>GE / Bently / Woodward</dd></div>
+            <div><dt>Warranty</dt><dd>24-month</dd></div>
+            <div><dt>Emergency line</dt><dd>24 / 7</dd></div>
+          </dl>
+          <p>Not sure which service fits? Send the board number or system and an engineer will route it.</p>
+        </aside>
+      </div>
     </div>
   </section>
 
-  <!-- Intro -->
-  <section class="services-intro reveal">
+  <!-- Service directory -->
+  <section class="services-directory reveal">
     <div class="container">
-      <p class="lede">Direct Turbine's repair facility tests, repairs, certifies and remanufactures control panel cards and parts for the plants that depend on them. Pick a service below for the full detail, or contact us if you're not sure which one fits.</p>
-    </div>
-  </section>
+      <div class="services-section-head">
+        <div>
+          <span class="eyebrow">Full Service Line / 06 Capabilities</span>
+          <h2>Choose a Service</h2>
+        </div>
+        <p>Direct Turbine tests, repairs, certifies and remanufactures control panel cards and parts. Open a service for the full detail, or contact us if you are not sure which one fits.</p>
+      </div>
 
-  <!-- Services grid -->
-  <section class="reveal">
-    <div class="container">
       <div class="services-grid">
 
-        <a class="services-tile services-tile--blue" href="test-and-certify.html">
-          <span class="services-tile-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4M12 3l8 4v5c0 4.5-3.2 8.3-8 9-4.8-.7-8-4.5-8-9V7l8-4z" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          <h2>Testing &amp; Certify</h2>
-          <p>Live-panel functional testing on every unit, with a condition report and recommendation before it ships back.</p>
-          <span class="services-tile-link">Learn more <svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H8M17 7V16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <a class="service-card" href="test-and-certify.html">
+          <span class="service-card-media"><img src="assets/img/services/hero-test-and-certify.jpg" alt="Circuit board under test on a diagnostic bench" loading="lazy"></span>
+          <span class="service-card-content">
+            <span class="service-card-index">Service 01 / Certification</span>
+            <span class="service-card-title">Testing &amp; Certify</span>
+            <span class="service-card-desc">Live-panel functional testing on every unit, with a condition report and recommendation before it ships back.</span>
+            <span class="service-card-browse">View Service</span>
+          </span>
         </a>
 
-        <a class="services-tile services-tile--purple" href="repair-refurbish.html">
-          <span class="services-tile-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M14.7 6.3a4 4 0 00-5.4 5.4L2 19l3 3 7.3-7.3a4 4 0 005.4-5.4l-2.8 2.8-2-2 2.8-2.8z" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          <h2>Circuit Board Repair &amp; Refurbish</h2>
-          <p>Flat-rate repair on control panel cards, roughly 35% of the original purchase cost, done by GE Speedtronic-trained engineers.</p>
-          <span class="services-tile-link">Learn more <svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H8M17 7V16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <a class="service-card" href="repair-refurbish.html">
+          <span class="service-card-media"><img src="assets/img/services/hero-repair-refurbish.jpg" alt="OEM control system brands Direct Turbine repairs" loading="lazy"></span>
+          <span class="service-card-content">
+            <span class="service-card-index">Service 02 / Repair</span>
+            <span class="service-card-title">Circuit Board Repair &amp; Refurbish</span>
+            <span class="service-card-desc">Flat-rate repair on control panel cards, around 35% of the original purchase cost, by GE Speedtronic-trained engineers.</span>
+            <span class="service-card-browse">View Service</span>
+          </span>
         </a>
 
-        <a class="services-tile services-tile--orange" href="spare-parts.html">
-          <span class="services-tile-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M3 8l9-5 9 5-9 5-9-5zm0 0v8l9 5 9-5V8M12 13v8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          <h2>Spare Parts</h2>
-          <p>New and refurbished replacement boards, including systems the OEM has declared end-of-life, with expedited delivery.</p>
-          <span class="services-tile-link">Learn more <svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H8M17 7V16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <a class="service-card" href="spare-parts.html">
+          <span class="service-card-media"><img src="assets/img/services/hero-spare-parts.png" alt="Warehouse inventory of spare control boards" loading="lazy"></span>
+          <span class="service-card-content">
+            <span class="service-card-index">Service 03 / Supply</span>
+            <span class="service-card-title">Spare Parts</span>
+            <span class="service-card-desc">New and refurbished replacement boards, including systems the OEM has declared end-of-life, with expedited delivery.</span>
+            <span class="service-card-browse">View Service</span>
+          </span>
         </a>
 
-        <a class="services-tile services-tile--green" href="custom-service.html">
-          <span class="services-tile-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 15a3 3 0 100-6 3 3 0 000 6z" stroke="currentColor" stroke-width="1.3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 11-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 11-4 0v-.09a1.65 1.65 0 00-1-1.51 1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 110-4h.09a1.65 1.65 0 001.51-1 1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 114 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 112.83 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 110 4h-.09a1.65 1.65 0 00-1.51 1z" stroke="currentColor" stroke-width="0.9"/></svg></span>
-          <h2>Custom Service</h2>
-          <p>A non-standard requirement your plant needs solved? Tell us what it is and we'll work out a way to do it.</p>
-          <span class="services-tile-link">Learn more <svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H8M17 7V16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <a class="service-card" href="custom-service.html">
+          <span class="service-card-media"><img src="assets/img/services/hero-custom-service.jpg" alt="VMIC control system circuit board" loading="lazy"></span>
+          <span class="service-card-content">
+            <span class="service-card-index">Service 04 / Engineering</span>
+            <span class="service-card-title">Custom Service</span>
+            <span class="service-card-desc">A non-standard requirement your plant needs solved? Tell us what it is and we will work out a way to do it.</span>
+            <span class="service-card-browse">View Service</span>
+          </span>
         </a>
 
-        <a class="services-tile services-tile--red" href="remanufacturing.html">
-          <span class="services-tile-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M17 2l4 4-4 4M3 12v-2a4 4 0 014-4h14M7 22l-4-4 4-4M21 12v2a4 4 0 01-4 4H3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          <h2>Remanufacturing</h2>
-          <p>Comprehensive diagnostics, component replacement and re-soldering to restore a board to original specification.</p>
-          <span class="services-tile-link">Learn more <svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H8M17 7V16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <a class="service-card" href="remanufacturing.html">
+          <span class="service-card-media"><img src="assets/img/services/hero-remanufacturing.gif" alt="Technician remanufacturing a circuit board" loading="lazy"></span>
+          <span class="service-card-content">
+            <span class="service-card-index">Service 05 / Restoration</span>
+            <span class="service-card-title">Remanufacturing</span>
+            <span class="service-card-desc">Comprehensive diagnostics, component replacement and re-soldering to restore a board to original specification.</span>
+            <span class="service-card-browse">View Service</span>
+          </span>
         </a>
 
-        <a class="services-tile services-tile--gold" href="asset-recovery.html">
-          <span class="services-tile-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          <h2>Asset Recovery</h2>
-          <p>Upgrading your Speedtronic system? We'll assess and purchase the surplus modules you no longer need.</p>
-          <span class="services-tile-link">Learn more <svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H8M17 7V16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <a class="service-card" href="asset-recovery.html">
+          <span class="service-card-media"><img src="assets/img/services/hero-asset-recovery.jpg" alt="Surplus turbine control system circuit board" loading="lazy"></span>
+          <span class="service-card-content">
+            <span class="service-card-index">Service 06 / Recovery</span>
+            <span class="service-card-title">Asset Recovery</span>
+            <span class="service-card-desc">Upgrading your Speedtronic system? We assess and purchase the surplus modules you no longer need.</span>
+            <span class="service-card-browse">View Service</span>
+          </span>
         </a>
 
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="cta-band reveal">
-    <div class="container cta-band-inner">
-      <div>
-        <h2>Not sure which service you need?</h2>
-        <p>Speak with our engineers to know more about our customizable services and availability of parts.</p>
-      </div>
-      <div class="cta-band-actions">
-        <a class="btn btn-primary" href="contact-us.html">Contact Us</a>
-        <a class="btn btn-outline" href="tel:+12012446477">201-244-6477</a>
-      </div>
+  <!-- Closing availability band -->
+  <section class="services-cta reveal">
+    <div class="container">
+      <aside class="services-cta-inner">
+        <div>
+          <span class="eyebrow">Not sure which service you need?</span>
+          <h2>Talk it through with an engineer.</h2>
+        </div>
+        <p>Describe the board, system and urgency. We will point you to the right service and check parts availability.</p>
+        <div class="services-cta-actions">
+          <a class="btn btn-primary" href="contact-us.html">Contact Us</a>
+          <a href="tel:+12012446477">201-244-6477</a>
+        </div>
+      </aside>
     </div>
   </section>
 

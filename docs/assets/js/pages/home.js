@@ -1,4 +1,4 @@
-/* Home page only: brand-strip carousel arrows, newsletter form placeholder.
+/* Home page only: user-controlled OEM platform carousel.
    Loaded after core.js, only by index.html. */
 (function () {
   var track = document.querySelector('[data-carousel-track]');
@@ -11,16 +11,6 @@
     });
     nextBtn.addEventListener('click', function () {
       track.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
-    });
-  }
-
-  var newsletterForm = document.querySelector('[data-newsletter-form]');
-  if (newsletterForm) {
-    newsletterForm.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var note = newsletterForm.parentElement.querySelector('.newsletter-note');
-      newsletterForm.reset();
-      if (note) note.textContent = "Thanks, you're on the list. (Form is not yet connected to an email service.)";
     });
   }
 })();

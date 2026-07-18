@@ -5,15 +5,16 @@
    here are visible on every single page at once.
    ========================================================================== */
 
-/* Utility bar (non-sticky, scrolls away) */
-.utility-bar { border-bottom: 1px solid var(--line-1); font-size: 0.8rem; }
+/* Utility bar (non-sticky, scrolls away). The dark control-room treatment is
+   global so the page frame is consistent, not a homepage-only flourish. */
+.utility-bar { color: rgba(255, 255, 255, 0.62); background: #041923; border-bottom: 1px solid rgba(255, 255, 255, 0.08); font-size: 0.8rem; }
 .utility-bar .container { display: flex; align-items: center; justify-content: space-between; height: 40px; gap: 16px; }
 .utility-left, .utility-right { display: flex; align-items: center; gap: 18px; }
-.utility-bar a { color: var(--text-3); transition: color 0.3s var(--ease); }
-.utility-bar a:hover { color: var(--text-1); }
-.utility-bar .divider { color: var(--line-2); }
-.utility-emergency { display: inline-flex; align-items: center; gap: 7px; color: var(--alert-400) !important; font-weight: 600; }
-.utility-emergency .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--alert-400); box-shadow: 0 0 0 3px var(--alert-tint); }
+.utility-bar a { color: rgba(255, 255, 255, 0.68); transition: color 0.3s var(--ease); }
+.utility-bar a:hover { color: #ffffff; }
+.utility-bar .divider { color: rgba(255, 255, 255, 0.18); }
+.utility-emergency { display: inline-flex; align-items: center; gap: 7px; color: #ff8a76 !important; font-weight: 600; }
+.utility-emergency .dot { width: 6px; height: 6px; border-radius: 50%; background: #ff8a76; box-shadow: 0 0 0 3px rgba(226, 96, 74, 0.18); }
 
 /* ==========================================================================
    Header / Navigation , standard sticky bar, single line, height <= 72px

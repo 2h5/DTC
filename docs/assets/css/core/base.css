@@ -406,7 +406,7 @@ a.part-card:hover { transform: translateY(-4px); border-color: var(--line-2); }
   background: var(--accent-tint);
   color: var(--accent-ink);
   position: relative;
-  transition: transform 0.35s var(--ease);
+  transition: transform 0.18s var(--ease);
 }
 .faq-icon::before, .faq-icon::after {
   content: "";
@@ -416,15 +416,21 @@ a.part-card:hover { transform: translateY(-4px); border-color: var(--line-2); }
   transform: translate(-50%, -50%);
 }
 .faq-icon::before { width: 12px; height: 1.6px; }
-.faq-icon::after { width: 1.6px; height: 12px; transition: opacity 0.35s var(--ease); }
-.faq-item[open] .faq-icon { transform: rotate(180deg); }
-.faq-item[open] .faq-icon::after { opacity: 0; }
+.faq-icon::after { width: 1.6px; height: 12px; transition: opacity 0.18s var(--ease); }
+/* Keyed off .is-open (JS-toggled the instant a summary is clicked), not the
+   [open] attribute — both accordion scripts defer removing [open] until
+   their collapse animation finishes (native <details> would otherwise hide
+   the content mid-animation), so an attribute-keyed selector left the icon
+   frozen in its "open" state for the whole close animation and only then
+   played its own 0.35s rotation, reading as a laggy double-length close. */
+.faq-item.is-open .faq-icon { transform: rotate(180deg); }
+.faq-item.is-open .faq-icon::after { opacity: 0; }
 
 /* max-height is animated by core.js (details/summary can't transition
    display:none, so JS sets an explicit pixel max-height and lets this
    transition do the rest); overflow:hidden clips the collapse and
    padding stays included since box-sizing is border-box. */
-.faq-body { padding: 0 28px 26px; overflow: hidden; transition: max-height 0.35s var(--ease); }
+.faq-body { padding: 0 28px 26px; overflow: hidden; transition: max-height 0.18s cubic-bezier(0.16, 1, 0.3, 1); }
 .faq-body p { color: var(--text-2); font-size: 0.98rem; line-height: 1.75; max-width: 68ch; }
 .faq-body p + p { margin-top: 12px; }
 .faq-body ul.plain-list { margin-top: 10px; display: flex; flex-direction: column; gap: 4px; max-width: 68ch; }
