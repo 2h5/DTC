@@ -1,106 +1,74 @@
-/* ==========================================================================
-   Emergency Service page only: alert-tinted hero with hotline callout, the
-   3-step process grid. Loaded only by emergency-service.html, after core/*.css.
-   ========================================================================== */
+/* Emergency Service: alert-led Engineered Uptime masthead/readout. Coral is
+   deliberately exclusive to this genuine response surface. */
 
-/* ==========================================================================
-   Hero , same shape as .page-hero but with a restrained alert accent, this
-   is the one page on the site where the alert color is allowed to lead
-   ========================================================================== */
+.emergency-page { background: var(--void); }
+.emergency-hero { position: relative; overflow: hidden; padding: 28px 0 72px; color: #f3f4f0; background: #061f2b; border-top: 3px solid var(--alert-500); }
+.emergency-hero::before { content: ""; position: absolute; inset: 0; opacity: .4; background-image: linear-gradient(rgba(96,195,173,.12) 1px, transparent 1px), linear-gradient(90deg, rgba(96,195,173,.12) 1px, transparent 1px); background-size: 42px 42px; mask-image: linear-gradient(90deg, #000 0, rgba(0,0,0,.84) 52%, transparent 100%); }
+.emergency-hero .container { position: relative; }
+.emergency-hero .breadcrumb { color: rgba(243,244,240,.56); }
+.emergency-hero .breadcrumb a { color: rgba(243,244,240,.78); }
+.emergency-hero .breadcrumb .sep { color: var(--accent-300); }
+.emergency-hero .breadcrumb .current { color: #fff; }
+.emergency-hero-grid { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(300px, .65fr); gap: 64px; align-items: center; margin-top: 52px; }
+.eyebrow-alert { color: #ff9b83; }
+.emergency-hero h1 { max-width: 13ch; margin-top: 14px; color: #fff; font-size: clamp(2.7rem, 5vw, 4.7rem); line-height: .96; letter-spacing: -.035em; }
+.emergency-hero .lede { max-width: 62ch; margin-top: 22px; color: rgba(243,244,240,.76); font-size: 1.02rem; line-height: 1.65; }
+.emergency-hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 26px; margin-top: 30px; }
+.emergency-engineer-link { display: inline-flex; align-items: center; gap: 9px; color: #fff; font-size: .84rem; font-weight: 600; }
+.emergency-engineer-link span { color: var(--accent-300); font: .72rem var(--font-mono); }
 
-.emergency-hero { padding-block: 24px 8px; position: relative; }
-.emergency-hero::before {
-  content: "";
-  position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  background-color: var(--alert-500);
-  background-image: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.65) 50%, transparent 100%);
-  background-repeat: no-repeat;
-  background-size: 40% 100%;
-  animation: alert-bar-sweep 3s ease-in-out infinite;
+.emergency-readout { border: 1px solid rgba(243,244,240,.2); background: rgba(10,44,58,.8); box-shadow: 18px 18px 0 rgba(0,0,0,.12); }
+.emergency-readout-head { display: flex; justify-content: space-between; gap: 16px; padding: 14px 18px; border-bottom: 1px solid rgba(243,244,240,.16); color: rgba(243,244,240,.58); font: .66rem var(--font-mono); letter-spacing: .09em; text-transform: uppercase; }
+.emergency-readout-live { color: #ffad98; }
+.emergency-readout-live i { display: inline-block; width: 6px; height: 6px; margin-right: 7px; border-radius: 50%; background: var(--alert-500); box-shadow: 0 0 0 4px rgba(241,103,74,.14); }
+.emergency-readout-primary { display: grid; grid-template-columns: auto 1fr; gap: 18px; align-items: end; padding: 24px 18px 22px; border-bottom: 1px solid rgba(243,244,240,.16); }
+.emergency-readout-primary strong { color: #ffad98; font: 600 3.2rem/.8 var(--font-display); }
+.emergency-readout-primary span { max-width: 21ch; color: rgba(243,244,240,.7); font-size: .78rem; line-height: 1.35; }
+.emergency-readout-list { margin: 0; }
+.emergency-readout-list div { display: grid; grid-template-columns: 1fr auto; gap: 18px; padding: 11px 18px; border-bottom: 1px solid rgba(243,244,240,.12); }
+.emergency-readout-list dt { color: rgba(243,244,240,.48); font: .64rem var(--font-mono); letter-spacing: .05em; text-transform: uppercase; }
+.emergency-readout-list dd { margin: 0; color: #fff; font: .68rem var(--font-mono); text-align: right; }
+.emergency-readout-call { display: block; padding: 16px 18px 18px; color: #fff; font: 600 1rem var(--font-display); }
+.emergency-readout-call span { display: block; margin-bottom: 4px; color: #ffad98; font: .64rem var(--font-mono); letter-spacing: .08em; text-transform: uppercase; }
+.emergency-readout-call:hover { color: #ffad98; }
+
+.emergency-procedure { padding-block: 76px; }
+.emergency-section-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(260px, .6fr); gap: 24px 72px; align-items: end; margin-bottom: 34px; }
+.emergency-section-head .eyebrow { color: var(--accent-ink); }
+.emergency-section-head h2 { margin-top: 9px; }
+.emergency-section-head > p { max-width: 520px; margin: 0; color: var(--text-2); }
+.emergency-steps { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line-1); }
+.emergency-step { padding: 24px 22px 24px 0; border-top: 2px solid transparent; margin-top: -1px; }
+.emergency-step + .emergency-step { padding-left: 22px; border-left: 1px solid var(--line-1); }
+.emergency-step .step-num { display: block; color: var(--accent-ink); font: 600 .72rem var(--font-mono); letter-spacing: .08em; }
+.emergency-step .step-num::before { content: ""; display: block; width: 24px; height: 2px; margin-bottom: 12px; background: var(--alert-500); }
+.emergency-step h3 { margin-top: 12px; font-size: 1rem; }
+.emergency-step p { margin-top: 8px; color: var(--text-2); font-size: .9rem; line-height: 1.65; }
+
+.emergency-contact-band { padding: 4px 0 84px; }
+.emergency-contact-inner { display: grid; grid-template-columns: 1.1fr 1fr auto; gap: 34px; align-items: center; padding: 34px 38px; color: #fff; background: #0a2c3a; border-top: 3px solid var(--alert-500); }
+.emergency-contact-inner .eyebrow { color: #ffad98; }
+.emergency-contact-inner h2 { margin-top: 8px; color: #fff; font-size: clamp(1.45rem, 2.2vw, 2rem); }
+.emergency-contact-inner > div:first-child p { margin: 12px 0 0; max-width: 54ch; color: rgba(243,244,240,.66); font-size: .94rem; }
+.emergency-contact-actions { display: grid; gap: 10px; justify-items: start; }
+.emergency-contact-actions > a:last-child { color: var(--accent-300); font: .7rem var(--font-mono); }
+
+@media (max-width: 980px) {
+  .emergency-hero-grid { grid-template-columns: 1fr; gap: 34px; margin-top: 40px; }
+  .emergency-hero h1 { font-size: clamp(2.4rem, 8vw, 3.7rem); }
+  .emergency-section-head { grid-template-columns: 1fr; gap: 12px; }
+  .emergency-contact-inner { grid-template-columns: 1fr auto; }
+  .emergency-contact-inner > div:first-child p { grid-row: 2; }
+  .emergency-contact-actions { grid-row: 1 / span 2; }
 }
 
-@keyframes alert-bar-sweep {
-  0% { background-position: -40% 0; }
-  100% { background-position: 140% 0; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .emergency-hero::before { animation: none; }
-}
-.emergency-hero .lede { margin-top: 18px; max-width: 70ch; }
-.emergency-hero h1 { margin-top: 12px; }
-.eyebrow-alert { color: var(--alert-500); }
-
-.hotline-block {
-  position: relative;
-  margin-top: 32px;
-  display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
-  border: 1px solid var(--alert-500); border-radius: var(--radius-card);
-  background: var(--alert-tint); padding: 20px 24px;
-  max-width: 620px;
-}
-.hotline-block::after {
-  content: "";
-  position: absolute; inset: -1px;
-  border: 2px solid var(--alert-500);
-  border-radius: var(--radius-card);
-  pointer-events: none;
-  --hotline-head-angle: 0deg;
-  --hotline-tail-angle: 0deg;
-  -webkit-mask-image: conic-gradient(from 0deg,
-    transparent 0deg,
-    transparent var(--hotline-tail-angle),
-    black var(--hotline-tail-angle),
-    black var(--hotline-head-angle),
-    transparent var(--hotline-head-angle),
-    transparent 360deg);
-          mask-image: conic-gradient(from 0deg,
-    transparent 0deg,
-    transparent var(--hotline-tail-angle),
-    black var(--hotline-tail-angle),
-    black var(--hotline-head-angle),
-    transparent var(--hotline-head-angle),
-    transparent 360deg);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hotline-block::after { display: none; }
-}
-.hotline-icon {
-  width: 44px; height: 44px; border-radius: 12px; flex-shrink: 0;
-  display: flex; align-items: center; justify-content: center;
-  background: var(--alert-500); color: var(--on-alert);
-}
-.hotline-icon svg { width: 20px; height: 20px; }
-.hotline-block > div { flex: 1; min-width: 160px; }
-.hotline-label { display: block; font-size: 0.78rem; color: var(--text-2); }
-.hotline-number { display: block; margin-top: 2px; font-family: var(--font-display); font-size: 1.3rem; font-weight: 600; color: var(--text-1); }
-.hotline-number:hover { color: var(--alert-500); }
-
-/* ==========================================================================
-   Process , 3-step grid
-   ========================================================================== */
-
-.process-section { padding-block: 48px 56px; }
-.process-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-.process-step {
-  border: 1px solid var(--line-1); border-radius: var(--radius-card); background: var(--surface-2);
-  padding: 28px 24px;
-}
-.process-num { font-family: var(--font-mono); font-size: 0.85rem; font-weight: 600; color: var(--accent-ink); }
-.process-step h3 { margin-top: 14px; }
-.process-step p { margin-top: 8px; font-size: 0.92rem; color: var(--text-2); line-height: 1.6; }
-
-/* ==========================================================================
-   Responsive
-   ========================================================================== */
-
-@media (max-width: 860px) {
-  .process-grid { grid-template-columns: 1fr; }
-}
-
-@media (max-width: 640px) {
-  .hotline-block { flex-direction: column; align-items: flex-start; }
-  .hotline-block .btn { width: 100%; justify-content: center; }
-  .process-section { padding-block: 32px 40px; }
+@media (max-width: 720px) {
+  .emergency-hero { padding-top: 20px; padding-bottom: 56px; }
+  .emergency-readout { box-shadow: 10px 10px 0 rgba(0,0,0,.12); }
+  .emergency-procedure { padding-block: 52px; }
+  .emergency-steps { grid-template-columns: 1fr; }
+  .emergency-step, .emergency-step + .emergency-step { padding: 22px 20px; border-left: 0; border-top: 1px solid var(--line-1); }
+  .emergency-contact-band { padding-bottom: 64px; }
+  .emergency-contact-inner { grid-template-columns: 1fr; gap: 20px; padding: 28px 24px; }
+  .emergency-contact-inner > div:first-child p, .emergency-contact-actions { grid-row: auto; }
 }
