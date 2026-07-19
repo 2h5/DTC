@@ -129,10 +129,10 @@
 .qf-value { font-family: var(--font-display); font-weight: 600; font-size: 0.98rem; color: var(--text-1); }
 
 /* Purchase actions: Add to Cart / Buy It Now as the primary pair, Make an
-   Offer beneath as a full-width dark bar. None of these are wired to a
-   real cart/checkout (DTC has none), clicking any of them surfaces
-   .cart-toast pointing at the real path (Request a Quote / Request
-   Repair, now in the left column right under the quick facts). */
+   Offer beneath as a full-width dark bar. Cart/Buy are wired to the real
+   client cart (assets/js/commerce/cart-ui.js) and surface .cart-toast as
+   an added-to-cart confirmation with a View Cart link; Make an Offer is
+   still a placeholder that points at the quote path. */
 .product-actions { display: flex; gap: 10px; align-items: stretch; }
 .product-actions .btn { flex: 1; justify-content: center; }
 /* The cart icon had no explicit size, an un-sized inline <svg> renders at
@@ -163,6 +163,7 @@
   transition: opacity 0.25s var(--ease), transform 0.25s var(--ease);
 }
 .cart-toast.is-visible { opacity: 1; transform: none; }
+.cart-toast a { font-weight: 700; color: inherit; text-decoration: underline; text-underline-offset: 2px; }
 @media (prefers-reduced-motion: reduce) {
   .cart-toast { transition: opacity 0.15s linear; transform: none; }
 }

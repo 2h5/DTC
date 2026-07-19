@@ -36,16 +36,20 @@
     });
   });
 
-  /* Add to Cart / Buy It Now / Make an Offer aren't wired to a real
-     cart or checkout (DTC has neither), clicking any of them surfaces a
-     small inline note pointing at the real path instead of doing nothing. */
+  /* Add to Cart / Buy It Now are real now — they carry data-cart-add /
+     data-cart-buy-now and are owned by assets/js/commerce/cart-ui.js, so
+     this placeholder handler must never bind to them (both handlers on
+     one button would double-fire). It still owns the actions that have no
+     backend: Make an Offer and Write a Review, which surface an inline
+     note pointing at the real path instead of doing nothing. */
   /* Each placeholder button shows the toast nearest to it (the page has
      two: one under the hero's purchase actions, one in the Reviews tab),
      so the note always appears next to what the visitor just clicked
      instead of possibly off-screen. */
   var toastTimers = new WeakMap();
   var toastMessages = {
-    cart: "Online ordering isn't live yet. Use Request a Quote or Request Repair below and our team will follow up.",
+    cart: "Online ordering isn't live for this part yet. Use Request a Quote or Request Repair below and our team will follow up.",
+    offer: "Offers aren't automated yet. Call 201-244-6477 or use Request a Quote below and an engineer will work the price with you.",
     review: "Reviews aren't open yet. Call or email us and we'll follow up about your experience with this part."
   };
   document.querySelectorAll('[data-placeholder-action]').forEach(function (btn) {

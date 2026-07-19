@@ -1,0 +1,11 @@
+{
+  "_comment": "AUTHORITATIVE price list. Every charge is computed from this file on the server; prices shown in the browser (docs/assets/js/commerce/commerce-catalog.js) are display copies. Keep the two files in sync — the browser file decides what the customer SEES, this file decides what they PAY. priceCents is integer US cents. Set purchasable=false to pull a part from checkout without deleting it.",
+  "currency": "USD",
+  "items": {
+    "259B2451BVP4": {
+      "title": "259B2451BVP4 - ESWA 8P / ESWB 16P universal DIN rail adapter bracket",
+      "priceCents": 124000,
+      "purchasable": true
+    }
+  }
+}

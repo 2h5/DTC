@@ -1,0 +1,8 @@
+# Secrets live in .env locally and in the host's env settings in production.
+# The example file (.env.example) is the only env file that belongs in git.
+.env
+.env.*
+!.env.example
+
+node_modules/
+npm-debug.log*

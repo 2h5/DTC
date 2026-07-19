@@ -109,12 +109,45 @@
 .nav-search-toggle:hover { background: var(--glass-fill); color: var(--text-1); }
 .nav-search-toggle:active { transform: scale(0.92); }
 
-.brand, .main-nav, .nav-search-toggle, .nav-cta, .nav-toggle {
+/* Header cart button. The element itself is injected by
+   assets/js/commerce/cart-ui.js on pages that load the commerce scripts
+   (cart page + migrated product pages), so pages without commerce never
+   show it; the styles live here because it's shared chrome. Same 40px
+   circle treatment as .nav-search-toggle, plus a count badge. */
+.nav-cart {
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+  width: 40px; height: 40px; flex-shrink: 0;
+  background: var(--surface-3);
+  border: 1px solid var(--line-1);
+  border-radius: 999px;
+  color: var(--text-2);
+  transition: background-color 0.3s var(--ease), color 0.3s var(--ease), transform 0.2s var(--ease);
+}
+.nav-cart svg { width: 17px; height: 17px; }
+.nav-cart:hover { background: var(--glass-fill); color: var(--text-1); }
+.nav-cart:active { transform: scale(0.92); }
+.nav-cart-count {
+  display: none;
+  position: absolute; top: -5px; right: -6px;
+  min-width: 18px; height: 18px;
+  padding: 0 5px;
+  align-items: center; justify-content: center;
+  border-radius: 999px;
+  background: var(--accent-500);
+  color: var(--accent-ink);
+  font-family: var(--font-mono);
+  font-size: 0.62rem; font-weight: 700; line-height: 1;
+}
+.nav-cart.has-items .nav-cart-count { display: inline-flex; }
+
+.brand, .main-nav, .nav-search-toggle, .nav-cart, .nav-cta, .nav-toggle {
   transition: opacity 0.25s var(--ease), visibility 0.25s;
 }
 .site-header.search-active .brand,
 .site-header.search-active .main-nav,
 .site-header.search-active .nav-search-toggle,
+.site-header.search-active .nav-cart,
 .site-header.search-active .nav-cta,
 .site-header.search-active .nav-toggle {
   opacity: 0;
@@ -155,8 +188,8 @@
 
 @media (prefers-reduced-motion: reduce) {
   .nav-search { transition: opacity 0.15s linear; transform: none; }
-  .nav-search-toggle, .nav-search-close { transition: background-color 0.3s var(--ease), color 0.3s var(--ease); }
-  .nav-search-toggle:active, .nav-search-close:active { transform: none; }
+  .nav-search-toggle, .nav-search-close, .nav-cart { transition: background-color 0.3s var(--ease), color 0.3s var(--ease); }
+  .nav-search-toggle:active, .nav-search-close:active, .nav-cart:active { transform: none; }
 }
 
 /* Header flash , triggered by core.js only when the home hero's "Search for

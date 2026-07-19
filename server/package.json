@@ -1,0 +1,18 @@
+{
+  "name": "dtc-checkout-server",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Checkout backend for the DTC static site: prices carts from its own catalog and drives PayPal Orders v2 server-side. The PayPal client secret lives only here (in env vars), never in the site.",
+  "main": "index.js",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --env-file=.env index.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2"
+  }
+}
