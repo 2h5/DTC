@@ -1,30 +1,42 @@
 # DTC checkout server
 
-The backend half of the site's cart/checkout. It holds the authoritative
-price list ([catalog.json](catalog.json)) and the PayPal client secret, and
-it is the only thing that ever creates or captures a PayPal order. The
-static site under `docs/` only ever sends it SKUs and quantities.
+Fail-closed Node/Express scaffolding for the static site's PayPal Orders v2
+checkout. It prices carts from `catalog.json`, binds browser access to an
+opaque per-order token, stores sandbox order/webhook state atomically, verifies
+PayPal state before reporting success, and reconciles unclear capture results.
 
-This directory is **not** part of the GitHub Pages deploy (Pages serves
-`docs/` only) — it must be deployed to a Node host of its own.
+## Current safety state
 
-## Quick start (local, sandbox)
+- The committed mode is `disabled`; order creation is independently gated by
+  `CHECKOUT_CREATE_ENABLED=false`.
+- The bundled JSON store supports local/single-instance sandbox work only.
+- `PAYPAL_ENV=live` deliberately refuses to start until a production database
+  adapter, host, credentials, policies, and operational controls are selected.
+- No PayPal secret or checkout token belongs under `docs/` or in source control.
 
-```bash
-cd server
-npm install
-cp .env.example .env   # fill in sandbox credentials from developer.paypal.com
-npm run dev            # http://localhost:8787/api/health
-```
+## Local sandbox setup (when testing is authorized)
 
-## Endpoints
+1. Use Node 24 and generate/review `package-lock.json` with the pinned npm
+   version in `package.json`.
+2. Run `npm ci`, copy `.env.example` to `.env`, and enter sandbox-only values.
+3. Set `PAYPAL_ENV=sandbox`, an exact localhost/site `ALLOWED_ORIGINS`, and a
+   private `ORDER_DATA_DIR`.
+4. Keep `CHECKOUT_CREATE_ENABLED=false` until configuration/preflight checks
+   pass; enable it only for the planned sandbox test window.
 
-| Method | Path                  | Body                     | Returns |
-| ------ | --------------------- | ------------------------ | ------- |
-| POST   | /api/checkout/order   | `{ items:[{sku,qty}] }`  | `{ id }` (PayPal order id) |
-| POST   | /api/checkout/capture | `{ orderID }`            | `{ status, orderID, captureID }` |
-| GET    | /api/health           | —                        | `{ ok, env }` |
+The Docker build intentionally fails while the reviewed lockfile is absent.
 
-The full go-live walkthrough, security model and testing checklist live in
-[../COMMERCE-SETUP.md](../COMMERCE-SETUP.md). Read it before deploying, and
-re-read the invariants at the top of [index.js](index.js) before editing it.
+## API contract
+
+| Method | Path | Purpose |
+| --- | --- | --- |
+| `GET` | `/api/health` | Secret-free liveness state |
+| `GET` | `/api/checkout/config` | Exact frontend/backend compatibility preflight |
+| `POST` | `/api/checkout/order` | Price `{items:[{sku,qty}]}` and create one PayPal order |
+| `POST` | `/api/checkout/capture` | Capture the bound `{orderID,checkoutToken}` idempotently |
+| `POST` | `/api/checkout/status` | Reconcile that same bound order |
+| `POST` | `/api/webhooks/paypal` | Verify, deduplicate, and persist supported PayPal events |
+
+Read [`../COMMERCE-SETUP.md`](../COMMERCE-SETUP.md) before deployment. It lists
+the unresolved database, policy, tax, shipping, monitoring, test, and approval
+gates. This reference server is not authorization to accept live payments.

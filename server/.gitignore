@@ -1,8 +1,11 @@
-# Secrets live in .env locally and in the host's env settings in production.
-# The example file (.env.example) is the only env file that belongs in git.
+# Local secrets and generated state never belong in source control.
 .env
 .env.*
 !.env.example
 
 node_modules/
+coverage/
+data/
+checkout-state.json*
+*.tmp
 npm-debug.log*

@@ -4,18 +4,18 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Cart | Direct Turbine Controls</title>
-<meta name="description" content="Review the turbine control parts in your cart. Secure checkout with PayPal, or send the cart to a DTC engineer as a quote request.">
+<meta name="description" content="Review turbine control parts in your cart and request a formal quote. Online payment remains disabled during checkout preparation.">
 <meta name="robots" content="noindex">
 <!--
-  GO-LIVE HARDENING (optional but recommended): once checkout is enabled in
+  GO-LIVE HARDENING: once checkout is enabled in
   assets/js/commerce/commerce-config.js, uncomment this Content-Security-Policy
   and replace https://YOUR-API-HOST with the deployed backend origin. It locks
-  script execution to this site + PayPal's official SDK. Test the full sandbox
+  script execution to this site + PayPal's official Web SDK v6 origins. Test the full sandbox
   checkout after enabling it — a wrong host here blocks checkout entirely.
   (GitHub Pages cannot send real response headers, so a meta tag is the only
   CSP option on this host. See COMMERCE-SETUP.md.)
 
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.paypal.com https://www.sandbox.paypal.com; style-src 'self' 'unsafe-inline' https://api.fontshare.com; style-src-attr 'unsafe-inline'; font-src https://cdn.fontshare.com; img-src 'self' data: https://www.paypalobjects.com; connect-src 'self' https://YOUR-API-HOST https://www.paypal.com https://www.sandbox.paypal.com; frame-src https://www.paypal.com https://www.sandbox.paypal.com; base-uri 'self'; form-action 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://*.paypal.com https://*.paypalobjects.com; style-src 'self' 'unsafe-inline' https://api.fontshare.com; style-src-attr 'unsafe-inline'; font-src https://cdn.fontshare.com; img-src 'self' data: https://*.paypal.com https://*.paypalobjects.com; connect-src 'self' https://YOUR-API-HOST https://*.paypal.com; frame-src https://*.paypal.com; base-uri 'self'; form-action 'self'">
 -->
 <link rel="icon" href="assets/img/brand/dtc-mark.svg">
 <link rel="preconnect" href="https://api.fontshare.com">
@@ -287,7 +287,8 @@
           <div class="checkout-zone">
             <!-- Shipped default: backend + PayPal button not wired yet, so
                  checkout stays an honest quote path. checkout.js swaps this
-                 for the live panel only when commerce-config.js is filled in. -->
+                 for the payment panel only after explicit sandbox/live mode
+                 passes a backend compatibility preflight. -->
             <div class="checkout-offline" data-checkout-offline>
               <span class="checkout-eyebrow">Secure Checkout</span>
               <p>Online payment isn't switched on yet. Send this cart to an engineer and we'll confirm price, stock and shipping the same business day.</p>
@@ -297,26 +298,42 @@
 
             <div class="checkout-live" data-checkout-live hidden>
               <span class="checkout-eyebrow">Secure Checkout</span>
-              <div id="paypal-button-container"></div>
+              <div class="checkout-sandbox-banner" data-checkout-sandbox role="note" hidden>
+                <strong>Sandbox test mode</strong>
+                <span>No live payment will be processed.</span>
+              </div>
+              <p class="checkout-loading" data-checkout-loading hidden>Checking secure checkout availability&hellip;</p>
+              <div id="paypal-button-container" data-paypal-button-container aria-busy="false">
+                <paypal-button id="paypal-button" type="pay" hidden aria-label="Pay securely with PayPal"></paypal-button>
+              </div>
               <p class="checkout-secure-note">
                 <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2l8 4v6c0 5-3.4 8.6-8 10-4.6-1.4-8-5-8-10V6l8-4z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 Payment is processed by PayPal. Your card details never touch this site.
               </p>
             </div>
 
-            <p class="checkout-status" data-checkout-status role="status" aria-live="polite"></p>
+            <p class="checkout-reference" data-checkout-reference hidden>
+              <span data-checkout-merchant-row hidden>Order reference: <strong data-checkout-merchant-reference></strong></span>
+              <span>PayPal order reference: <strong data-checkout-order-id></strong></span>
+            </p>
+            <p class="checkout-status" data-checkout-status role="status" aria-live="polite" aria-atomic="true"></p>
+            <p class="checkout-status is-error" data-checkout-alert role="alert" aria-atomic="true"></p>
+            <button class="btn btn-outline btn-block checkout-retry" type="button" data-checkout-retry hidden>
+              Check this payment status
+            </button>
           </div>
         </aside>
       </div>
 
       <!-- Post-payment confirmation (revealed by checkout.js) -->
-      <div class="cart-success" data-cart-success hidden>
+      <div class="cart-success" data-cart-success tabindex="-1" hidden>
         <span class="cart-success-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </span>
         <h2>Order received</h2>
+        <p class="cart-success-ref" data-success-merchant-row hidden>Order reference: <strong data-success-merchant-reference></strong></p>
         <p class="cart-success-ref">PayPal order reference: <strong data-success-order-id></strong></p>
-        <p>PayPal is emailing you a receipt now. A DTC engineer will follow up within one business day to confirm testing, lead time and insured shipping for your order.</p>
+        <p>Payment is confirmed under the references above. Keep PayPal's confirmation for your records and contact DTC to confirm fulfillment status. For questions, <a href="contact-us.html">contact us</a> or call <a href="tel:+12012446477">201-244-6477</a>.</p>
         <div class="cart-empty-actions">
           <a class="btn btn-primary" href="parts-shop.html">Back to the Parts Shop</a>
           <a class="btn btn-outline" href="contact-us.html">Contact Us</a>

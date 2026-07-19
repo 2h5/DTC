@@ -1,55 +1,59 @@
-/* Public commerce configuration. Loaded (before the other commerce scripts)
-   on every page that participates in cart/checkout.
+/* Public commerce configuration. Loaded before the other commerce scripts.
 
-   SECURITY MODEL — read before editing:
-   Everything in this file ships to every visitor's browser. Only values that
-   are safe to publish may ever live here:
+   SECURITY BOUNDARY
+   -----------------
+   Every value in this file is public. Never place a PayPal secret, access
+   token, webhook id or any other credential under docs/. Prices here and in
+   commerce-catalog.js are display copies only; the backend remains the sole
+   authority for every amount that can be charged.
 
-     - apiBase        The https origin of the DTC checkout backend (the
-                      server/ app in this repo, once deployed). An empty
-                      string means "no backend yet": the cart still works,
-                      but checkout renders as a request-a-quote notice
-                      instead of a PayPal button.
-     - paypalClientId The PayPal REST *client id*. This value is public by
-                      design (PayPal embeds it in the browser SDK URL for
-                      every merchant on the internet). It can only be used
-                      to render buttons and start an order — it cannot move
-                      money. An empty string disables the PayPal button.
+   Checkout is an explicit three-state switch:
+     - "off"     No backend request and no PayPal script load. This is the
+                 committed scaffolding default.
+     - "sandbox" A sandbox backend and the sandbox Web SDK v6 must agree with
+                 every public compatibility value below.
+     - "live"    A live backend and the live Web SDK v6 must agree likewise.
 
-   NEVER put any of the following here or anywhere else under docs/:
-     - the PayPal client SECRET (server/.env only),
-     - webhook ids, API tokens, credentials of any kind,
-     - prices you expect to be enforced. Prices in the browser are display
-       copies; the deployed backend recomputes every charge from its own
-       catalog (server/catalog.json) and ignores client-sent amounts.
-
-   GO-LIVE is intentionally just two edits here (see COMMERCE-SETUP.md):
-     1. apiBase        = "https://<your-deployed-backend>"
-     2. paypalClientId = "<live client id from the PayPal developer portal>"
+   Merely filling in a URL or client id cannot enable payments. Before loading
+   PayPal, checkout.js validates this object and verifies the deployed backend
+   with GET /api/checkout/config. Any missing or mismatched value fails closed.
 */
 (function () {
-  window.DTC_COMMERCE_CONFIG = {
-    /* "" until the server/ app is deployed. No trailing slash. */
+  var config = {
+    /* Keep "off" until a backend and PayPal sandbox app both exist. */
+    checkoutMode: "off",
+
+    /* Independent emergency/rollout gate. This must be explicitly true in
+       both this file and the backend preflight before order creation or SDK
+       loading is allowed. Keep false throughout scaffolding. */
+    createEnabled: false,
+
+    /* Exact HTTPS origin of the deployed checkout backend, with no path or
+       trailing slash. An HTTP localhost origin is accepted in sandbox only. */
     apiBase: "",
 
-    /* "" until the PayPal Business app exists. Use the sandbox client id
-       while testing, swap to the live one at launch. */
+    /* Public PayPal REST client id. The client secret stays server-side. */
     paypalClientId: "",
 
-    /* Fixed storewide. The backend enforces its own currency; this only
-       controls display formatting and the PayPal SDK locale hint. */
+    /* Public compatibility contract. These must exactly match the backend's
+       /api/checkout/config response before the PayPal SDK can load. */
+    apiVersion: 1,
+    catalogVersion: "2026-07-19.1",
     currency: "USD",
-
-    /* Hard client-side caps. The backend enforces the same caps again —
-       these exist so the UI never builds a request the server would
-       reject anyway. */
     maxQtyPerLine: 99,
     maxLines: 20
   };
 
-  /* Checkout is live only when both halves exist. Derived, not hand-set,
-     so a half-configured deploy fails closed (quote notice, no button). */
-  window.DTC_COMMERCE_CONFIG.checkoutEnabled = Boolean(
-    window.DTC_COMMERCE_CONFIG.apiBase && window.DTC_COMMERCE_CONFIG.paypalClientId
+  /* Compatibility flag for existing page code. checkout.js still performs
+     strict URL, mode and backend checks; this flag alone never enables SDK
+     loading or payment. */
+  config.checkoutEnabled = Boolean(
+    (config.checkoutMode === "sandbox" || config.checkoutMode === "live") &&
+    config.createEnabled === true &&
+    config.apiBase &&
+    config.paypalClientId
   );
+
+  if (typeof Object.freeze === "function") Object.freeze(config);
+  window.DTC_COMMERCE_CONFIG = config;
 })();

@@ -219,6 +219,11 @@
   transition: color 0.25s var(--ease), border-color 0.25s var(--ease);
 }
 .cart-line-remove:hover { color: var(--alert-500); border-color: var(--line-2); }
+.cart-line button:disabled,
+.cart-line input:disabled {
+  cursor: wait;
+  opacity: 0.52;
+}
 
 .cart-continue {
   display: inline-flex; align-items: center; gap: 8px;
@@ -273,12 +278,49 @@
 .checkout-offline-alt a:hover { color: var(--accent-ink); }
 
 .checkout-live #paypal-button-container { margin-top: 16px; min-height: 48px; }
+.checkout-live paypal-button { display: block; width: 100%; min-height: 48px; }
+.checkout-live paypal-button[hidden] { display: none; }
+.checkout-live paypal-button[disabled] { pointer-events: none; opacity: 0.58; }
+
+.checkout-sandbox-banner {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+  margin-top: 14px;
+  border: 1px solid rgba(96, 195, 173, 0.55);
+  background: var(--cart-ink);
+  padding: 10px 12px;
+  color: #ffffff;
+  font-size: 0.78rem;
+  line-height: 1.4;
+}
+.checkout-sandbox-banner[hidden] { display: none; }
+.checkout-sandbox-banner strong {
+  color: var(--cart-mint-light);
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.checkout-sandbox-banner span { color: rgba(255, 255, 255, 0.72); }
+
+.checkout-loading { margin-top: 14px; color: var(--text-2); font-size: 0.86rem; line-height: 1.55; }
 .checkout-secure-note {
   display: flex; align-items: flex-start; gap: 8px;
   margin-top: 14px;
   font-size: 0.8rem; line-height: 1.55; color: var(--text-3);
 }
 .checkout-secure-note svg { width: 15px; height: 15px; flex-shrink: 0; margin-top: 2px; color: var(--accent-ink); }
+
+.checkout-reference {
+  margin-top: 14px;
+  overflow-wrap: anywhere;
+  color: var(--text-2);
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  line-height: 1.55;
+}
+.checkout-reference strong { color: var(--text-1); }
+.checkout-reference span { display: block; }
+.checkout-reference span + span { margin-top: 2px; }
 
 .checkout-status:empty { display: none; }
 .checkout-status {
@@ -290,6 +332,9 @@
   font-size: 0.86rem; font-weight: 500; line-height: 1.55;
 }
 .checkout-status.is-error { background: var(--alert-tint); color: var(--alert-500); }
+.checkout-status.is-warning { background: rgba(96, 195, 173, 0.16); color: var(--cart-ink); }
+.checkout-retry { margin-top: 12px; }
+.checkout-retry:disabled { cursor: wait; opacity: 0.62; }
 
 /* ----- Empty + success states ------------------------------------------ */
 
